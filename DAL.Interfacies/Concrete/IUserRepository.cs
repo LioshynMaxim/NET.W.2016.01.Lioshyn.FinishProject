@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using DAL.Interfacies.DTO;
 
 namespace DAL.Interfacies.Concrete
 {
-    interface IUserRepository
+    public interface IUserRepository : IRepository<DalUser>
     {
+        IEnumerable<DalUser> GetUserByClassRoom(int idClassRoom);
+        IEnumerable<DalUser> GetUserByPupil(int idPupil);
+        DalUser GetUserByName(string userName);
     }
 }

@@ -49,14 +49,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Concrete\IClassRoomRepository.cs" />
+    <Compile Include="Concrete\ICommentRepository.cs" />
+    <Compile Include="Concrete\IMailRepository.cs" />
+    <Compile Include="Concrete\IParentRepository.cs" />
+    <Compile Include="Concrete\IPupilRepository.cs" />
     <Compile Include="Concrete\IRepository.cs" />
+    <Compile Include="Concrete\IRequisitionRepository.cs" />
+    <Compile Include="Concrete\IRoleRepository.cs" />
+    <Compile Include="Concrete\ITeacherRepository.cs" />
+    <Compile Include="Concrete\IUnitWork.cs" />
     <Compile Include="Concrete\IUserRepository.cs" />
     <Compile Include="DTO\DalClassRoom.cs" />
     <Compile Include="DTO\DalComment.cs" />
     <Compile Include="DTO\DalMail.cs" />
     <Compile Include="DTO\DalParent.cs" />
     <Compile Include="DTO\DalPupil.cs" />
-    <Compile Include="DTO\Dalrequisition.cs" />
+    <Compile Include="DTO\DalRequisition.cs" />
     <Compile Include="DTO\DalRole.cs" />
     <Compile Include="DTO\DalTeacher.cs" />
     <Compile Include="DTO\DalUser.cs" />

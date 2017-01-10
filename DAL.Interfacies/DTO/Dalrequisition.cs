@@ -2,7 +2,7 @@
 
 namespace DAL.Interfacies.DTO
 {
-    public class Dalrequisition : IEntity
+    public class DalRequisition : IEntity
     {
         public int Id { get; set; }
         public string Name { get; set; }

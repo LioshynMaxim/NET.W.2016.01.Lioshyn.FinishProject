@@ -16,18 +16,18 @@ namespace ORM
             ClassRooms = new HashSet<ClassRoom>();
         }
 
-        public int id { get; set; }
+        public int Id { get; set; }
 
         [StringLength(50)]
         public string WorkPlace { get; set; }
 
-        public int? groupNumber { get; set; }
+        public int? GroupNumber { get; set; }
 
-        public int? courseNumber { get; set; }
+        public int? CourseNumber { get; set; }
 
-        public int? ClassRoomBSU { get; set; }
+        public int? ClassRoomBsu { get; set; }
 
-        public int idUser { get; set; }
+        public int IdUser { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Pupil> Pupils { get; set; }

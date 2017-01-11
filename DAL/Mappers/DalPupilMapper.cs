@@ -10,20 +10,20 @@ namespace DAL.Mappers
         /// </summary>
         /// <param name="pupil">Pupil</param>
         /// <returns>If empty pupil return null, otherwise give informstion about pupil.</returns>
-
-
+        
         public static DalPupil ToDalPupil(this Pupil pupil)
         {
             if (pupil == null) return null;
             return new DalPupil
             {
-                Id = pupil.id,
-                IdUser = pupil.idUser,
-                ClassLetter = pupil.ClassLetter,
-                ClassNumber = pupil.ClassNumber,
-                NumberSchool = pupil.NumberSchool,
+                Id = pupil.Id,
                 School = pupil.School,
-                SchoolTeacherSurname = pupil.SchoolTeacherSurname
+                NumberSchool = pupil.NumberSchool,
+                ClassNumber = pupil.ClassNumber,
+                ClassLetter = pupil.ClassLetter,
+                SchoolTeacherSurname = pupil.SchoolTeacherSurname,
+                IdUser = pupil.IdUser,
+                IdTeacher = pupil.IdTeacher
             };
         }
 
@@ -38,12 +38,13 @@ namespace DAL.Mappers
             if (pupil == null) return null;
             return new Pupil
             {
-                idUser = pupil.IdUser,
-                ClassLetter = pupil.ClassLetter,
-                ClassNumber = pupil.ClassNumber,
-                NumberSchool = pupil.NumberSchool,
                 School = pupil.School,
-                SchoolTeacherSurname = pupil.SchoolTeacherSurname
+                NumberSchool = pupil.NumberSchool,
+                ClassNumber = pupil.ClassNumber,
+                ClassLetter = pupil.ClassLetter,
+                SchoolTeacherSurname = pupil.SchoolTeacherSurname,
+                IdUser = pupil.IdUser,
+                IdTeacher = pupil.IdTeacher
             };
         }
 

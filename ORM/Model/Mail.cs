@@ -9,12 +9,12 @@ namespace ORM
     [Table("Mail")]
     public partial class Mail
     {
-        public int id { get; set; }
+        public int Id { get; set; }
 
         [StringLength(70)]
         public string Email { get; set; }
 
-        public int idUser { get; set; }
+        public int IdUser { get; set; }
 
         public virtual User User { get; set; }
     }

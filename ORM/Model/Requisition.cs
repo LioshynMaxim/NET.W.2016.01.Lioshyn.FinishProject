@@ -9,7 +9,7 @@ namespace ORM
     [Table("Requisition")]
     public partial class Requisition
     {
-        public int id { get; set; }
+        public int Id { get; set; }
 
         [StringLength(12)]
         public string Name { get; set; }

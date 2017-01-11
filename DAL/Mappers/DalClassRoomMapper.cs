@@ -5,6 +5,7 @@ namespace DAL.Mappers
 {
     public static class DalClassRoomMapper
     {
+
         /// <summary>
         /// Read class room from database.
         /// </summary>
@@ -16,10 +17,11 @@ namespace DAL.Mappers
             if (classRoom == null) return null;
             return new DalClassRoom
             {
-                Id = classRoom.id,
+                Id = classRoom.Id,
                 Name = classRoom.Name,
                 Room = classRoom.Room,
-                Time = classRoom.Time
+                Time = classRoom.Time,
+                IdPupil = classRoom.IdPupil
             };
         }
 
@@ -34,10 +36,10 @@ namespace DAL.Mappers
             if (classRoom == null) return null;
             return new ClassRoom
             {
-                
                 Name = classRoom.Name,
                 Room = classRoom.Room,
-                Time = classRoom.Time
+                Time = classRoom.Time,
+                IdPupil = classRoom.IdPupil
             };
         }
     }

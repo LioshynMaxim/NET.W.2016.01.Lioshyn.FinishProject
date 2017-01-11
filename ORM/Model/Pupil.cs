@@ -15,7 +15,7 @@ namespace ORM
             ClassRooms = new HashSet<ClassRoom>();
         }
 
-        public int id { get; set; }
+        public int Id { get; set; }
 
         [StringLength(10)]
         public string School { get; set; }
@@ -30,9 +30,9 @@ namespace ORM
         [StringLength(25)]
         public string SchoolTeacherSurname { get; set; }
 
-        public int idUser { get; set; }
+        public int IdUser { get; set; }
 
-        public int? idTeacher { get; set; }
+        public int? IdTeacher { get; set; }
 
         public virtual User User { get; set; }
 

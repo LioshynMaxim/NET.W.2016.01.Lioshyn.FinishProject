@@ -9,5 +9,6 @@
         public string ClassLetter { get; set; }
         public string SchoolTeacherSurname { get; set; }
         public int IdUser { get; set; }
+        public int? IdTeacher { get; set; }
     }
 }

@@ -16,7 +16,7 @@ namespace ORM
             Teachers = new HashSet<Teacher>();
         }
 
-        public int id { get; set; }
+        public int Id { get; set; }
 
         [StringLength(100)]
         public string Name { get; set; }
@@ -25,7 +25,7 @@ namespace ORM
 
         public TimeSpan? Time { get; set; }
 
-        public int? idPupil { get; set; }
+        public int? IdPupil { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Pupil> Pupils { get; set; }

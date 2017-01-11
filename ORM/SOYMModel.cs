@@ -55,7 +55,7 @@ namespace ORM
             modelBuilder.Entity<Pupil>()
                 .HasMany(e => e.ClassRooms)
                 .WithMany(e => e.Pupils)
-                .Map(m => m.ToTable("Pupil_ClassRoom").MapLeftKey("idPupil").MapRightKey("idClassRoom"));
+                .Map(m => m.ToTable("Pupil_ClassRoom").MapLeftKey("IdPupil").MapRightKey("idClassRoom"));
 
             modelBuilder.Entity<Requisition>()
                 .Property(e => e.Name)
@@ -92,12 +92,12 @@ namespace ORM
             modelBuilder.Entity<Teacher>()
                 .HasMany(e => e.Pupils)
                 .WithOptional(e => e.Teacher)
-                .HasForeignKey(e => e.idTeacher);
+                .HasForeignKey(e => e.IdTeacher);
 
             modelBuilder.Entity<Teacher>()
                 .HasMany(e => e.ClassRooms)
                 .WithMany(e => e.Teachers)
-                .Map(m => m.ToTable("Teacher_ClassRoom").MapLeftKey("idTeacher").MapRightKey("idClassRoom"));
+                .Map(m => m.ToTable("Teacher_ClassRoom").MapLeftKey("IdTeacher").MapRightKey("idClassRoom"));
 
             modelBuilder.Entity<User>()
                 .Property(e => e.Name)
@@ -126,31 +126,31 @@ namespace ORM
             modelBuilder.Entity<User>()
                 .HasMany(e => e.Comments)
                 .WithRequired(e => e.User)
-                .HasForeignKey(e => e.idUser)
+                .HasForeignKey(e => e.IdUser)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<User>()
                 .HasMany(e => e.Mails)
                 .WithRequired(e => e.User)
-                .HasForeignKey(e => e.idUser)
+                .HasForeignKey(e => e.IdUser)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<User>()
                 .HasMany(e => e.Parents)
                 .WithRequired(e => e.User)
-                .HasForeignKey(e => e.idUser)
+                .HasForeignKey(e => e.IdUser)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<User>()
                 .HasMany(e => e.Pupils)
                 .WithRequired(e => e.User)
-                .HasForeignKey(e => e.idUser)
+                .HasForeignKey(e => e.IdUser)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<User>()
                 .HasMany(e => e.Roles)
                 .WithMany(e => e.Users)
-                .Map(m => m.ToTable("User_Role").MapLeftKey("idUser").MapRightKey("idRole"));
+                .Map(m => m.ToTable("User_Role").MapLeftKey("IdUser").MapRightKey("idRole"));
         }
     }
 }

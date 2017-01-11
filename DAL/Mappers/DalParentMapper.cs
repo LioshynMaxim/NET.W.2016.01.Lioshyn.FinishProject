@@ -15,9 +15,9 @@ namespace DAL.Mappers
             if (parent == null) return null;
             return new DalParent
             {
-                Id = parent.id,
+                Id = parent.Id,
                 PlaceWork = parent.PlaceOfWork,
-                IdUser = parent.idUser
+                IdUser = parent.IdUser
             };
         }
 
@@ -32,7 +32,7 @@ namespace DAL.Mappers
             if (parent == null) return null;
             return new Parent
             {
-                idUser = parent.IdUser,
+                IdUser = parent.IdUser,
                 PlaceOfWork = parent.PlaceWork
             };
         }

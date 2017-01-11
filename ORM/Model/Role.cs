@@ -15,7 +15,7 @@ namespace ORM
             Users = new HashSet<User>();
         }
 
-        public int id { get; set; }
+        public int Id { get; set; }
 
         [StringLength(20)]
         public string RoleName { get; set; }

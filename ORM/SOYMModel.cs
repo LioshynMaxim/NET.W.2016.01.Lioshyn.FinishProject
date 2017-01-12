@@ -28,6 +28,16 @@ namespace ORM
                 .Property(e => e.Name)
                 .IsUnicode(false);
 
+            modelBuilder.Entity<ClassRoom>()
+                .HasMany(e => e.Pupils)
+                .WithMany(e => e.ClassRooms)
+                .Map(m => m.ToTable("Pupil_ClassRoom").MapLeftKey("ClassRooms_Id").MapRightKey("Pupils_Id"));
+
+            modelBuilder.Entity<ClassRoom>()
+                .HasMany(e => e.Teachers)
+                .WithMany(e => e.ClassRooms)
+                .Map(m => m.ToTable("Teacher_ClassRoom").MapLeftKey("ClassRooms_Id").MapRightKey("Teachers_Id"));
+
             modelBuilder.Entity<Comment>()
                 .Property(e => e.CommentUser)
                 .IsUnicode(false);
@@ -40,6 +50,11 @@ namespace ORM
                 .Property(e => e.PlaceOfWork)
                 .IsUnicode(false);
 
+            modelBuilder.Entity<Parent>()
+                .HasMany(e => e.Pupils)
+                .WithMany(e => e.Parents)
+                .Map(m => m.ToTable("Pupil_Parent").MapLeftKey("Parents_Id").MapRightKey("Pupils_Id"));
+
             modelBuilder.Entity<Pupil>()
                 .Property(e => e.School)
                 .IsUnicode(false);
@@ -51,11 +66,6 @@ namespace ORM
             modelBuilder.Entity<Pupil>()
                 .Property(e => e.SchoolTeacherSurname)
                 .IsUnicode(false);
-
-            modelBuilder.Entity<Pupil>()
-                .HasMany(e => e.ClassRooms)
-                .WithMany(e => e.Pupils)
-                .Map(m => m.ToTable("Pupil_ClassRoom").MapLeftKey("IdPupil").MapRightKey("IdClassRoom"));
 
             modelBuilder.Entity<Requisition>()
                 .Property(e => e.Name)
@@ -85,6 +95,11 @@ namespace ORM
                 .Property(e => e.RoleName)
                 .IsUnicode(false);
 
+            modelBuilder.Entity<Role>()
+                .HasMany(e => e.Users)
+                .WithMany(e => e.Roles)
+                .Map(m => m.ToTable("User_Role").MapLeftKey("Roles_Id").MapRightKey("Users_Id"));
+
             modelBuilder.Entity<Teacher>()
                 .Property(e => e.WorkPlace)
                 .IsUnicode(false);
@@ -93,11 +108,6 @@ namespace ORM
                 .HasMany(e => e.Pupils)
                 .WithOptional(e => e.Teacher)
                 .HasForeignKey(e => e.IdTeacher);
-
-            modelBuilder.Entity<Teacher>()
-                .HasMany(e => e.ClassRooms)
-                .WithMany(e => e.Teachers)
-                .Map(m => m.ToTable("Teacher_ClassRoom").MapLeftKey("IdTeacher").MapRightKey("IdClassRoom"));
 
             modelBuilder.Entity<User>()
                 .Property(e => e.Name)
@@ -148,9 +158,10 @@ namespace ORM
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<User>()
-                .HasMany(e => e.Roles)
-                .WithMany(e => e.Users)
-                .Map(m => m.ToTable("User_Role").MapLeftKey("IdUser").MapRightKey("IdRole"));
+                .HasMany(e => e.Teachers)
+                .WithRequired(e => e.User)
+                .HasForeignKey(e => e.IdUser)
+                .WillCascadeOnDelete(false);
         }
     }
 }

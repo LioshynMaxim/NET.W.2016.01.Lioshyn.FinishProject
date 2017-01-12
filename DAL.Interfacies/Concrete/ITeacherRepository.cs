@@ -5,9 +5,8 @@ namespace DAL.Interfacies.Concrete
 {
     public interface ITeacherRepository : IRepository<DalTeacher>
     {
-        void AddTeacherToClassRoom(int idPupil, int idClassRoom);
-        void ChangeTeacherToClassRoom(int idPupil, int idClassRoom);
-        void DeleteTeacherToClassRoom(int idPupil, int idClassRoom);
-        IEnumerable<DalPupil> GetAllTeacherInClassRoom(int idClassRoom);
+        void AddTeacherToClassRoom(int idTeacher, int idClassRoom);
+        void DeleteTeacherToClassRoom(int idTeacher, int idClassRoom);
+        IEnumerable<DalTeacher> GetAllTeacherInClassRoom(int idClassRoom);
     }
 }

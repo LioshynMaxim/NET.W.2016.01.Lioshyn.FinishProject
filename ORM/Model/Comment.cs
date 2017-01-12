@@ -6,7 +6,6 @@ namespace ORM
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("Comment")]
     public partial class Comment
     {
         public int Id { get; set; }

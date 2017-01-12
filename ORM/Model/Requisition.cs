@@ -6,7 +6,6 @@ namespace ORM
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("Requisition")]
     public partial class Requisition
     {
         public int Id { get; set; }
@@ -20,7 +19,6 @@ namespace ORM
         [StringLength(20)]
         public string Patronymic { get; set; }
 
-        [Column(TypeName = "date")]
         public DateTime? BirthDay { get; set; }
 
         [StringLength(20)]

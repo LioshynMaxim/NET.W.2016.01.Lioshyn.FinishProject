@@ -6,7 +6,6 @@ namespace ORM
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("User")]
     public partial class User
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -16,6 +15,7 @@ namespace ORM
             Mails = new HashSet<Mail>();
             Parents = new HashSet<Parent>();
             Pupils = new HashSet<Pupil>();
+            Teachers = new HashSet<Teacher>();
             Roles = new HashSet<Role>();
         }
 
@@ -30,7 +30,6 @@ namespace ORM
         [StringLength(20)]
         public string Patronymic { get; set; }
 
-        [Column(TypeName = "date")]
         public DateTime? BirthDay { get; set; }
 
         [StringLength(20)]
@@ -69,6 +68,9 @@ namespace ORM
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Pupil> Pupils { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Teacher> Teachers { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Role> Roles { get; set; }

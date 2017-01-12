@@ -11,7 +11,7 @@ namespace DAL.Concrete
 {
     public class UserRepository : IUserRepository
     {
-        private DbContext Context { get; set; }
+        private DbContext Context { get; }
 
         #region .ctor
 
@@ -24,16 +24,7 @@ namespace DAL.Concrete
 
         #region Main function for work
 
-        public IEnumerable<DalUser> GetAll()
-        {
-            throw new NotImplementedException();
-        }
-
-        public DalUser GetById(int key)
-        {
-            throw new NotImplementedException();
-        }
-
+        
         public void Create(DalUser entity)
         {
             throw new NotImplementedException();
@@ -53,9 +44,46 @@ namespace DAL.Concrete
 
         #region Auxiliary function for work
 
+        public IEnumerable<DalUser> GetAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        public DalUser GetById(int key)
+        {
+            throw new NotImplementedException();
+        }
 
 
-        #endregion
+        public void AddUserMail(int idUser, int idMail)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddUserComment(int idUser, int idComment)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddUserParent(int idUser, int idParent)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddUserPupil(int idUser, int idPupil)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddUserTeacher(int idUser, int idTeacher)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddUserRole(int idUser, int idRole)
+        {
+            throw new NotImplementedException();
+        }
 
         public IEnumerable<DalUser> GetUserByClassRoom(int idClassRoom)
         {
@@ -71,5 +99,9 @@ namespace DAL.Concrete
         {
             throw new NotImplementedException();
         }
+
+        #endregion
+
+
     }
 }

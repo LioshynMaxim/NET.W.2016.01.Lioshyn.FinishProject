@@ -5,7 +5,7 @@ namespace DAL.Interfacies.Concrete
 {
     public interface IMailRepository : IRepository<DalMail>
     {
-        void AddMailToUser(int idUser);
+        void AddMailToUser(int idUser, int idMail);
         IEnumerable<DalMail> GelAllUserMails(int idUser);
     }
 }

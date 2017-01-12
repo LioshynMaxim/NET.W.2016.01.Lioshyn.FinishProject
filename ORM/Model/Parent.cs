@@ -6,9 +6,14 @@ namespace ORM
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("Parent")]
     public partial class Parent
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Parent()
+        {
+            Pupils = new HashSet<Pupil>();
+        }
+
         public int Id { get; set; }
 
         [StringLength(50)]
@@ -17,5 +22,8 @@ namespace ORM
         public int IdUser { get; set; }
 
         public virtual User User { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Pupil> Pupils { get; set; }
     }
 }

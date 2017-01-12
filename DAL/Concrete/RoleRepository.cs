@@ -23,22 +23,7 @@ namespace DAL.Concrete
         #endregion
 
         #region Main function for work
-
-        /// <summary>
-        /// Select all roles from database.
-        /// </summary>
-        /// <returns>All roles from database.</returns>
-
-        public IEnumerable<DalRole> GetAll() => Context.Set<Role>().ToList().Select(role => role.ToDalRole());
-
-        /// <summary>
-        /// Select concrete role for id.
-        /// </summary>
-        /// <param name="key">Id role</param>
-        /// <returns>Concrete role.</returns>
-
-        public DalRole GetById(int key) => Context.Set<Role>().FirstOrDefault(role => role.Id == key)?.ToDalRole();
-
+        
         /// <summary>
         /// Create new role and write in database.
         /// </summary>
@@ -46,8 +31,7 @@ namespace DAL.Concrete
 
         public void Create(DalRole entity)
         {
-            if (entity == null) return;
-            var role = entity.ToRole();
+            var role = entity?.ToRole();
             Context.Set<Role>().Add(role);
             Context.SaveChanges(); // Save role for Insurance 
         }
@@ -60,15 +44,15 @@ namespace DAL.Concrete
         public void Update(DalRole entity)
         {
             if(entity == null) return;
-            var role = Context.Set<Role>().SingleOrDefault(r => r.Id == entity.Id);
-            if (role != default(Role))
+            var role = Context.Set<Role>().FirstOrDefault(r => r.Id == entity.Id);
+            if (role == default(Role))
             {
-                role = entity.ToRole();
-                Context.Set<Role>().AddOrUpdate(role);
+                Create(entity);
                 return;
             }
             role.RoleName = entity.RoleName;
             Context.Entry(role).State = EntityState.Modified;
+            Context.SaveChanges(); // Save role for Insurance
         }
 
         /// <summary>
@@ -78,8 +62,9 @@ namespace DAL.Concrete
 
         public void Delete(int id)
         {
-            var role = Context.Set<Role>().SingleOrDefault(r => r.Id == id);
+            var role = Context.Set<Role>().FirstOrDefault(r => r.Id == id);
             if (role != default(Role)) Context.Set<Role>().Remove(role);
+            Context.SaveChanges(); // Save role for Insurance
         }
 
         #endregion
@@ -87,11 +72,26 @@ namespace DAL.Concrete
         #region Auxiliary function for work
 
         /// <summary>
+        /// Select all roles from database.
+        /// </summary>
+        /// <returns>All roles from database.</returns>
+
+        public IEnumerable<DalRole> GetAll() => Context.Set<Role>().Select(role => role.ToDalRole()).ToList();
+
+        /// <summary>
+        /// Select concrete role for id.
+        /// </summary>
+        /// <param name="key">Id role</param>
+        /// <returns>Concrete role.</returns>
+
+        public DalRole GetById(int key) => Context.Set<Role>().FirstOrDefault(role => role.Id == key)?.ToDalRole();
+
+        /// <summary>
         /// Add concrete user some role.
         /// </summary>
         /// <param name="idUser">Id user</param>
         /// <param name="idRole">Id role</param>
-        
+
         public void AddUserToRole(int idUser, int idRole) //Вот хрен его знает, как правильно
         { 
             var user = Context.Set<User>().FirstOrDefault(u => u.Id == idUser);

@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DAL.Interfacies.Concrete;
 using DAL.Interfacies.DTO;
+using DAL.Mappers;
+using ORM;
 
 namespace DAL.Concrete
 {
@@ -24,62 +24,81 @@ namespace DAL.Concrete
 
         #region MyRegion
 
+        /// <summary>
+        /// Create new comment and write in database.
+        /// </summary>
+        /// <param name="entity">Comment.</param>
+
         public void Create(DalComment entity)
         {
-            throw new NotImplementedException();
+            var comment = entity?.ToComment();
+            Context.Set<Comment>().Add(comment);
+            Context.SaveChanges();
         }
 
+        /// <summary>
+        /// Update existing comment.
+        /// </summary>
+        /// <param name="entity">Existing comment.</param>
+        
         public void Update(DalComment entity)
         {
-            throw new NotImplementedException();
+            if(entity == null) return;
+            var comment = Context.Set<Comment>().FirstOrDefault(c => c.Id == entity.Id);
+            if (comment == default(Comment))
+            {
+                comment = entity.ToComment();
+                Context.Set<Comment>().AddOrUpdate(comment);
+                Context.SaveChanges();
+                return;
+            }
+
+            comment.CommentUser = entity.CommentUser;
+            Context.Entry(comment).State = EntityState.Modified;
+            Context.SaveChanges();
         }
+
+        /// <summary>
+        /// Delete existing comment.
+        /// </summary>
+        /// <param name="id">Id comment.</param>
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            var comment = Context.Set<Comment>().FirstOrDefault(c => c.Id == id);
+            if (comment != default(Comment)) Context.Set<Comment>().Remove(comment);
+            Context.SaveChanges();
         }
 
         #endregion
 
         #region Auxiliary function for work
 
+        /// <summary>
+        /// Select all comments from database.
+        /// </summary>
+        /// <returns>All comments from database.</returns>
+
         public IEnumerable<DalComment> GetAll()
-        {
-            throw new NotImplementedException();
-        }
+            => Context.Set<Comment>().Select(comment => comment.ToDalComment()).ToList();
 
-        public DalComment GetById(int key)
-        {
-            throw new NotImplementedException();
-        }
+        /// <summary>
+        /// Select concrete comment for id.
+        /// </summary>
+        /// <param name="key">Id comment.</param>
+        /// <returns>Concrete comment.</returns>
 
-        public void AddComment(int userId)
-        {
-            throw new NotImplementedException();
-        }
+        public DalComment GetById(int key) => Context.Set<Comment>().FirstOrDefault(comment => comment.Id == key)?.ToDalComment();
 
-        public void ChangeComment(DalComment comment)
-        {
-            throw new NotImplementedException();
-        }
+        /// <summary>
+        /// Find all user comment in dstsbase.
+        /// </summary>
+        /// <param name="idUser">Id user.</param>
+        /// <returns>List comment.</returns>
 
-        public void DeleteComment(DalComment comment)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<DalComment> GetAllTeacherComments(int idTeacher)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<DalComment> GetAllPupilComments(int idPupil)
-        {
-            throw new NotImplementedException();
-        }
+        public IEnumerable<DalComment> GetAllUserComments(int idUser)
+            => Context.Set<Comment>().Select(comment => comment.ToDalComment()).Where(c => c.IdUser == idUser).ToList();
 
         #endregion
-
-
     }
 }

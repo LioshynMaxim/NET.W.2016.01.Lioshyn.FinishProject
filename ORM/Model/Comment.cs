@@ -16,6 +16,8 @@ namespace ORM
 
         public int IdUser { get; set; }
 
+        public int? IdUserTo { get; set; }
+
         public virtual User User { get; set; }
     }
 }

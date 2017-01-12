@@ -117,12 +117,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\SOYMDB.mdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Content Include="App_Data\SOYMDB.mdf" />
     <Content Include="App_Data\SOYMDB_log.ldf">
       <DependentUpon>SOYMDB.mdf</DependentUpon>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="App_Data\SOYMDB_mssql_create.sql" />
     <Content Include="Global.asax" />

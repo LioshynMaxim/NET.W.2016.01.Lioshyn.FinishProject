@@ -11,8 +11,8 @@ CREATE TABLE [User] (
 	Hous int,
 	Flat int,
 	Postcode int,
-	login nvarchar(100) NOT NULL UNIQUE,
-	password nvarchar(100) NOT NULL UNIQUE,
+	Login nvarchar(100) NOT NULL UNIQUE,
+	Password nvarchar(100) NOT NULL UNIQUE,
   CONSTRAINT [PK_USER] PRIMARY KEY CLUSTERED
   (
   [Id] ASC
@@ -39,6 +39,7 @@ CREATE TABLE [Comment] (
 	Id int IDENTITY (1, 1) NOT NULL,
 	CommentUser varchar(150),
 	IdUser int NOT NULL,
+	IdUserTo int,
   CONSTRAINT [PK_COMMENT] PRIMARY KEY CLUSTERED
   (
   [Id] ASC
@@ -89,7 +90,7 @@ CREATE TABLE [Teacher] (
 	WorkPlace varchar(50),
 	GroupNumber int,
 	CourseNumber int,
-	ClassRoomBSU int,
+	ClassRoomBsu int,
 	IdUser int NOT NULL,
   CONSTRAINT [PK_TEACHER] PRIMARY KEY CLUSTERED
   (

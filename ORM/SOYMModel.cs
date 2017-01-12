@@ -8,7 +8,7 @@ namespace ORM
     public partial class SOYMModel : DbContext
     {
         public SOYMModel()
-            : base("name=SOYMModel")
+            : base("name=SOYMDB")
         {
         }
 
@@ -55,7 +55,7 @@ namespace ORM
             modelBuilder.Entity<Pupil>()
                 .HasMany(e => e.ClassRooms)
                 .WithMany(e => e.Pupils)
-                .Map(m => m.ToTable("Pupil_ClassRoom").MapLeftKey("IdPupil").MapRightKey("idClassRoom"));
+                .Map(m => m.ToTable("Pupil_ClassRoom").MapLeftKey("IdPupil").MapRightKey("IdClassRoom"));
 
             modelBuilder.Entity<Requisition>()
                 .Property(e => e.Name)
@@ -97,7 +97,7 @@ namespace ORM
             modelBuilder.Entity<Teacher>()
                 .HasMany(e => e.ClassRooms)
                 .WithMany(e => e.Teachers)
-                .Map(m => m.ToTable("Teacher_ClassRoom").MapLeftKey("IdTeacher").MapRightKey("idClassRoom"));
+                .Map(m => m.ToTable("Teacher_ClassRoom").MapLeftKey("IdTeacher").MapRightKey("IdClassRoom"));
 
             modelBuilder.Entity<User>()
                 .Property(e => e.Name)
@@ -150,7 +150,7 @@ namespace ORM
             modelBuilder.Entity<User>()
                 .HasMany(e => e.Roles)
                 .WithMany(e => e.Users)
-                .Map(m => m.ToTable("User_Role").MapLeftKey("IdUser").MapRightKey("idRole"));
+                .Map(m => m.ToTable("User_Role").MapLeftKey("IdUser").MapRightKey("IdRole"));
         }
     }
 }

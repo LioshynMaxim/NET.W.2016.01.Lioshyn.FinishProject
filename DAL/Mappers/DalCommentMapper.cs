@@ -18,7 +18,8 @@ namespace DAL.Mappers
             {
                 Id = comment.Id,
                 CommentUser = comment.CommentUser,
-                IdUser = comment.IdUser
+                IdUser = comment.IdUser,
+                IdUserTo = comment.IdUserTo
             };
         }
 
@@ -34,7 +35,8 @@ namespace DAL.Mappers
             return new Comment
             {
                 CommentUser = comment.CommentUser,
-                IdUser = comment.IdUser
+                IdUser = comment.IdUser,
+                IdUserTo = comment.IdUserTo
             };
         }
     }

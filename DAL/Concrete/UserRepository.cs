@@ -13,10 +13,16 @@ namespace DAL.Concrete
     {
         private DbContext Context { get; set; }
 
+        #region .ctor
+
         public UserRepository(DbContext context)
         {
             Context = context;
         }
+
+        #endregion
+
+        #region Main function for work
 
         public IEnumerable<DalUser> GetAll()
         {
@@ -30,11 +36,6 @@ namespace DAL.Concrete
 
         public void Create(DalUser entity)
         {
-            //if(entity == null) return;
-            //Role role = Context.Set<Role>().FirstOrDefaultAsync(t => t.RoleName == "user");
-            //var test = entity.ToUser();
-            //test.Roles.Add(role);
-            //Context.Set<User>().Add(test);
             throw new NotImplementedException();
         }
 
@@ -47,6 +48,14 @@ namespace DAL.Concrete
         {
             throw new NotImplementedException();
         }
+
+        #endregion
+
+        #region Auxiliary function for work
+
+
+
+        #endregion
 
         public IEnumerable<DalUser> GetUserByClassRoom(int idClassRoom)
         {

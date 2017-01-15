@@ -65,6 +65,7 @@
     <Compile Include="Concrete\RequisitionRepository.cs" />
     <Compile Include="Concrete\RoleRepository.cs" />
     <Compile Include="Concrete\TeacherRepository.cs" />
+    <Compile Include="Concrete\UnitOfWork.cs" />
     <Compile Include="Concrete\UserRepository.cs" />
     <Compile Include="Mappers\DalClassRoomMapper.cs" />
     <Compile Include="Mappers\DalCommentMapper.cs" />

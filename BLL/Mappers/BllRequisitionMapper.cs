@@ -1,17 +1,17 @@
 ﻿using DAL.Interfacies.DTO;
-using ORM;
+using BLL.Interfacies.Entities;
 
-namespace DAL.Mappers
+namespace BLL.Mappers
 {
-    public static class DalRequisitionMapper
+    public static class BllRequisitionMapper
     {
         /// <summary>
-        /// Read requisition from database.
+        /// Read requisition from DAL.
         /// </summary>
         /// <param name="requisition">Requisition</param>
         /// <returns>If empty requisition return null, otherwise give informstion about requisition.</returns>
 
-        public static DalRequisition ToDalRequisition(this Requisition requisition)
+        public static DalRequisition ToDalRequisition(this RequisitionEntity requisition)
         {
             if (requisition == null) return null;
             return new DalRequisition
@@ -32,15 +32,15 @@ namespace DAL.Mappers
         }
 
         /// <summary>
-        /// Write new requisition in database.
+        /// Write new requisition in DAL.
         /// </summary>
         /// <param name="requisition">Requisition.</param>
         /// <returns>If empty requisition return null, otherwise write new requisition in database.</returns>
 
-        public static Requisition ToRequisition(this DalRequisition requisition)
+        public static RequisitionEntity ToBllRequisition(this DalRequisition requisition)
         {
             if (requisition == null) return null;
-            return new Requisition()
+            return new RequisitionEntity
             {
                 Name = requisition.Name,
                 Surname = requisition.Surname,

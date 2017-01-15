@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F865B998-BF4D-4B75-B359-62F48A43E2FF}</ProjectGuid>
+    <ProjectGuid>{493E67AE-AF96-42E0-8D97-03AFA11DD140}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DAL.Interfacies</RootNamespace>
-    <AssemblyName>DAL.Interfacies</AssemblyName>
+    <RootNamespace>BLL</RootNamespace>
+    <AssemblyName>BLL</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,16 +30,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -49,34 +40,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Concrete\IClassRoomRepository.cs" />
-    <Compile Include="Concrete\ICommentRepository.cs" />
-    <Compile Include="Concrete\IMailRepository.cs" />
-    <Compile Include="Concrete\IParentRepository.cs" />
-    <Compile Include="Concrete\IPupilRepository.cs" />
-    <Compile Include="Concrete\IRepository.cs" />
-    <Compile Include="Concrete\IRequisitionRepository.cs" />
-    <Compile Include="Concrete\IRoleRepository.cs" />
-    <Compile Include="Concrete\ITeacherRepository.cs" />
-    <Compile Include="Concrete\IUnitOfWork.cs" />
-    <Compile Include="Concrete\IUserRepository.cs" />
-    <Compile Include="DTO\DalClassRoom.cs" />
-    <Compile Include="DTO\DalComment.cs" />
-    <Compile Include="DTO\DalMail.cs" />
-    <Compile Include="DTO\DalParent.cs" />
-    <Compile Include="DTO\DalPupil.cs" />
-    <Compile Include="DTO\DalRequisition.cs" />
-    <Compile Include="DTO\DalRole.cs" />
-    <Compile Include="DTO\DalTeacher.cs" />
-    <Compile Include="DTO\DalUser.cs" />
-    <Compile Include="DTO\IEntity.cs" />
+    <Compile Include="Mappers\BllRequisitionMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\RequisitionService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
+    <ProjectReference Include="..\BLL.Interfacies\BLL.Interfacies.csproj">
+      <Project>{c94d2aff-98b4-4ceb-9426-ef45cd021bc0}</Project>
+      <Name>BLL.Interfacies</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DAL.Interfacies\DAL.Interfacies.csproj">
+      <Project>{f865b998-bf4d-4b75-b359-62f48a43e2ff}</Project>
+      <Name>DAL.Interfacies</Name>
+    </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

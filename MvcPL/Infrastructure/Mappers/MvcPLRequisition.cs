@@ -1,20 +1,20 @@
-﻿using DAL.Interfacies.DTO;
-using ORM;
+﻿using BLL.Interfacies.Entities;
+using MvcPL.Models;
 
-namespace DAL.Mappers
+namespace MvcPL.Infrastructure.Mappers
 {
-    public static class DalRequisitionMapper
+    public static class MvcPLRequisition
     {
         /// <summary>
-        /// Read requisition from database.
+        /// Read requisition from BLL.
         /// </summary>
         /// <param name="requisition">Requisition</param>
         /// <returns>If empty requisition return null, otherwise give informstion about requisition.</returns>
 
-        public static DalRequisition ToDalRequisition(this Requisition requisition)
+        public static RequisitionEntity ToBllRequisition(this RequisitionModel requisition)
         {
             if (requisition == null) return null;
-            return new DalRequisition
+            return new RequisitionEntity
             {
                 Id = requisition.Id,
                 Name = requisition.Name,
@@ -32,15 +32,15 @@ namespace DAL.Mappers
         }
 
         /// <summary>
-        /// Write new requisition in database.
+        /// Write requisition in BLL.
         /// </summary>
         /// <param name="requisition">Requisition.</param>
         /// <returns>If empty requisition return null, otherwise write new requisition in database.</returns>
 
-        public static Requisition ToRequisition(this DalRequisition requisition)
+        public static RequisitionModel ToRequisitionModel(this RequisitionEntity requisition)
         {
             if (requisition == null) return null;
-            return new Requisition()
+            return new RequisitionModel
             {
                 Name = requisition.Name,
                 Surname = requisition.Surname,
@@ -55,5 +55,6 @@ namespace DAL.Mappers
                 Postcode = requisition.Postcode
             };
         }
+
     }
 }

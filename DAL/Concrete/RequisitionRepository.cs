@@ -18,7 +18,7 @@ namespace DAL.Concrete
         {
             Context = context;
         }
-
+        
         #endregion
 
         #region Main function for work

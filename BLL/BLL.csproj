@@ -41,8 +41,24 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Mappers\BllRequisitionMapper.cs" />
+    <Compile Include="Mappers\BllClassRoomMapper.cs" />
+    <Compile Include="Mappers\BllCommentMapper.cs" />
+    <Compile Include="Mappers\BllMailMapper.cs" />
+    <Compile Include="Mappers\BllParentMapper.cs" />
+    <Compile Include="Mappers\BllPupilMapper.cs" />
+    <Compile Include="Mappers\BllRoleMapper.cs" />
+    <Compile Include="Mappers\BllTeacherMapper.cs" />
+    <Compile Include="Mappers\BllUserMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\ClassRoomService.cs" />
+    <Compile Include="Services\CommentService.cs" />
+    <Compile Include="Services\MailService.cs" />
+    <Compile Include="Services\ParentService.cs" />
+    <Compile Include="Services\PupilService.cs" />
     <Compile Include="Services\RequisitionService.cs" />
+    <Compile Include="Services\RoleService.cs" />
+    <Compile Include="Services\TeacherService.cs" />
+    <Compile Include="Services\UserSerivice.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BLL.Interfacies\BLL.Interfacies.csproj">

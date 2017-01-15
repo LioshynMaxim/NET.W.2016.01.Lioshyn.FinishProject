@@ -1,32 +1,22 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
 
-namespace MvcPL.Models
+namespace BLL.Interfacies.Entities
 {
-    public class RequisitionModel
+    public class UserEntity
     {
         public int Id { get; set; }
-        [Display(Name = "Name")]
         public string Name { get; set; }
-        [Display(Name = "Surname")]
         public string Surname { get; set; }
-        [Display(Name = "Patronymic")]
         public string Patronymic { get; set; }
-        [Display(Name = "Birth day")]
+        public string Login { get; set; }
+        public string Password { get; set; }
         public DateTime? BirthDay { get; set; }
-        [Display(Name = "City")]
         public string City { get; set; }
-        [Display(Name = "District")]
         public string District { get; set; }
-        [Display(Name = "Street")]
         public string Street { get; set; }
-        [Display(Name = "Housing")]
         public int? Housing { get; set; }
-        [Display(Name = "Hous")]
         public int? Hous { get; set; }
-        [Display(Name = "Flat")]
         public int? Flat { get; set; }
-        [Display(Name = "Postcode")]
         public int? Postcode { get; set; }
     }
 }

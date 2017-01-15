@@ -50,7 +50,7 @@ namespace DAL.Concrete
                 return;
             }
 
-            parent.PlaceOfWork = entity.PlaceWork;
+            parent.PlaceOfWork = entity.PlaceOfWork;
             Context.Entry(parent).State = EntityState.Modified;
             Context.SaveChanges();
         }

@@ -1,16 +1,16 @@
-﻿using DAL.Interfacies.DTO;
-using ORM;
+﻿using BLL.Interfacies.Entities;
+using DAL.Interfacies.DTO;
 
-namespace DAL.Mappers
+namespace BLL.Mappers
 {
-    public static class DalParentMapper
+    public static class BllParentMapper
     {
         /// <summary>
         /// Read parent from database.
         /// </summary>
         /// <param name="parent">Parent</param>
         /// <returns>If empty parent return null, otherwise give informstion about parent.</returns>
-        public static DalParent ToDalParent(this Parent parent)
+        public static DalParent ToDalParent(this ParentEntity parent)
         {
             if (parent == null) return null;
             return new DalParent
@@ -27,10 +27,10 @@ namespace DAL.Mappers
         /// <param name="parent">Parent.</param>
         /// <returns>If empty parent return null, otherwise write new parent in database.</returns>
 
-        public static Parent ToParent(this DalParent parent)
+        public static ParentEntity ToParent(this DalParent parent)
         {
             if (parent == null) return null;
-            return new Parent
+            return new ParentEntity
             {
                 IdUser = parent.IdUser,
                 PlaceOfWork = parent.PlaceOfWork

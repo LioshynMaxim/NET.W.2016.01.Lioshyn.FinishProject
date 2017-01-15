@@ -51,7 +51,15 @@ namespace DependencyResolver
             //kernel.Bind<IUnitOfWork>().To<UnitOfWork>().InRequestScope();
             //kernel.Bind<DbContext>().To<SOYMModel>().InRequestScope();
 
+            kernel.Bind<IClassRoomService>().To<ClassRoomService>();
+            kernel.Bind<ICommentService>().To<CommentService>();
+            kernel.Bind<IMailService>().To<MailService>();
+            kernel.Bind<IParentService>().To<ParentService>();
+            kernel.Bind<IPupilService>().To<PupilService>();
             kernel.Bind<IRequisitionService>().To<RequisitionService>();
+            kernel.Bind<IRoleService>().To<RoleService>();
+            kernel.Bind<ITeacherService>().To<TeacherService>();
+            kernel.Bind<IUserSerivice>().To<UserSerivice>();
 
             kernel.Bind<IClassRoomRepository>().To<ClassRoomRepository>();
             kernel.Bind<ICommentRepository>().To<CommentRepository>();

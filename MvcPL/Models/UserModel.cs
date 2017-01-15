@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MvcPL.Models
 {
-    public class RequisitionModel
+    public class UserModel
     {
         public int Id { get; set; }
         [Display(Name = "Name")]
@@ -12,6 +12,10 @@ namespace MvcPL.Models
         public string Surname { get; set; }
         [Display(Name = "Patronymic")]
         public string Patronymic { get; set; }
+        [Display(Name = "Login")]
+        public string Login { get; set; }
+        [Display(Name = "Password")]
+        public string Password { get; set; }
         [Display(Name = "Birth day")]
         public DateTime? BirthDay { get; set; }
         [Display(Name = "City")]
@@ -22,7 +26,7 @@ namespace MvcPL.Models
         public string Street { get; set; }
         [Display(Name = "Housing")]
         public int? Housing { get; set; }
-        [Display(Name = "Hous")]
+        [Display(Name = "House")]
         public int? Hous { get; set; }
         [Display(Name = "Flat")]
         public int? Flat { get; set; }

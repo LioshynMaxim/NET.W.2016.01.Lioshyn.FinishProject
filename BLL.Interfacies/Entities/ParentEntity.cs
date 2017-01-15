@@ -1,6 +1,6 @@
-﻿namespace DAL.Interfacies.DTO
+﻿namespace BLL.Interfacies.Entities
 {
-    public class DalParent : IEntity
+    public class ParentEntity
     {
         public int Id { get; set; }
         public string PlaceOfWork { get; set; }

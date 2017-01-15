@@ -1,19 +1,19 @@
-﻿using DAL.Interfacies.DTO;
-using ORM;
+﻿using BLL.Interfacies.Entities;
+using MvcPL.Models;
 
-namespace DAL.Mappers
+namespace MvcPL.Infrastructure.Mappers
 {
-    public static class DalParentMapper
+    public static class MvcPLParentMapper
     {
         /// <summary>
         /// Read parent from database.
         /// </summary>
         /// <param name="parent">Parent</param>
         /// <returns>If empty parent return null, otherwise give informstion about parent.</returns>
-        public static DalParent ToDalParent(this Parent parent)
+        public static ParentEntity ToBllParent(this ParentModel parent)
         {
             if (parent == null) return null;
-            return new DalParent
+            return new ParentEntity
             {
                 Id = parent.Id,
                 PlaceOfWork = parent.PlaceOfWork,
@@ -27,10 +27,10 @@ namespace DAL.Mappers
         /// <param name="parent">Parent.</param>
         /// <returns>If empty parent return null, otherwise write new parent in database.</returns>
 
-        public static Parent ToParent(this DalParent parent)
+        public static ParentModel ToParentModel(this ParentEntity parent)
         {
             if (parent == null) return null;
-            return new Parent
+            return new ParentModel
             {
                 IdUser = parent.IdUser,
                 PlaceOfWork = parent.PlaceOfWork

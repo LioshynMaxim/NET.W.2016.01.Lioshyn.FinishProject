@@ -40,9 +40,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\ClassRoomEntity.cs" />
+    <Compile Include="Entities\CommentEntity.cs" />
+    <Compile Include="Entities\MailEntity.cs" />
+    <Compile Include="Entities\ParentEntity.cs" />
+    <Compile Include="Entities\PupilEntity.cs" />
+    <Compile Include="Entities\RoleEntity.cs" />
+    <Compile Include="Entities\TeacherEntity.cs" />
+    <Compile Include="Entities\UserEntity.cs" />
     <Compile Include="Entities\RequisitionEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\IClassRoomService.cs" />
+    <Compile Include="Services\ICommentService.cs" />
+    <Compile Include="Services\IMailService.cs" />
+    <Compile Include="Services\IParentService.cs" />
+    <Compile Include="Services\IPupilService.cs" />
     <Compile Include="Services\IRequisitionService.cs" />
+    <Compile Include="Services\IRoleService.cs" />
+    <Compile Include="Services\ITeacherService.cs" />
+    <Compile Include="Services\IUserSerivice.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

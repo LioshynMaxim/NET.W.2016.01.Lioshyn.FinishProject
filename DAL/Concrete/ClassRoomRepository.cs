@@ -79,7 +79,8 @@ namespace DAL.Concrete
         /// </summary>
         /// <returns>List of classroom.</returns>
 
-        public IEnumerable<DalClassRoom> GetAll() => Context.Set<ClassRoom>().Select(cl => cl.ToDalClassRoom()).ToList();
+        public IEnumerable<DalClassRoom> GetAll()
+            => Context.Set<ClassRoom>().ToList().Select(cl => cl.ToDalClassRoom()).ToList();
 
         /// <summary>
         /// Get concrete classroom.
@@ -99,7 +100,7 @@ namespace DAL.Concrete
         public IEnumerable<DalClassRoom> GetTeacherClassRooms(int idTeacher)
         {
             var teacher = Context.Set<Teacher>().FirstOrDefault(t => t.Id == idTeacher).ToDalTeacher();
-            return Context.Set<ClassRoom>().Select(t => t.ToDalClassRoom()).Where(t => t.Room == teacher.ClassRoomBsu).ToList();
+            return Context.Set<ClassRoom>().ToList().Select(t => t.ToDalClassRoom()).Where(t => t.Room == teacher.ClassRoomBsu);
         }
 
         /// <summary>
@@ -111,7 +112,7 @@ namespace DAL.Concrete
         public IEnumerable<DalClassRoom> GetPupilClassRooms(int idPupil)
         {
             var teacher = Context.Set<Teacher>().FirstOrDefault(t => t.Id == idPupil).ToDalTeacher();
-            return Context.Set<ClassRoom>().Select(t => t.ToDalClassRoom()).Where(t => t.Room == teacher.ClassRoomBsu).ToList();
+            return Context.Set<ClassRoom>().ToList().Select(t => t.ToDalClassRoom()).Where(t => t.Room == teacher.ClassRoomBsu);
         }
 
         #endregion

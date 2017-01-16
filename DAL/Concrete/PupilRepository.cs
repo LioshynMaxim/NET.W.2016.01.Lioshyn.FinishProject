@@ -81,7 +81,7 @@ namespace DAL.Concrete
         /// </summary>
         /// <returns>List of pupil.</returns>
 
-        public IEnumerable<DalPupil> GetAll() => Context.Set<Pupil>().Select(pupil => pupil.ToDalPupil()).ToList();
+        public IEnumerable<DalPupil> GetAll() => Context.Set<Pupil>().ToList().Select(pupil => pupil.ToDalPupil());
 
         /// <summary>
         /// Get some pupil.
@@ -128,7 +128,7 @@ namespace DAL.Concrete
         /// <returns>List parents.</returns>
 
         public IEnumerable<DalPupil> GetAllPupilParent(int idParent)
-            => Context.Set<Parent>().FirstOrDefault(p => p.Id == idParent)?.Pupils.Select(p => p.ToDalPupil()).ToList();
+            => Context.Set<Parent>().FirstOrDefault(p => p.Id == idParent)?.Pupils.ToList().Select(p => p.ToDalPupil());
         
         /// <summary>
         /// Add pupil to classroom.
@@ -166,11 +166,10 @@ namespace DAL.Concrete
         /// <param name="idClassRoom">Id classroom.</param>
         /// <returns>List pupils.</returns>
 
-        public IEnumerable<DalPupil> GetAllPupilsInClassRoom(int idClassRoom) 
+        public IEnumerable<DalPupil> GetAllPupilsInClassRoom(int idClassRoom)
             => Context.Set<ClassRoom>()
-                    .FirstOrDefault(p => p.Id == idClassRoom)?
-                    .Pupils.Select(p => p.ToDalPupil())
-                    .ToList();
+                .FirstOrDefault(p => p.Id == idClassRoom)?
+                .Pupils.ToList().Select(p => p.ToDalPupil());
 
         #endregion
     }

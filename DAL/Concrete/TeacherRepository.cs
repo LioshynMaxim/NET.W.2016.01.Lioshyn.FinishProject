@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
-using System.Data.Entity.Migrations;
 using System.Linq;
 using DAL.Interfacies.Concrete;
 using DAL.Interfacies.DTO;
@@ -79,7 +78,7 @@ namespace DAL.Concrete
         /// </summary>
         /// <returns>List of teachers.</returns>
 
-        public IEnumerable<DalTeacher> GetAll() => Context.Set<Teacher>().Select(t => t.ToDalTeacher()).ToList();
+        public IEnumerable<DalTeacher> GetAll() => Context.Set<Teacher>().ToList().Select(t => t.ToDalTeacher());
 
         /// <summary>
         /// get teacher by id.
@@ -128,11 +127,14 @@ namespace DAL.Concrete
         public IEnumerable<DalTeacher> GetAllTeacherInClassRoom(int idClassRoom)
         {
             var classroom = Context.Set<ClassRoom>().FirstOrDefault(t => t.Id == idClassRoom).ToDalClassRoom();
-            return Context.Set<Teacher>().Select(t => t.ToDalTeacher()).Where(t => t.ClassRoomBsu == classroom.Room).ToList();
+            return
+                Context.Set<Teacher>()
+                    .ToList()
+                    .Select(t => t.ToDalTeacher())
+                    .Where(t => t.ClassRoomBsu == classroom.Room);
         }
 
         #endregion
-
 
     }
 }

@@ -87,7 +87,7 @@ namespace DAL.Concrete
         /// <returns>List requisition.</returns>
 
         public IEnumerable<DalRequisition> GetAll()
-            => Context.Set<Requisition>().Select(r => r.ToDalRequisition()).ToList();
+            => Context.Set<Requisition>().ToList().Select(r => r.ToDalRequisition());
 
         /// <summary>
         /// Get concrete requisition.

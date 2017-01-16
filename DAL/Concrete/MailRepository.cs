@@ -75,7 +75,7 @@ namespace DAL.Concrete
         /// </summary>
         /// <returns>List of emails.</returns>
 
-        public IEnumerable<DalMail> GetAll() => Context.Set<Mail>().Select(mail => mail.ToDalMail()).ToList();
+        public IEnumerable<DalMail> GetAll() => Context.Set<Mail>().ToList().Select(mail => mail.ToDalMail());
 
         /// <summary>
         /// Get email by id.
@@ -106,7 +106,7 @@ namespace DAL.Concrete
         /// <returns>List emails concrete user.</returns>
 
         public IEnumerable<DalMail> GelAllUserMails(int idUser)
-            => Context.Set<Mail>().Select(mail => mail.ToDalMail()).Where(mail => mail.IdUser == idUser).ToList();
+            => Context.Set<Mail>().ToList().Select(mail => mail.ToDalMail()).Where(mail => mail.IdUser == idUser);
 
         #endregion
     }

@@ -80,7 +80,7 @@ namespace DAL.Concrete
         /// <returns>All comments from database.</returns>
 
         public IEnumerable<DalComment> GetAll()
-            => Context.Set<Comment>().Select(comment => comment.ToDalComment()).ToList();
+            => Context.Set<Comment>().ToList().Select(comment => comment.ToDalComment());
 
         /// <summary>
         /// Select concrete comment for id.
@@ -97,7 +97,7 @@ namespace DAL.Concrete
         /// <returns>List comment.</returns>
 
         public IEnumerable<DalComment> GetAllUserComments(int idUser)
-            => Context.Set<Comment>().Select(comment => comment.ToDalComment()).Where(c => c.IdUser == idUser).ToList();
+            => Context.Set<Comment>().ToList().Select(comment => comment.ToDalComment()).Where(c => c.IdUser == idUser);
 
         #endregion
     }

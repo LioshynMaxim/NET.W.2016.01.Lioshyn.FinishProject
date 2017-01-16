@@ -43,7 +43,7 @@ namespace MvcPL.Controllers
 
         public ActionResult Create()
         {
-            _requisitionService.CreateRequisition(requisitionModel);
+            //_requisitionService.CreateRequisition(requisitionModel);
             return RedirectToAction("Index");
         }
     }

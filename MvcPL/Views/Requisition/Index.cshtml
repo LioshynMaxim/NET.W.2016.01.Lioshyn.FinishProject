@@ -1,0 +1,36 @@
+﻿@model IEnumerable<MvcPL.Models.RequisitionModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+
+<table>
+    <tr>
+        <th>
+            <p>Id</p>
+        </th>
+        <th>
+            <p>Information</p>
+        </th>
+        <th></th>
+    </tr>
+    
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayTextFor(modelItem => item.Name)
+            </td>
+        </tr>
+    }
+</table>
+<p>
+    @Html.ActionLink("Add new user", "Create")
+</p>

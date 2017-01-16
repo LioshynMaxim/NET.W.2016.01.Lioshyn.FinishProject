@@ -76,7 +76,7 @@ namespace DAL.Concrete
         /// </summary>
         /// <returns>List of parents.</returns>
 
-        public IEnumerable<DalParent> GetAll() => Context.Set<Parent>().Select(p => p.ToDalParent()).ToList();
+        public IEnumerable<DalParent> GetAll() => Context.Set<Parent>().ToList().Select(p => p.ToDalParent());
 
         /// <summary>
         /// Get parent by id.
@@ -123,7 +123,7 @@ namespace DAL.Concrete
         /// <returns>List parents.</returns>
 
         public IEnumerable<DalParent> GetAllParentPupil(int idPupil)
-            => Context.Set<Pupil>().FirstOrDefault(p => p.Id == idPupil)?.Parents.Select(p => p.ToDalParent()).ToList();
+            => Context.Set<Pupil>().FirstOrDefault(p => p.Id == idPupil)?.Parents.ToList().Select(p => p.ToDalParent());
 
         #endregion
     }

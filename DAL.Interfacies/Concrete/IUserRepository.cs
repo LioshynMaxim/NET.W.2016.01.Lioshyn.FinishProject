@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using DAL.Interfacies.DTO;
+﻿using DAL.Interfacies.DTO;
 
 namespace DAL.Interfacies.Concrete
 {
@@ -12,8 +11,6 @@ namespace DAL.Interfacies.Concrete
         void AddUserTeacher(int idUser, int idTeacher);
         void AddUserRole(int idUser, int idRole);
         
-        IEnumerable<DalUser> GetUserByClassRoom(int idClassRoom);
-        IEnumerable<DalUser> GetUserByPupil(int idPupil);
         DalUser GetUserByName(string userName);
     }
 }

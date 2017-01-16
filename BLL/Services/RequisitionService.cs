@@ -1,4 +1,6 @@
-﻿using BLL.Interfacies.Entities;
+﻿using System.Collections.Generic;
+using System.Linq;
+using BLL.Interfacies.Entities;
 using BLL.Interfacies.Services;
 using BLL.Mappers;
 using DAL.Interfacies.Concrete;
@@ -29,6 +31,15 @@ namespace BLL.Services
             Uow.Saving();
         }
 
+        /// <summary>
+        /// Get all requisition.
+        /// </summary>
+        /// <returns>List of requisition.</returns>
+
+        public IEnumerable<RequisitionEntity> GetAllRequisition()
+            => Uow.RequisitionRepository.GetAll().Select(r => r.ToBllRequisition());
+
+        public RequisitionEntity GetSomeRequisition(int id) => Uow.RequisitionRepository.GetById(id).ToBllRequisition();
 
     }
 }

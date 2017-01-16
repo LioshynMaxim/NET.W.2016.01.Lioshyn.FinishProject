@@ -76,7 +76,7 @@ namespace DAL.Concrete
         /// </summary>
         /// <returns>All roles from database.</returns>
 
-        public IEnumerable<DalRole> GetAll() => Context.Set<Role>().Select(role => role.ToDalRole()).ToList();
+        public IEnumerable<DalRole> GetAll() => Context.Set<Role>().ToList().Select(role => role.ToDalRole());
 
         /// <summary>
         /// Select concrete role for id.
@@ -92,7 +92,7 @@ namespace DAL.Concrete
         /// <param name="idUser">Id user</param>
         /// <param name="idRole">Id role</param>
 
-        public void AddUserToRole(int idUser, int idRole) //Вот хрен его знает, как правильно
+        public void AddUserToRole(int idUser, int idRole) //TODO:Вот хрен его знает, как правильно
         { 
             var user = Context.Set<User>().FirstOrDefault(u => u.Id == idUser);
             if (user == null) return;
@@ -107,7 +107,7 @@ namespace DAL.Concrete
         /// <param name="idUser">Id user</param>
         /// <param name="idRole">Id role</param>
 
-        public void DeleteUserToRole(int idUser, int idRole) //Вот хрен его знает, как правильно
+        public void DeleteUserToRole(int idUser, int idRole) //TODO:Вот хрен его знает, как правильно
         {
             var user = Context.Set<User>().FirstOrDefault(u => u.Id == idUser);
             var role = Context.Set<Role>().FirstOrDefault(r => r.Id == idRole);

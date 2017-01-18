@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
-using System.Data.Entity.Migrations;
 using System.Linq;
 using DAL.Interfacies.Concrete;
 using DAL.Interfacies.DTO;
@@ -58,13 +57,13 @@ namespace DAL.Concrete
         /// <summary>
         /// Delete existing role.
         /// </summary>
-        /// <param name="id">Id role.</param>
+        /// <param name="entity">Role entity.</param>
 
-        public void Delete(int id)
+        public void Delete(DalRole entity)
         {
-            var role = Context.Set<Role>().FirstOrDefault(r => r.Id == id);
+            var role = Context.Set<Role>().FirstOrDefault(r => r.Id == entity.Id);
             if (role != default(Role)) Context.Set<Role>().Remove(role);
-            Context.SaveChanges(); // Save role for Insurance
+            Context.SaveChanges(); 
         }
 
         #endregion

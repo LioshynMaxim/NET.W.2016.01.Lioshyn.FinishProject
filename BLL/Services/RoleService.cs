@@ -36,7 +36,7 @@ namespace BLL.Services
             throw new System.NotImplementedException();
         }
 
-        public void ChangeRole(int idRole)
+        public void UpdateRole(RoleEntity roleEntity)
         {
             throw new System.NotImplementedException();
         }

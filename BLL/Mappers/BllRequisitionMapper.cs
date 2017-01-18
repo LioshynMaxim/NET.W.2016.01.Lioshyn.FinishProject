@@ -42,6 +42,7 @@ namespace BLL.Mappers
             if (requisition == null) return null;
             return new RequisitionEntity
             {
+                Id = requisition.Id,
                 Name = requisition.Name,
                 Surname = requisition.Surname,
                 Patronymic = requisition.Patronymic,

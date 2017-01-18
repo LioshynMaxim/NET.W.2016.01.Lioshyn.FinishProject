@@ -68,11 +68,11 @@ namespace DAL.Concrete
         /// <summary>
         /// Deletes requisition.
         /// </summary>
-        /// <param name="id">Requisition id.</param>
+        /// <param name="entity">Requisition entity.</param>
 
-        public void Delete(int id)
+        public void Delete(DalRequisition entity)
         {
-            var requisition = Context.Set<Requisition>().FirstOrDefault(r => r.Id == id);
+            var requisition = Context.Set<Requisition>().FirstOrDefault(r => r.Id == entity.Id);
             if(requisition != default (Requisition))Context.Set<Requisition>().Remove(requisition);
             Context.SaveChanges();
         }

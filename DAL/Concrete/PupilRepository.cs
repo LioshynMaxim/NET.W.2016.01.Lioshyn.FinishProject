@@ -63,11 +63,11 @@ namespace DAL.Concrete
         /// <summary>
         /// Delete concrete pupil from database.
         /// </summary>
-        /// <param name="id">Id pupil.</param>
+        /// <param name="entity">Pupil entity.</param>
 
-        public void Delete(int id)
+        public void Delete(DalPupil entity)
         {
-            var pupil = Context.Set<Pupil>().FirstOrDefault(m => m.Id == id);
+            var pupil = Context.Set<Pupil>().FirstOrDefault(m => m.Id == entity.Id);
             if (pupil != default(Pupil)) Context.Set<Pupil>().Remove(pupil);
             Context.SaveChanges();
         }

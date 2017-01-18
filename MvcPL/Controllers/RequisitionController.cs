@@ -9,22 +9,6 @@ namespace MvcPL.Controllers
 {
     public class RequisitionController : Controller
     {
-        RequisitionModel requisitionModel = new RequisitionModel
-        {
-            BirthDay = DateTime.Now,
-            City = string.Empty,
-            District = string.Empty,
-            Flat = int.MinValue,
-            Hous = int.MinValue,
-            Housing = int.MinValue,
-            Name = string.Empty,
-            Patronymic = string.Empty,
-            Postcode = int.MinValue,
-            Street = string.Empty,
-            Surname = string.Empty
-        };
-
-
         private readonly IRequisitionService _requisitionService;
 
         public RequisitionController(IRequisitionService requisitionService)
@@ -36,9 +20,7 @@ namespace MvcPL.Controllers
         [ActionName("Index")]
         public ActionResult Index()
         {
-            //var b = _requisitionService.GetSomeRequisition(8).ToRequisitionModel();
-            return View("Index1",_requisitionService.GetAllRequisition().Select(s => s.ToRequisitionModel()));
-            //return System.Web.UI.WebControls.View(b);
+            return View(_requisitionService.GetAllRequisition().Select(s => s.ToRequisitionModel()));
         }
 
         [HttpGet]
@@ -50,6 +32,8 @@ namespace MvcPL.Controllers
         [HttpPost]
         public ActionResult Create(RequisitionModel requisitionModel)
         {
+
+            //Validation
             requisitionModel.Name = requisitionModel.Name ?? "";
             requisitionModel.BirthDay = requisitionModel.BirthDay ?? DateTime.Now;
             requisitionModel.City = requisitionModel.City ?? "";
@@ -64,6 +48,45 @@ namespace MvcPL.Controllers
 
 
             _requisitionService.CreateRequisition(requisitionModel.ToBllRequisition());
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Details(int? idRequisition)
+        {
+            if (idRequisition == null) return RedirectToAction("Index");
+            var requisitionModel = _requisitionService.GetSomeRequisition(idRequisition.Value);
+            return View(requisitionModel.ToRequisitionModel());
+        }
+
+        public ActionResult Edit(int? idRequisition)
+        {
+            if (idRequisition == null) return RedirectToAction("Index");
+            var requisitionModel = _requisitionService.GetSomeRequisition(idRequisition.Value);
+            return View(requisitionModel.ToRequisitionModel());
+        }
+
+
+        [HttpPost]
+        public ActionResult Edit(RequisitionModel roleModel)
+        {
+            _requisitionService.UpdateRequisition(roleModel.ToBllRequisition());
+            return View(_requisitionService.GetSomeRequisition(roleModel.Id).ToRequisitionModel());
+        }
+
+        
+        public ActionResult Delete(int? idRequisition)
+        {
+            if (idRequisition == null) return RedirectToAction("Index");
+            var requisitionModel = _requisitionService.GetSomeRequisition(idRequisition.Value);
+            return View(requisitionModel.ToRequisitionModel());
+        }
+
+
+        [HttpPost]
+        public ActionResult Delete(RequisitionModel roleModel)
+        {
+            var deleteRequisition = _requisitionService.GetSomeRequisition(roleModel.Id);
+            _requisitionService.DeleteRequisition(deleteRequisition);
             return RedirectToAction("Index");
         }
     }

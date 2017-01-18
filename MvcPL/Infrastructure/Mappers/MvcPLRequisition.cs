@@ -42,6 +42,7 @@ namespace MvcPL.Infrastructure.Mappers
             if (requisition == null) return null;
             return new RequisitionModel
             {
+                Id = requisition.Id,
                 Name = requisition.Name,
                 Surname = requisition.Surname,
                 Patronymic = requisition.Patronymic,

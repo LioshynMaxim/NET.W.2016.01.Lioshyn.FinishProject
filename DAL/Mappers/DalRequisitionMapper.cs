@@ -42,6 +42,7 @@ namespace DAL.Mappers
             if (requisition == null) return null;
             return new Requisition()
             {
+                Id = requisition.Id,
                 Name = requisition.Name,
                 Surname = requisition.Surname,
                 Patronymic = requisition.Patronymic,

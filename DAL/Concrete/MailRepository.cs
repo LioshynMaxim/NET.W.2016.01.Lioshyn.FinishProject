@@ -57,11 +57,11 @@ namespace DAL.Concrete
         /// <summary>
         /// Delete email from database.
         /// </summary>
-        /// <param name="id">Id email.</param>
+        /// <param name="entity">Email entity.</param>
 
-        public void Delete(int id)
+        public void Delete(DalMail entity)
         {
-            var mail = Context.Set<Mail>().FirstOrDefault(m => m.Id == id);
+            var mail = Context.Set<Mail>().FirstOrDefault(m => m.Id == entity.Id);
             if (mail != default(Mail)) Context.Set<Mail>().Remove(mail);
             Context.SaveChanges();
         }

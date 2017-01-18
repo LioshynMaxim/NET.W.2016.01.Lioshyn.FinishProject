@@ -6,7 +6,7 @@ namespace BLL.Interfacies.Services
     {
         void CreateRole(RoleEntity roleEntity);
         void DeleteRole(RoleEntity roleEntity);
-        void ChangeRole(int idRole);
+        void UpdateRole(RoleEntity roleEntity);
         void AddRoleToUser(int idUser, int idRole);
     }
 }

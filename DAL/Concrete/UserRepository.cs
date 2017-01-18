@@ -70,11 +70,11 @@ namespace DAL.Concrete
         /// <summary>
         /// Delete user and write in database.
         /// </summary>
-        /// <param name="id">Id user.</param>
+        /// <param name="entity">User entity.</param>
 
-        public void Delete(int id)
+        public void Delete(DalUser entity)
         {
-            var user = Context.Set<User>().FirstOrDefault(u => u.Id == id);
+            var user = Context.Set<User>().FirstOrDefault(u => u.Id == entity.Id);
             if (user != default(User)) Context.Set<User>().Remove(user);
             Context.SaveChanges();
         }

@@ -60,11 +60,11 @@ namespace DAL.Concrete
         /// <summary>
         /// Delete new teacher and write in database.
         /// </summary>
-        /// <param name="id">Teacher.</param>
+        /// <param name="entity">Teacher entity.</param>
 
-        public void Delete(int id)
+        public void Delete(DalTeacher entity)
         {
-            var teacher = Context.Set<Teacher>().FirstOrDefault(cl => cl.Id == id);
+            var teacher = Context.Set<Teacher>().FirstOrDefault(cl => cl.Id == entity.Id);
             if (teacher != default(Teacher)) Context.Set<Teacher>().Remove(teacher);
             Context.SaveChanges();
         }

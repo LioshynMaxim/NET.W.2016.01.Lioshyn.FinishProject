@@ -61,11 +61,11 @@ namespace DAL.Concrete
         /// <summary>
         /// Delete existing comment.
         /// </summary>
-        /// <param name="id">Id comment.</param>
+        /// <param name="entity">Comment entity.</param>
 
-        public void Delete(int id)
+        public void Delete(DalComment entity)
         {
-            var comment = Context.Set<Comment>().FirstOrDefault(c => c.Id == id);
+            var comment = Context.Set<Comment>().FirstOrDefault(c => c.Id == entity.Id);
             if (comment != default(Comment)) Context.Set<Comment>().Remove(comment);
             Context.SaveChanges();
         }

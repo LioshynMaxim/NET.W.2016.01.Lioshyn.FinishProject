@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
-using System.Data.Entity.Migrations;
 using System.Linq;
 using DAL.Interfacies.Concrete;
 using DAL.Interfacies.DTO;
@@ -61,11 +60,11 @@ namespace DAL.Concrete
         /// <summary>
         /// Delete existing classroom.
         /// </summary>
-        /// <param name="id">Id classroom.</param>
+        /// <param name="entity">Classroom entity.</param>
 
-        public void Delete(int id)
+        public void Delete(DalClassRoom entity)
         {
-            var classroom = Context.Set<ClassRoom>().FirstOrDefault(cl => cl.Id == id);
+            var classroom = Context.Set<ClassRoom>().FirstOrDefault(cl => cl.Id == entity.Id);
             if (classroom != default(ClassRoom)) Context.Set<ClassRoom>().Remove(classroom);
             Context.SaveChanges();
         }

@@ -58,11 +58,11 @@ namespace DAL.Concrete
         /// <summary>
         /// Delete from database concrete parent.
         /// </summary>
-        /// <param name="id">Id parente.</param>
+        /// <param name="entity">Parent entity.</param>
 
-        public void Delete(int id)
+        public void Delete(DalParent entity)
         {
-            var parent = Context.Set<Parent>().FirstOrDefault(p => p.Id == id);
+            var parent = Context.Set<Parent>().FirstOrDefault(p => p.Id == entity.Id);
             if (parent != default(Parent)) Context.Set<Parent>().Remove(parent);
             Context.SaveChanges();
         }

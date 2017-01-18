@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using DAL.Interfacies.DTO;
 
 namespace DAL.Interfacies.Concrete
@@ -13,6 +9,6 @@ namespace DAL.Interfacies.Concrete
         TEntity GetById(int key);
         void Create(TEntity entity);
         void Update(TEntity entity);
-        void Delete(int id);
+        void Delete(TEntity entity);
     }
 }

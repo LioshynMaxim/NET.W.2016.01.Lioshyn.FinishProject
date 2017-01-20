@@ -1,34 +1,81 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using BLL.Interfacies.Entities;
 using BLL.Interfacies.Services;
+using BLL.Mappers;
+using DAL.Interfacies.Concrete;
 
 namespace BLL.Services
 {
     public class TeacherService : ITeacherService
     {
-        public void CreateTeacher(TeacherEntity teacherEntity)
+        private IUnitOfWork Uow { get; }
+
+        #region .ctor
+
+        public TeacherService(IUnitOfWork uow)
         {
-            throw new System.NotImplementedException();
+            Uow = uow;
         }
 
-        public void UpdateTeacher(TeacherEntity teacherEntity)
+        #endregion
+
+        #region Main function
+
+        /// <summary>
+        /// Create new teacher.
+        /// </summary>
+        /// <param name="teacherEntity">Teacher entity.</param>
+
+        public void Create(TeacherEntity teacherEntity)
         {
-            throw new System.NotImplementedException();
+            Uow.TeacherRepository.Create(teacherEntity.ToDalTeacher());
+            Uow.Saving();
         }
 
-        public void DeleteTeacher(TeacherEntity teacherEntity)
+        /// <summary>
+        /// Update teacher.
+        /// </summary>
+        /// <param name="teacherEntity">Teacher entity.</param>
+
+        public void Update(TeacherEntity teacherEntity)
         {
-            throw new System.NotImplementedException();
+            Uow.TeacherRepository.Update(teacherEntity.ToDalTeacher());
+            Uow.Saving();
         }
 
-        public IEnumerable<TeacherEntity> GetAllTeacher()
+        /// <summary>
+        /// Delete teacher.
+        /// </summary>
+        /// <param name="teacherEntity">Teacher entity.</param>
+
+        public void Delete(TeacherEntity teacherEntity)
         {
-            throw new System.NotImplementedException();
+            Uow.TeacherRepository.Delete(teacherEntity.ToDalTeacher());
+            Uow.Saving();
         }
 
-        public TeacherEntity GetSomeTeacher(int idTeacher)
-        {
-            throw new System.NotImplementedException();
-        }
+        #endregion
+
+        #region Auximilary
+
+        /// <summary>
+        /// Get all teachers.
+        /// </summary>
+        /// <returns>List of teacher.</returns>
+
+        public IEnumerable<TeacherEntity> GetAll() => Uow.TeacherRepository.GetAll().Select(s => s.ToTeacher());
+
+        /// <summary>
+        /// Get some teacher by id.
+        /// </summary>
+        /// <param name="idTeacher">teacher id.</param>
+        /// <returns>Teacher.</returns>
+
+        public TeacherEntity GetById(int idTeacher) => Uow.TeacherRepository.GetById(idTeacher).ToTeacher();
+
+        #endregion
+
+        
     }
 }

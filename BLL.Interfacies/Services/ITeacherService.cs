@@ -3,14 +3,7 @@ using BLL.Interfacies.Entities;
 
 namespace BLL.Interfacies.Services
 {
-    public interface ITeacherService
+    public interface ITeacherService : IService<TeacherEntity>
     {
-        void CreateTeacher(TeacherEntity teacherEntity);
-        void UpdateTeacher(TeacherEntity teacherEntity);
-        void DeleteTeacher(TeacherEntity teacherEntity);
-
-        IEnumerable<TeacherEntity> GetAllTeacher();
-        TeacherEntity GetSomeTeacher(int idTeacher);
-
     }
 }

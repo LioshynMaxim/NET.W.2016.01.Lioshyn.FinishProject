@@ -1,34 +1,81 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using BLL.Interfacies.Entities;
 using BLL.Interfacies.Services;
+using BLL.Mappers;
+using DAL.Interfacies.Concrete;
 
 namespace BLL.Services
 {
     public class MailService : IMailService
     {
-        public void CreateMail(MailEntity mailEntity)
+        private IUnitOfWork Uow { get; }
+
+        #region .ctor
+
+        public MailService(IUnitOfWork uow)
         {
-            throw new System.NotImplementedException();
+            Uow = uow;
         }
 
-        public void UpdateMail(MailEntity mailEntity)
+        #endregion
+
+        #region Main function
+
+        /// <summary>
+        /// Create new email.
+        /// </summary>
+        /// <param name="entity">Email entity.</param>
+
+        public void Create(MailEntity entity)
         {
-            throw new System.NotImplementedException();
+            Uow.MailRepository.Create(entity.ToDalMail());
+            Uow.Saving();
         }
 
-        public void DeleteMail(MailEntity mailEntity)
+        /// <summary>
+        /// Update email.
+        /// </summary>
+        /// <param name="entity">Email entity.</param>
+
+        public void Update(MailEntity entity)
         {
-            throw new System.NotImplementedException();
+            Uow.MailRepository.Update(entity.ToDalMail());
+            Uow.Saving();
         }
 
-        public IEnumerable<MailEntity> GetAllMail()
+        /// <summary>
+        /// Delete email.
+        /// </summary>
+        /// <param name="entity">Email entity.</param>
+
+        public void Delete(MailEntity entity)
         {
-            throw new System.NotImplementedException();
+            Uow.MailRepository.Delete(entity.ToDalMail());
+            Uow.Saving();
         }
 
-        public MailEntity GetSomeMail(int idMail)
-        {
-            throw new System.NotImplementedException();
-        }
+        #endregion
+
+        #region Auxiliary function
+
+        /// <summary>
+        /// Get all email.
+        /// </summary>
+        /// <returns>List of emails.</returns>
+
+        public IEnumerable<MailEntity> GetAll() => Uow.MailRepository.GetAll().Select(s => s.ToMail());
+
+        /// <summary>
+        /// Get concrete email.
+        /// </summary>
+        /// <param name="id">Email id.</param>
+        /// <returns>Email.</returns>
+
+        public MailEntity GetById(int id) => Uow.MailRepository.GetById(id).ToMail();
+
+        #endregion
+
+
     }
 }

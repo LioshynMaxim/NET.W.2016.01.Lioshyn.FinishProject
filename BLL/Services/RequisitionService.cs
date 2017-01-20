@@ -28,7 +28,7 @@ namespace BLL.Services
         /// </summary>
         /// <param name="requisitionEntity">Requisition.</param>
 
-        public void CreateRequisition(RequisitionEntity requisitionEntity)
+        public void Create(RequisitionEntity requisitionEntity)
         {
             Uow.RequisitionRepository.Create(IsValidate(requisitionEntity).ToDalRequisition());
             Uow.Saving();
@@ -39,7 +39,7 @@ namespace BLL.Services
         /// </summary>
         /// <param name="requisitionEntity">Requisition entity.</param>
 
-        public void UpdateRequisition(RequisitionEntity requisitionEntity)
+        public void Update(RequisitionEntity requisitionEntity)
         {
             Uow.RequisitionRepository.Update(requisitionEntity.ToDalRequisition());
             Uow.Saving();
@@ -50,7 +50,7 @@ namespace BLL.Services
         /// </summary>
         /// <param name="requisitionEntity">Requisition entity.</param>
 
-        public void DeleteRequisition(RequisitionEntity requisitionEntity)
+        public void Delete(RequisitionEntity requisitionEntity)
         {
             Uow.RequisitionRepository.Delete(requisitionEntity.ToDalRequisition());
             Uow.Saving();
@@ -65,7 +65,7 @@ namespace BLL.Services
         /// </summary>
         /// <returns>List of requisition.</returns>
 
-        public IEnumerable<RequisitionEntity> GetAllRequisition()
+        public IEnumerable<RequisitionEntity> GetAll()
             => Uow.RequisitionRepository.GetAll().Select(r => r.ToBllRequisition());
 
         /// <summary>
@@ -74,7 +74,7 @@ namespace BLL.Services
         /// <param name="idRequisition">Id Requisition.</param>
         /// <returns>Requisition.</returns>
 
-        public RequisitionEntity GetSomeRequisition(int idRequisition)
+        public RequisitionEntity GetById(int idRequisition)
             => Uow.RequisitionRepository.GetById(idRequisition).ToBllRequisition();
 
         #endregion

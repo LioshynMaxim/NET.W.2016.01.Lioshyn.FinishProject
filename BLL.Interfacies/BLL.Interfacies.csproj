@@ -57,6 +57,7 @@
     <Compile Include="Services\IPupilService.cs" />
     <Compile Include="Services\IRequisitionService.cs" />
     <Compile Include="Services\IRoleService.cs" />
+    <Compile Include="Services\IService.cs" />
     <Compile Include="Services\ITeacherService.cs" />
     <Compile Include="Services\IUserService.cs" />
   </ItemGroup>

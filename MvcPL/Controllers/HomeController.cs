@@ -1,71 +1,107 @@
-﻿using System.Web.Mvc;
-using System.Web.Security;
+﻿using System.Linq;
+using System.Web.Mvc;
 using BLL.Interfacies.Services;
+using MvcPL.Infrastructure.Mappers;
 using MvcPL.Models;
-using MvcPL.Providers;
 
 namespace MvcPL.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IUserService _userService;
+        private readonly IRoleService _service;
 
-        public HomeController(IUserService userService)
+        public HomeController(IRoleService roleService)
         {
-            _userService = userService;
-        }
-
-        // GET: Home
-        [ActionName("Index")]
-        public ActionResult Index()
-        {
-            return View(_userService.GetAllUser());
-        }
-
-        [HttpGet]
-        public ActionResult Registration()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        public ActionResult Registration(UserModel userModel)
-        {
-            if (ModelState.IsValid)
-            {
-                var provider = (CustomMembershipProvider)Membership.Provider;
-
-                if (provider.GetUser(userModel.Login, false) != null)
-                {
-                    ModelState.AddModelError("", "Login already exist");
-                    return View(userModel);
-                }
-
-                var membershipUser = provider.CreateUser(userModel);
-
-                if (membershipUser != null)
-                {
-                    FormsAuthentication.SetAuthCookie(userModel.Login, false);
-                    return RedirectToAction("Index");
-                }
-               
-            }
-            else
-            {
-                ModelState.AddModelError("", "Error while registration");
-            }
-
-            return View(userModel);
-        }
-
-        public ActionResult _Mail()
-        {
-            return PartialView();
+            _service = roleService;
         }
 
 
+        //// GET: Home
+        //public ActionResult Index()
+        //{
+        //    return View(_service.GetAll().Select(s => s.ToRoleModel()));
+        //}
 
+        //// GET: Home/Details/5
+        //public ActionResult Details(int id)
+        //{
+        //    return View(_service.GetById(id).ToRoleModel());
+        //}
+
+        //// GET: Home/Create
+        //public ActionResult Create()
+        //{
+        //    return View();
+        //}
+
+        //// POST: Home/Create
+        //[HttpPost]
+        //public ActionResult Create(RoleModel roleModel)
+        //{
+        //    try
+        //    {
+        //        _service.Create(roleModel.ToBllRole());
+        //        return RedirectToAction("Index");
+        //    }
+        //    catch
+        //    {
+        //        return View();
+        //    }
+        //}
+
+        //// GET: Home/Edit/5
+        //public ActionResult Edit(int id)
+        //{
+        //    return View(_service.GetById(id).ToRoleModel());
+        //}
+
+        //// POST: Home/Edit/5
+        //[HttpPost]
+        //public ActionResult Edit(RoleModel roleModel)
+        //{
+        //    try
+        //    {
+        //        _service.Update(roleModel.ToBllRole());
+        //        return RedirectToAction("Index");
+        //    }
+        //    catch
+        //    {
+        //        return View();
+        //    }
+        //}
+
+        //// GET: Home/Delete/5
+        //public ActionResult Delete(int id)
+        //{
+        //    return View();
+        //}
+
+        //// POST: Home/Delete/5
+        //[HttpPost]
+        //public ActionResult Delete(int id, FormCollection collection)
+        //{
+        //    try
+        //    {
+        //        _service.Delete(_service.GetById(id));
+        //        return RedirectToAction("Index");
+        //    }
+        //    catch
+        //    {
+        //        return View();
+        //    }
+        //}
+
+        //public ActionResult TestAddActionResult()
+        //{
+        //    _service.AddRoleToUser(1, 1);
+        //    _service.AddRoleToUser(1, 2);
+        //    return RedirectToAction("Index");
+        //}
+
+        //public ActionResult TestDeleteActionResult()
+        //{
+        //    _service.DeleteUserToRole(1, 1);
+        //    return RedirectToAction("Index");
+        //}
     }
 }

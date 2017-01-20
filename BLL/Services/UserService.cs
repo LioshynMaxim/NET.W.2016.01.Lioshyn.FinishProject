@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography;
 using BLL.Interfacies.Entities;
 using BLL.Interfacies.Services;
 using BLL.Mappers;
@@ -28,7 +27,7 @@ namespace BLL.Services
         /// </summary>
         /// <param name="userEntity">User entity.</param>
 
-        public void CreateUser(UserEntity userEntity)
+        public void Create(UserEntity userEntity)
         {
             Uow.UserRepository.Create(userEntity.ToDalUser());
             Uow.Saving();
@@ -39,7 +38,7 @@ namespace BLL.Services
         /// </summary>
         /// <param name="userEntity">User entity.</param>
 
-        public void UpdateUser(UserEntity userEntity)
+        public void Update(UserEntity userEntity)
         {
             Uow.UserRepository.Update(userEntity.ToDalUser());
             Uow.Saving();
@@ -50,7 +49,7 @@ namespace BLL.Services
         /// </summary>
         /// <param name="userEntity">User entity.</param>
 
-        public void DeleteUser(UserEntity userEntity)
+        public void Delete(UserEntity userEntity)
         {
             Uow.UserRepository.Delete(userEntity.ToDalUser());
             Uow.Saving();
@@ -65,7 +64,7 @@ namespace BLL.Services
         /// </summary>
         /// <returns>List of user.</returns>
 
-        public IEnumerable<UserEntity> GetAllUser() => Uow.UserRepository.GetAll().Select(s => s.ToUser());
+        public IEnumerable<UserEntity> GetAll() => Uow.UserRepository.GetAll().Select(s => s.ToUser());
         
         /// <summary>
         /// Get user by id.
@@ -73,7 +72,7 @@ namespace BLL.Services
         /// <param name="idUser">User id.</param>
         /// <returns>User.</returns>
 
-        public UserEntity GetSomeUser(int idUser) => Uow.UserRepository.GetUserById(idUser).ToUser();
+        public UserEntity GetById(int idUser) => Uow.UserRepository.GetUserById(idUser).ToUser();
         
         /// <summary>
         /// Get user by name.

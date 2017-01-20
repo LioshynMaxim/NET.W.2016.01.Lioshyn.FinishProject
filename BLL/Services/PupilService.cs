@@ -1,34 +1,80 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using BLL.Interfacies.Entities;
 using BLL.Interfacies.Services;
+using BLL.Mappers;
+using DAL.Interfacies.Concrete;
 
 namespace BLL.Services
 {
     public class PupilService : IPupilService
     {
-        public void CreatePupil(PupilEntity pupilEntity)
+        private IUnitOfWork Uow { get; }
+
+        #region .ctor
+
+        public PupilService(IUnitOfWork uow)
         {
-            throw new System.NotImplementedException();
+            Uow = uow;
+        }
+        #endregion
+
+        #region Main function
+
+        /// <summary>
+        /// Create new pupil.
+        /// </summary>
+        /// <param name="entity">Pupil entity.</param>
+
+        public void Create(PupilEntity entity)
+        {
+            Uow.PupilRepository.Create(entity.ToDalPupil());
+            Uow.Saving();
         }
 
-        public void UpdatePupil(PupilEntity pupilEntity)
+        /// <summary>
+        /// Update pupil.
+        /// </summary>
+        /// <param name="entity">Pupil entity.</param>
+
+        public void Update(PupilEntity entity)
         {
-            throw new System.NotImplementedException();
+            Uow.PupilRepository.Update(entity.ToDalPupil());
+            Uow.Saving();
         }
 
-        public void DeletePupil(PupilEntity pupilEntity)
+        /// <summary>
+        /// Delete pupil.
+        /// </summary>
+        /// <param name="entity">Pupil entity.</param>
+
+        public void Delete(PupilEntity entity)
         {
-            throw new System.NotImplementedException();
+            Uow.PupilRepository.Delete(entity.ToDalPupil());
+            Uow.Saving();
         }
 
-        public IEnumerable<PupilEntity> GetAllPupil()
-        {
-            throw new System.NotImplementedException();
-        }
+        #endregion
 
-        public PupilEntity GetSomePupil(int idPupil)
-        {
-            throw new System.NotImplementedException();
-        }
+        #region Auximilary function
+
+        /// <summary>
+        /// Get all pupils.
+        /// </summary>
+        /// <returns>List of pupils.</returns>
+
+        public IEnumerable<PupilEntity> GetAll() => Uow.PupilRepository.GetAll().Select(s => s.ToPupil());
+
+        /// <summary>
+        /// Get concrete pupil.
+        /// </summary>
+        /// <param name="id">Pupil id.</param>
+        /// <returns>Pupil.</returns>
+
+        public PupilEntity GetById(int id) => Uow.PupilRepository.GetById(id).ToPupil(); 
+
+        #endregion
+
+        
     }
 }

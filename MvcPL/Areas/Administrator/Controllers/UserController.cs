@@ -23,7 +23,7 @@ namespace MvcPL.Areas.Administrator.Controllers
         [ActionName("Index")]
         public ActionResult Index()
         {
-            return View(_userService.GetAllUser().Select(s=>s.ToUserModel()));
+            return View(_userService.GetAll().Select(s=>s.ToUserModel()));
         }
         
         #endregion
@@ -33,7 +33,7 @@ namespace MvcPL.Areas.Administrator.Controllers
         [ActionName("Details")]
         public ActionResult Details(int idUser)
         {
-            return View(_userService.GetSomeUser(idUser).ToUserModel());
+            return View(_userService.GetById(idUser).ToUserModel());
         }
 
         #endregion
@@ -53,7 +53,6 @@ namespace MvcPL.Areas.Administrator.Controllers
                 if (!ModelState.IsValid)
                 {
                     ModelState.AddModelError("", "Error while registration");
-                    
                 }
                 else
                 {
@@ -88,7 +87,7 @@ namespace MvcPL.Areas.Administrator.Controllers
         {
             try
             {
-                return View(_userService.GetSomeUser(idUser).ToUserModel());
+                return View(_userService.GetById(idUser).ToUserModel());
             }
             catch (Exception)
             {
@@ -101,7 +100,7 @@ namespace MvcPL.Areas.Administrator.Controllers
         {
             try
             {
-                _userService.UpdateUser(_userService.GetSomeUser(idUser));
+                _userService.Update(_userService.GetById(idUser));
                 return RedirectToAction("Index");
             }
             catch
@@ -116,7 +115,7 @@ namespace MvcPL.Areas.Administrator.Controllers
 
         public ActionResult Delete(int idUser)
         {
-            return View(_userService.GetSomeUser(idUser).ToUserModel());
+            return View(_userService.GetById(idUser).ToUserModel());
         }
 
         [HttpPost]
@@ -124,7 +123,7 @@ namespace MvcPL.Areas.Administrator.Controllers
         {
             try
             {
-                _userService.DeleteUser(_userService.GetSomeUser(idUser));
+                _userService.Delete(_userService.GetById(idUser));
                 return RedirectToAction("Index");
             }
             catch

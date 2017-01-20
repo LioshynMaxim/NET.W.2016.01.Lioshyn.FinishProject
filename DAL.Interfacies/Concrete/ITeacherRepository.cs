@@ -7,6 +7,7 @@ namespace DAL.Interfacies.Concrete
     {
         void AddTeacherToClassRoom(int idTeacher, int idClassRoom);
         void DeleteTeacherToClassRoom(int idTeacher, int idClassRoom);
+
         IEnumerable<DalTeacher> GetAllTeacherInClassRoom(int idClassRoom);
     }
 }

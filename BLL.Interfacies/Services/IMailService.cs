@@ -1,15 +1,8 @@
-﻿using System.Collections.Generic;
-using BLL.Interfacies.Entities;
+﻿using BLL.Interfacies.Entities;
 
 namespace BLL.Interfacies.Services
 {
-    public interface IMailService
+    public interface IMailService : IService<MailEntity>
     {
-        void CreateMail(MailEntity mailEntity);
-        void UpdateMail(MailEntity mailEntity);
-        void DeleteMail(MailEntity mailEntity);
-
-        IEnumerable<MailEntity> GetAllMail();
-        MailEntity GetSomeMail(int idMail);
     }
 }

@@ -3,13 +3,8 @@ using BLL.Interfacies.Entities;
 
 namespace BLL.Interfacies.Services
 {
-    public interface IClassRoomService
+    public interface IClassRoomService : IService<ClassRoomEntity>
     {
-        void CreateClassRoom(ClassRoomEntity classRoomEntity);
-        void UpdateClassRoom(ClassRoomEntity classRoomEntity);
-        void DeleteClassRoom(ClassRoomEntity classRoomEntity);
-
-        IEnumerable<ClassRoomEntity> GetAllClassRoom();
-        ClassRoomEntity GetSomeClassRoom(int idClassRoom);
+        
     }
 }

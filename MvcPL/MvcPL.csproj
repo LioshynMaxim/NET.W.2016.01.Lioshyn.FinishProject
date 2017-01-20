@@ -167,6 +167,11 @@
     <Content Include="Areas\Administrator\Views\User\Create.cshtml" />
     <Content Include="Areas\Administrator\Views\User\Edit.cshtml" />
     <Content Include="Areas\Administrator\Views\User\Delete.cshtml" />
+    <Content Include="Areas\Administrator\Views\Role\Index.cshtml" />
+    <Content Include="Areas\Administrator\Views\Role\Create.cshtml" />
+    <Content Include="Areas\Administrator\Views\Role\Delete.cshtml" />
+    <Content Include="Areas\Administrator\Views\Role\Details.cshtml" />
+    <Content Include="Areas\Administrator\Views\Role\Edit.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -179,6 +184,7 @@
     <Compile Include="Areas\Administrator\AdministratorAreaRegistration.cs" />
     <Compile Include="Areas\Administrator\Controllers\HomeController.cs" />
     <Compile Include="Areas\Administrator\Controllers\RequisitionController.cs" />
+    <Compile Include="Areas\Administrator\Controllers\RoleController.cs" />
     <Compile Include="Areas\Administrator\Controllers\UserController.cs" />
     <Compile Include="Areas\Teacher\TeacherAreaRegistration.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -197,6 +203,7 @@
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
     <Compile Include="Models\ClassRoomModel.cs" />
     <Compile Include="Models\CommentModel.cs" />
+    <Compile Include="Models\FullViewModel\FullUserModel.cs" />
     <Compile Include="Models\MailModel.cs" />
     <Compile Include="Models\ParentModel.cs" />
     <Compile Include="Models\PupilModel.cs" />
@@ -218,13 +225,10 @@
     <Content Include="Areas\Teacher\Views\web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-    <Content Include="Views\Home\Registration.cshtml" />
-    <Content Include="Views\Home\_Mail.cshtml" />
     <Content Include="Views\Error\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -240,6 +244,7 @@
     <Folder Include="Areas\Teacher\Models\" />
     <Folder Include="Areas\Teacher\Views\Shared\" />
     <Folder Include="Views\Default\" />
+    <Folder Include="Views\Home\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BLL.Interfacies\BLL.Interfacies.csproj">

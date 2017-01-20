@@ -3,14 +3,10 @@ using BLL.Interfacies.Entities;
 
 namespace BLL.Interfacies.Services
 {
-    public interface IRoleService
+    public interface IRoleService : IService<RoleEntity>
     {
-        void CreateRole(RoleEntity roleEntity);
-        void DeleteRole(RoleEntity roleEntity);
-        void UpdateRole(RoleEntity roleEntity);
-
         void AddRoleToUser(int idUser, int idRole);
-        IEnumerable<RoleEntity> GetAllRole();
-        RoleEntity GetSomeRole(int idRole);
+        void DeleteUserToRole(int idUser, int idRole);
+        IEnumerable<RoleEntity> GetUsers(int idRole);
     }
 }

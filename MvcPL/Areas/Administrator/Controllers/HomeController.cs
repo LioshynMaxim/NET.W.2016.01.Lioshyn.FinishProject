@@ -8,7 +8,6 @@ namespace MvcPL.Areas.Administrator.Controllers
 {
     public class HomeController : Controller
     {
-        // GET: Administrator/Home
         public ActionResult Index()
         {
             return View();

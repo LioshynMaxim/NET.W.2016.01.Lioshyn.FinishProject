@@ -3,13 +3,7 @@ using BLL.Interfacies.Entities;
 
 namespace BLL.Interfacies.Services
 {
-    public interface IParentService
+    public interface IParentService : IService<ParentEntity>
     {
-        void CreateParent(ParentEntity parentEntity);
-        void UpdateParent(ParentEntity parentEntity);
-        void DeleteParent(ParentEntity parentEntity);
-
-        IEnumerable<ParentEntity> GetAllParent();
-        ParentEntity GetSomeParent(int idPupil);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using BLL.Interfacies.Entities;
 using BLL.Interfacies.Services;
 using BLL.Mappers;
@@ -26,40 +27,84 @@ namespace BLL.Services
         /// </summary>
         /// <param name="roleEntity">Role entity.</param>
 
-        public void CreateRole(RoleEntity roleEntity)
+        public void Create(RoleEntity roleEntity)
         {
             Uow.RoleRepository.Create(roleEntity.ToDalRole());
             Uow.Saving();
         }
 
-        public void DeleteRole(RoleEntity roleEntity)
+        /// <summary>
+        /// Update role.
+        /// </summary>
+        /// <param name="roleEntity">Role entity.</param>
+
+        public void Update(RoleEntity roleEntity)
         {
-            throw new System.NotImplementedException();
+            Uow.RoleRepository.Update(roleEntity.ToDalRole());
+            Uow.Saving();
         }
 
-        public void UpdateRole(RoleEntity roleEntity)
+        /// <summary>
+        /// Delete role.
+        /// </summary>
+        /// <param name="roleEntity">Role entity.</param>
+
+        public void Delete(RoleEntity roleEntity)
         {
-            throw new System.NotImplementedException();
+            Uow.RoleRepository.Delete(roleEntity.ToDalRole());
+            Uow.Saving();
         }
-        
+
         #endregion
 
         #region Auximilary function
 
+        /// <summary>
+        /// Add role to user.
+        /// </summary>
+        /// <param name="idUser">User id.</param>
+        /// <param name="idRole">Role id.</param>
+
         public void AddRoleToUser(int idUser, int idRole)
         {
-            throw new System.NotImplementedException();
+            Uow.RoleRepository.AddUserToRole(idUser, idRole);
+            Uow.Saving();
         }
 
-        public IEnumerable<RoleEntity> GetAllRole()
+        /// <summary>
+        /// Delete role from user.
+        /// </summary>
+        /// <param name="idUser">User id.</param>
+        /// <param name="idRole">Role id.</param>
+
+        public void DeleteUserToRole(int idUser, int idRole)
         {
-            throw new System.NotImplementedException();
+            Uow.RoleRepository.DeleteUserToRole(idUser, idRole);
+            Uow.Saving();
         }
 
-        public RoleEntity GetSomeRole(int idRole)
-        {
-            throw new System.NotImplementedException();
-        }
+        /// <summary>
+        /// Get all roles.
+        /// </summary>
+        /// <returns>List of roles.</returns>
+
+        public IEnumerable<RoleEntity> GetAll() => Uow.RoleRepository.GetAll().Select(s => s.ToRole());
+
+        /// <summary>
+        /// Get role by id.
+        /// </summary>
+        /// <param name="id">Role id.</param>
+        /// <returns></returns>
+
+        public RoleEntity GetById(int id) => Uow.RoleRepository.GetById(id).ToRole();
+        
+        /// <summary>
+        /// Get all user about role.
+        /// </summary>
+        /// <param name="idRole">Role id</param>
+        /// <returns>List of user.</returns>
+
+        public IEnumerable<RoleEntity> GetUsers(int idRole) => Uow.RoleRepository.GetUserRoles(idRole).Select(s => s.ToRole());
 
         #endregion
 

@@ -1,34 +1,81 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using BLL.Interfacies.Entities;
 using BLL.Interfacies.Services;
+using BLL.Mappers;
+using DAL.Interfacies.Concrete;
 
 namespace BLL.Services
 {
     public class ClassRoomService : IClassRoomService
     {
-        public void CreateClassRoom(ClassRoomEntity classRoomEntity)
+        private IUnitOfWork Uow { get; }
+
+        #region .ctor
+
+        public ClassRoomService(IUnitOfWork uow)
         {
-            throw new System.NotImplementedException();
+            Uow = uow;
         }
 
-        public void UpdateClassRoom(ClassRoomEntity classRoomEntity)
+        #endregion
+
+        #region Main function.
+
+        /// <summary>
+        /// Create new classroom.
+        /// </summary>
+        /// <param name="entity">ClassRoom entity.</param>
+
+        public void Create(ClassRoomEntity entity)
         {
-            throw new System.NotImplementedException();
+            Uow.ClassRoomRepository.Create(entity.ToDalClassRoom());
+            Uow.Saving();
         }
 
-        public void DeleteClassRoom(ClassRoomEntity classRoomEntity)
+        /// <summary>
+        /// Update classroom.
+        /// </summary>
+        /// <param name="entity">ClassRoom entity.</param>
+
+        public void Update(ClassRoomEntity entity)
         {
-            throw new System.NotImplementedException();
+            Uow.ClassRoomRepository.Update(entity.ToDalClassRoom());
+            Uow.Saving();
         }
 
-        public IEnumerable<ClassRoomEntity> GetAllClassRoom()
+        /// <summary>
+        /// Delete classroom.
+        /// </summary>
+        /// <param name="entity">ClassRoom entity.</param>
+
+        public void Delete(ClassRoomEntity entity)
         {
-            throw new System.NotImplementedException();
+            Uow.ClassRoomRepository.Delete(entity.ToDalClassRoom());
+            Uow.Saving();
         }
 
-        public ClassRoomEntity GetSomeClassRoom(int idClassRoom)
-        {
-            throw new System.NotImplementedException();
-        }
+        #endregion
+
+        #region Auximilary function
+
+        /// <summary>
+        /// Get all classrooms.
+        /// </summary>
+        /// <returns>List of classroom.</returns>
+
+        public IEnumerable<ClassRoomEntity> GetAll() => Uow.ClassRoomRepository.GetAll().Select(s => s.ToClassRoom());
+
+        /// <summary>
+        /// Get concrete classroom.
+        /// </summary>
+        /// <param name="id">Classroom id.</param>
+        /// <returns>Classroom.</returns>
+
+        public ClassRoomEntity GetById(int id) => Uow.ClassRoomRepository.GetById(id).ToClassRoom();
+
+
+        #endregion
+
     }
 }

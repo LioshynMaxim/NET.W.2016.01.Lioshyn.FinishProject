@@ -21,7 +21,7 @@ namespace MvcPL.Areas.Administrator.Controllers
         [ActionName("Index")]
         public ActionResult Index()
         {
-            return View(_requisitionService.GetAllRequisition().Select(s => s.ToRequisitionModel()));
+            return View(_requisitionService.GetAll().Select(s => s.ToRequisitionModel()));
         }
 
         #endregion
@@ -38,7 +38,7 @@ namespace MvcPL.Areas.Administrator.Controllers
         {
             try
             {
-                _requisitionService.CreateRequisition(requisitionModel.ToBllRequisition());
+                _requisitionService.Create(requisitionModel.ToBllRequisition());
                 return RedirectToAction("Details");
             }
             catch (Exception)
@@ -57,7 +57,7 @@ namespace MvcPL.Areas.Administrator.Controllers
             try
             {
                 if (idRequisition == null) return RedirectToAction("Index");
-                var requisitionModel = _requisitionService.GetSomeRequisition(idRequisition.Value);
+                var requisitionModel = _requisitionService.GetById(idRequisition.Value);
                 return View(requisitionModel.ToRequisitionModel());
             }
             catch (Exception)
@@ -72,14 +72,14 @@ namespace MvcPL.Areas.Administrator.Controllers
 
         public ActionResult Edit(int idRequisition)
         {
-            return View(_requisitionService.GetSomeRequisition(idRequisition).ToRequisitionModel());
+            return View(_requisitionService.GetById(idRequisition).ToRequisitionModel());
         }
 
         [HttpPost]
         public ActionResult Edit(RequisitionModel roleModel)
         {
-            _requisitionService.UpdateRequisition(roleModel.ToBllRequisition());
-            return View(_requisitionService.GetSomeRequisition(roleModel.Id).ToRequisitionModel());
+            _requisitionService.Update(roleModel.ToBllRequisition());
+            return View(_requisitionService.GetById(roleModel.Id).ToRequisitionModel());
         }
 
         #endregion
@@ -88,13 +88,13 @@ namespace MvcPL.Areas.Administrator.Controllers
 
         public ActionResult Delete(int idRequisition)
         {
-            return View(_requisitionService.GetSomeRequisition(idRequisition).ToRequisitionModel());
+            return View(_requisitionService.GetById(idRequisition).ToRequisitionModel());
         }
 
         [HttpPost]
         public ActionResult Delete(RequisitionModel roleModel)
         {
-            _requisitionService.DeleteRequisition(_requisitionService.GetSomeRequisition(roleModel.Id));
+            _requisitionService.Delete(_requisitionService.GetById(roleModel.Id));
             return RedirectToAction("Index");
         }
 

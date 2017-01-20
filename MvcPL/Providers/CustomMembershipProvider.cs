@@ -22,17 +22,18 @@ namespace MvcPL.Providers
             if (membershipUser != null) return null;
 
             userModel.Password = Crypto.HashPassword(userModel.Password);
-            UserService.CreateUser(userModel.ToDalUser());
+            UserService.Create(userModel.ToDalUser());
+
+
 
             membershipUser = GetUser(userModel.Login, false);
-
             return membershipUser;
         }
 
 
         public bool ValidateUser(UserModel userModel, string password)
         {
-            var user = UserService.GetSomeUser(userModel.Id);
+            var user = UserService.GetById(userModel.Id);
             return user != null && Crypto.VerifyHashedPassword(user.Password, password);
         }
 

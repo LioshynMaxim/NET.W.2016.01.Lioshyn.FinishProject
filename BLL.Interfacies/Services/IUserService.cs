@@ -3,14 +3,8 @@ using BLL.Interfacies.Entities;
 
 namespace BLL.Interfacies.Services
 {
-    public interface IUserService
+    public interface IUserService : IService<UserEntity>
     {
-        void CreateUser(UserEntity userEntity);
-        void UpdateUser(UserEntity userEntity);
-        void DeleteUser(UserEntity userEntity);
-
-        IEnumerable<UserEntity> GetAllUser();
-        UserEntity GetSomeUser(int idUser);
         UserEntity GetUserByName(string userName);
         UserEntity GetUserByLogin(string userLogin);
     }

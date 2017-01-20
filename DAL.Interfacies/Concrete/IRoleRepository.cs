@@ -7,6 +7,7 @@ namespace DAL.Interfacies.Concrete
     {
         void AddUserToRole(int idUser, int idRole);
         void DeleteUserToRole(int idUser, int idRole);
+
         IEnumerable<DalRole> GetUserRoles(int idUser);
     }
 }

@@ -3,13 +3,8 @@ using BLL.Interfacies.Entities;
 
 namespace BLL.Interfacies.Services
 {
-    public interface IPupilService
+    public interface IPupilService : IService<PupilEntity>
     {
-        void CreatePupil(PupilEntity pupilEntity);
-        void UpdatePupil(PupilEntity pupilEntity);
-        void DeletePupil(PupilEntity pupilEntity);
-
-        IEnumerable<PupilEntity> GetAllPupil();
-        PupilEntity GetSomePupil(int idPupil);
+        
     }
 }

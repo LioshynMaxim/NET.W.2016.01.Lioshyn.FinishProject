@@ -33,6 +33,7 @@ namespace BLL.Mappers
             if (mail == null) return null;
             return new MailEntity
             {
+                Id = mail.Id,
                 Email = mail.Email,
                 IdUser = mail.IdUser
             };

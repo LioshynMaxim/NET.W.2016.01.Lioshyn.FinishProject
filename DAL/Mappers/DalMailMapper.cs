@@ -34,6 +34,7 @@ namespace DAL.Mappers
             if (mail == null) return null;
             return new Mail
             {
+                Id = mail.Id,
                 Email = mail.Email,
                 IdUser = mail.IdUser
             };

@@ -33,6 +33,7 @@ namespace MvcPL.Infrastructure.Mappers
             if (mail == null) return null;
             return new MailModel
             {
+                Id = mail.Id,
                 Email = mail.Email,
                 IdUser = mail.IdUser
             };

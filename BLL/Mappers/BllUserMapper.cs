@@ -44,6 +44,7 @@ namespace BLL.Mappers
             if (user == null) return null;
             return new UserEntity
             {
+                Id = user.Id,
                 Name = user.Name,
                 Surname = user.Surname,
                 Patronymic = user.Patronymic,

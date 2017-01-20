@@ -36,6 +36,7 @@ namespace BLL.Mappers
             if (teacher == null) return null;
             return new TeacherEntity
             {
+                Id = teacher.Id,
                 IdUser = teacher.IdUser,
                 ClassRoomBsu = teacher.ClassRoomBsu,
                 WorkPlace = teacher.WorkPlace,

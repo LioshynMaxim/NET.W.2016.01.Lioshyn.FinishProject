@@ -32,6 +32,7 @@ namespace DAL.Mappers
             if (role == null) return null;
             return new Role
             {
+                Id = role.Id,
                 RoleName = role.RoleName
             };
         }

@@ -44,6 +44,7 @@ namespace DAL.Mappers
             if (user == null) return null;
             return new User
             {
+                Id = user.Id,
                 Name = user.Name,
                 Surname = user.Surname,
                 Patronymic = user.Patronymic,

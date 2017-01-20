@@ -12,5 +12,7 @@ namespace DAL.Interfacies.Concrete
         void AddUserRole(int idUser, int idRole);
         
         DalUser GetUserByName(string userName);
+        DalUser GetUserByLogin(string userLogin);
+        DalUser GetUserById(int userId);
     }
 }

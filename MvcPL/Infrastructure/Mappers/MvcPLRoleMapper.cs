@@ -32,6 +32,7 @@ namespace MvcPL.Infrastructure.Mappers
             if (role == null) return null;
             return new RoleModel
             {
+                Id = role.Id,
                 RoleName = role.RoleName
             };
         }

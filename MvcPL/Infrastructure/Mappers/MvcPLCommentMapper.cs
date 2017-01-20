@@ -34,6 +34,7 @@ namespace MvcPL.Infrastructure.Mappers
             if (comment == null) return null;
             return new CommentModel
             {
+                Id = comment.Id,
                 CommentUser = comment.CommentUser,
                 IdUser = comment.IdUser,
                 IdUserTo = comment.IdUserTo

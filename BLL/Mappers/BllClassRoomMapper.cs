@@ -36,6 +36,7 @@ namespace BLL.Mappers
             if (classRoom == null) return null;
             return new ClassRoomEntity
             {
+                Id = classRoom.Id,
                 Name = classRoom.Name,
                 Room = classRoom.Room,
                 Time = classRoom.Time,

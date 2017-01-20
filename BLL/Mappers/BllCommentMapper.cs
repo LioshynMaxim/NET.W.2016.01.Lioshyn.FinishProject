@@ -34,6 +34,7 @@ namespace BLL.Mappers
             if (comment == null) return null;
             return new CommentEntity
             {
+                Id = comment.Id,
                 CommentUser = comment.CommentUser,
                 IdUser = comment.IdUser,
                 IdUserTo = comment.IdUserTo

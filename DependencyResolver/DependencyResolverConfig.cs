@@ -59,7 +59,7 @@ namespace DependencyResolver
             kernel.Bind<IRequisitionService>().To<RequisitionService>();
             kernel.Bind<IRoleService>().To<RoleService>();
             kernel.Bind<ITeacherService>().To<TeacherService>();
-            kernel.Bind<IUserSerivice>().To<UserSerivice>();
+            kernel.Bind<IUserService>().To<UserService>();
 
             kernel.Bind<IClassRoomRepository>().To<ClassRoomRepository>();
             kernel.Bind<ICommentRepository>().To<CommentRepository>();

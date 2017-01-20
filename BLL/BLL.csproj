@@ -58,7 +58,7 @@
     <Compile Include="Services\RequisitionService.cs" />
     <Compile Include="Services\RoleService.cs" />
     <Compile Include="Services\TeacherService.cs" />
-    <Compile Include="Services\UserSerivice.cs" />
+    <Compile Include="Services\UserService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BLL.Interfacies\BLL.Interfacies.csproj">

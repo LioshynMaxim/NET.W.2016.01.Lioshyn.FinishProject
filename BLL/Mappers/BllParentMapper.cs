@@ -32,6 +32,7 @@ namespace BLL.Mappers
             if (parent == null) return null;
             return new ParentEntity
             {
+                Id = parent.Id,
                 IdUser = parent.IdUser,
                 PlaceOfWork = parent.PlaceOfWork
             };

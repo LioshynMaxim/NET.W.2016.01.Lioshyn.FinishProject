@@ -32,6 +32,7 @@ namespace MvcPL.Infrastructure.Mappers
             if (parent == null) return null;
             return new ParentModel
             {
+                Id = parent.Id,
                 IdUser = parent.IdUser,
                 PlaceOfWork = parent.PlaceOfWork
             };

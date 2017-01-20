@@ -1,4 +1,5 @@
-﻿using BLL.Interfacies.Entities;
+﻿using System.Collections.Generic;
+using BLL.Interfacies.Entities;
 using BLL.Interfacies.Services;
 
 namespace BLL.Services
@@ -16,6 +17,16 @@ namespace BLL.Services
         }
 
         public void DeleteClassRoom(ClassRoomEntity classRoomEntity)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public IEnumerable<ClassRoomEntity> GetAllClassRoom()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public ClassRoomEntity GetSomeClassRoom(int idClassRoom)
         {
             throw new System.NotImplementedException();
         }

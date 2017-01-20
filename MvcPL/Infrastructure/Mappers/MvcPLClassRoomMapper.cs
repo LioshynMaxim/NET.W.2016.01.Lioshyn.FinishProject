@@ -36,6 +36,7 @@ namespace MvcPL.Infrastructure.Mappers
             if (classRoom == null) return null;
             return new ClassRoomModel
             {
+                Id = classRoom.Id,
                 Name = classRoom.Name,
                 Room = classRoom.Room,
                 Time = classRoom.Time,

@@ -36,6 +36,7 @@ namespace MvcPL.Infrastructure.Mappers
             if (teacher == null) return null;
             return new TeacherModel
             {
+                Id = teacher.Id,
                 IdUser = teacher.IdUser,
                 ClassRoomBsu = teacher.ClassRoomBsu,
                 WorkPlace = teacher.WorkPlace,

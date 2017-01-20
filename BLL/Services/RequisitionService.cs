@@ -4,6 +4,7 @@ using BLL.Interfacies.Entities;
 using BLL.Interfacies.Services;
 using BLL.Mappers;
 using DAL.Interfacies.Concrete;
+using System;
 
 namespace BLL.Services
 {
@@ -29,7 +30,7 @@ namespace BLL.Services
 
         public void CreateRequisition(RequisitionEntity requisitionEntity)
         {
-            Uow.RequisitionRepository.Create(requisitionEntity.ToDalRequisition());
+            Uow.RequisitionRepository.Create(IsValidate(requisitionEntity).ToDalRequisition());
             Uow.Saving();
         }
 
@@ -75,6 +76,32 @@ namespace BLL.Services
 
         public RequisitionEntity GetSomeRequisition(int idRequisition)
             => Uow.RequisitionRepository.GetById(idRequisition).ToBllRequisition();
+
+        #endregion
+
+        #region Private function
+
+        /// <summary>
+        /// Check for validate function.
+        /// </summary>
+        /// <param name="requisitionEntity">Requisition entity.</param>
+        /// <returns>True, if valide, and false if no validate.</returns>
+
+        private RequisitionEntity IsValidate(RequisitionEntity requisitionEntity)
+        {
+            requisitionEntity.Name = requisitionEntity.Name ?? "Default";
+            requisitionEntity.BirthDay = requisitionEntity.BirthDay ?? DateTime.Now.Date;
+            requisitionEntity.City = requisitionEntity.City ?? "Default";
+            requisitionEntity.District = requisitionEntity.District ?? "Default";
+            requisitionEntity.Flat = requisitionEntity.Flat ?? -1;
+            requisitionEntity.Hous = requisitionEntity.Hous ?? -1;
+            requisitionEntity.Housing = requisitionEntity.Housing ?? -1;
+            requisitionEntity.Patronymic = requisitionEntity.Patronymic ?? "Default";
+            requisitionEntity.Postcode = requisitionEntity.Postcode ?? -1;
+            requisitionEntity.Street = requisitionEntity.Street ?? "Default";
+            requisitionEntity.Surname = requisitionEntity.Surname ?? "Default";
+            return requisitionEntity;
+        }
 
         #endregion
     }

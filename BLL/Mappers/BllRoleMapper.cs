@@ -32,6 +32,7 @@ namespace BLL.Mappers
             if (role == null) return null;
             return new RoleEntity
             {
+                Id = role.Id,
                 RoleName = role.RoleName
             };
         }

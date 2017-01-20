@@ -36,6 +36,7 @@ namespace DAL.Mappers
             if (classRoom == null) return null;
             return new ClassRoom
             {
+                Id = classRoom.Id,
                 Name = classRoom.Name,
                 Room = classRoom.Room,
                 Time = classRoom.Time,

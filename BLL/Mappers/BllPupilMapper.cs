@@ -38,6 +38,7 @@ namespace BLL.Mappers
             if (pupil == null) return null;
             return new PupilEntity
             {
+                Id = pupil.Id,
                 School = pupil.School,
                 NumberSchool = pupil.NumberSchool,
                 ClassNumber = pupil.ClassNumber,

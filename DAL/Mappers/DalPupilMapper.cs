@@ -38,6 +38,7 @@ namespace DAL.Mappers
             if (pupil == null) return null;
             return new Pupil
             {
+                Id = pupil.Id,
                 School = pupil.School,
                 NumberSchool = pupil.NumberSchool,
                 ClassNumber = pupil.ClassNumber,

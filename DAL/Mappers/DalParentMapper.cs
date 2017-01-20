@@ -32,6 +32,7 @@ namespace DAL.Mappers
             if (parent == null) return null;
             return new Parent
             {
+                Id = parent.Id,
                 IdUser = parent.IdUser,
                 PlaceOfWork = parent.PlaceOfWork
             };

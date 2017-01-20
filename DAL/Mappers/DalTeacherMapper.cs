@@ -36,6 +36,7 @@ namespace DAL.Mappers
             if (teacher == null) return null;
             return new Teacher
             {
+                Id = teacher.Id,
                 IdUser = teacher.IdUser,
                 ClassRoomBsu = teacher.ClassRoomBsu,
                 WorkPlace = teacher.WorkPlace,

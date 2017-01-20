@@ -155,6 +155,18 @@
     <Content Include="Global.asax" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Areas\Administrator\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Administrator\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Administrator\Views\Requisition\Create.cshtml" />
+    <Content Include="Areas\Administrator\Views\Requisition\Delete.cshtml" />
+    <Content Include="Areas\Administrator\Views\Requisition\Details.cshtml" />
+    <Content Include="Areas\Administrator\Views\Requisition\Edit.cshtml" />
+    <Content Include="Areas\Administrator\Views\Requisition\Index.cshtml" />
+    <Content Include="Areas\Administrator\Views\User\Index.cshtml" />
+    <Content Include="Areas\Administrator\Views\User\Details.cshtml" />
+    <Content Include="Areas\Administrator\Views\User\Create.cshtml" />
+    <Content Include="Areas\Administrator\Views\User\Edit.cshtml" />
+    <Content Include="Areas\Administrator\Views\User\Delete.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -165,9 +177,11 @@
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Administrator\AdministratorAreaRegistration.cs" />
+    <Compile Include="Areas\Administrator\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Administrator\Controllers\RequisitionController.cs" />
+    <Compile Include="Areas\Administrator\Controllers\UserController.cs" />
     <Compile Include="Areas\Teacher\TeacherAreaRegistration.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\RequisitionController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -191,7 +205,8 @@
     <Compile Include="Models\TeacherModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Providers\CustomRequisitionProvider.cs" />
+    <Compile Include="Providers\CustomMembershipProvider.cs" />
+    <Compile Include="Providers\CustomRoleProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -208,11 +223,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-    <Content Include="Views\Requisition\Create.cshtml" />
-    <Content Include="Views\Requisition\Index.cshtml" />
-    <Content Include="Views\Requisition\Details.cshtml" />
-    <Content Include="Views\Requisition\Edit.cshtml" />
-    <Content Include="Views\Requisition\Delete.cshtml" />
+    <Content Include="Views\Home\Registration.cshtml" />
+    <Content Include="Views\Home\_Mail.cshtml" />
+    <Content Include="Views\Error\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -221,9 +234,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Areas\Administrator\Controllers\" />
     <Folder Include="Areas\Administrator\Models\" />
-    <Folder Include="Areas\Administrator\Views\Shared\" />
+    <Folder Include="Areas\Administrator\Views\Home\" />
     <Folder Include="Areas\Teacher\Controllers\" />
     <Folder Include="Areas\Teacher\Models\" />
     <Folder Include="Areas\Teacher\Views\Shared\" />
@@ -233,6 +245,10 @@
     <ProjectReference Include="..\BLL.Interfacies\BLL.Interfacies.csproj">
       <Project>{c94d2aff-98b4-4ceb-9426-ef45cd021bc0}</Project>
       <Name>BLL.Interfacies</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DAL.Interfacies\DAL.Interfacies.csproj">
+      <Project>{F865B998-BF4D-4B75-B359-62F48A43E2FF}</Project>
+      <Name>DAL.Interfacies</Name>
     </ProjectReference>
     <ProjectReference Include="..\DependencyResolver\DependencyResolver.csproj">
       <Project>{cdd9e0ab-270f-451e-881c-9361fa3c1aea}</Project>

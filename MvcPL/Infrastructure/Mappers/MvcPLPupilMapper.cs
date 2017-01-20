@@ -38,6 +38,7 @@ namespace MvcPL.Infrastructure.Mappers
             if (pupil == null) return null;
             return new PupilModel
             {
+                Id = pupil.Id,
                 School = pupil.School,
                 NumberSchool = pupil.NumberSchool,
                 ClassNumber = pupil.ClassNumber,

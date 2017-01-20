@@ -39,11 +39,12 @@ namespace MvcPL.Infrastructure.Mappers
         /// <param name="user">User.</param>
         /// <returns>If empty user return null, otherwise write new user in database.</returns>
 
-        public static UserModel ToUser(this UserEntity user)
+        public static UserModel ToUserModel(this UserEntity user)
         {
             if (user == null) return null;
             return new UserModel
             {
+                Id = user.Id,
                 Name = user.Name,
                 Surname = user.Surname,
                 Patronymic = user.Patronymic,

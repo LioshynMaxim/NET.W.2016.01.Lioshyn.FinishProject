@@ -22,40 +22,40 @@ namespace ORM
         public int Id { get; set; }
 
         [StringLength(12)]
-        public string Name { get; set; }
+        public string Name { get; set; } = "Default";
 
         [StringLength(25)]
-        public string Surname { get; set; }
+        public string Surname { get; set; } = "Default";
 
         [StringLength(20)]
-        public string Patronymic { get; set; }
+        public string Patronymic { get; set; } = "Default";
 
-        public DateTime? BirthDay { get; set; }
-
-        [StringLength(20)]
-        public string City { get; set; }
+        public DateTime? BirthDay { get; set; } = DateTime.Now.Date;
 
         [StringLength(20)]
-        public string District { get; set; }
+        public string City { get; set; } = "Default";
+
+        [StringLength(20)]
+        public string District { get; set; } = "Default";
 
         [StringLength(30)]
-        public string Street { get; set; }
+        public string Street { get; set; } = "Default";
 
-        public int? Housing { get; set; }
+        public int? Housing { get; set; } = -1;
 
-        public int? Hous { get; set; }
+        public int? Hous { get; set; } = -1;
 
-        public int? Flat { get; set; }
+        public int? Flat { get; set; } = -1;
 
-        public int? Postcode { get; set; }
-
-        [Required]
-        [StringLength(100)]
-        public string Login { get; set; }
+        public int? Postcode { get; set; } = -1;
 
         [Required]
         [StringLength(100)]
-        public string Password { get; set; }
+        public string Login { get; set; } = "Default";
+
+        [Required]
+        [StringLength(100)]
+        public string Password { get; set; } = "Default";
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Comment> Comments { get; set; }

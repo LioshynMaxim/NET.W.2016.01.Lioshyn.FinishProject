@@ -196,6 +196,23 @@ namespace DAL.Concrete
 
         public DalUser GetUserByName(string userName) => Context.Set<User>().FirstOrDefault(u => u.Name == userName).ToDalUser();
 
+        /// <summary>
+        /// Get user by login.
+        /// </summary>
+        /// <param name="userLogin">User login.</param>
+        /// <returns>User.</returns>
+
+        public DalUser GetUserByLogin(string userLogin) => Context.Set<User>().FirstOrDefault(u => u.Login == userLogin).ToDalUser();
+
+
+        /// <summary>
+        /// Get user by id.
+        /// </summary>
+        /// <param name="userId">User id.</param>
+        /// <returns>User.</returns>
+
+        public DalUser GetUserById(int userId) => Context.Set<User>().FirstOrDefault(u => u.Id == userId).ToDalUser();
+        
         #endregion
 
 

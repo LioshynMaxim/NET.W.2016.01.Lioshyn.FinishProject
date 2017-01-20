@@ -34,6 +34,7 @@ namespace DAL.Mappers
             if (comment == null) return null;
             return new Comment
             {
+                Id = comment.Id,
                 CommentUser = comment.CommentUser,
                 IdUser = comment.IdUser,
                 IdUserTo = comment.IdUserTo

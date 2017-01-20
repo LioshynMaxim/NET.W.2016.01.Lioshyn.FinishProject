@@ -1,4 +1,5 @@
-﻿using BLL.Interfacies.Entities;
+﻿using System.Collections.Generic;
+using BLL.Interfacies.Entities;
 using BLL.Interfacies.Services;
 using BLL.Mappers;
 using DAL.Interfacies.Concrete;
@@ -46,6 +47,16 @@ namespace BLL.Services
         #region Auximilary function
 
         public void AddRoleToUser(int idUser, int idRole)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public IEnumerable<RoleEntity> GetAllRole()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public RoleEntity GetSomeRole(int idRole)
         {
             throw new System.NotImplementedException();
         }

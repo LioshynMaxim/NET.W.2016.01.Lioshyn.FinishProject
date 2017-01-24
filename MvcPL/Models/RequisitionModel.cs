@@ -9,12 +9,16 @@ namespace MvcPL.Models
         [HiddenInput(DisplayValue = false)]
         public int Id { get; set; }
 
+        [Required]
+        [RegularExpression(@"^[a-zA-Z]{1,12}$", ErrorMessage = "Name should be 1-12 letters.")]
         [Display(Name = "Name")]
         public string Name { get; set; }
 
+        [RegularExpression(@"^[a-zA-Z]{1,25}$", ErrorMessage = "Surname should be 1-25 letters.")]
         [Display(Name = "Surname")]
         public string Surname { get; set; }
 
+        [RegularExpression(@"^[a-zA-Z]{1,20}$", ErrorMessage = "Patronymic should be 1-20 letters.")]
         [Display(Name = "Patronymic")]
         public string Patronymic { get; set; }
 
@@ -23,24 +27,31 @@ namespace MvcPL.Models
         [Display(Name = "Birth day")]
         public DateTime? BirthDay { get; set; }
 
+        [RegularExpression(@"^[a-zA-Z]{1,20}$", ErrorMessage = "City should be 1-20 letters.")]
         [Display(Name = "City")]
         public string City { get; set; }
 
+        [RegularExpression(@"^[a-zA-Z]{1,20}$", ErrorMessage = "District should be 1-20 letters.")]
         [Display(Name = "District")]
         public string District { get; set; }
 
+        [RegularExpression(@"^[a-zA-Z]{1,20}$", ErrorMessage = "District should be 1-20 letters.")]
         [Display(Name = "Street")]
         public string Street { get; set; }
 
+        [RegularExpression(@"^[0-9]$", ErrorMessage = "Housing should be 1 number.")]
         [Display(Name = "Housing")]
         public int? Housing { get; set; }
 
-        [Display(Name = "Hous")]
+        [RegularExpression(@"^[0-9]{1,3}$", ErrorMessage = "Hous should be 1-3 number.")]
+        [Display(Name = "House")]
         public int? Hous { get; set; }
 
+        [RegularExpression(@"^[0-9]{1,3}$", ErrorMessage = "Flat should be 1-3 number.")]
         [Display(Name = "Flat")]
         public int? Flat { get; set; }
 
+        [RegularExpression(@"^[0-9]{6}$", ErrorMessage = "Postcode should be 6 number.")]
         [Display(Name = "Postcode")]
         public int? Postcode { get; set; }
     }

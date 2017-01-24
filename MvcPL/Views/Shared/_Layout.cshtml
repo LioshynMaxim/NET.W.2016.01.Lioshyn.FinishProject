@@ -3,38 +3,120 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/js")
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+    <div class="site-header">
+        <div class="main-navigation">
+            <div class="responsive_menu">
+                <ul>
+                    <li><a class="show-1 templatemo_home" href="#">School</a></li>
+                    <li><a class="show-2 templatemo_page2" href="#">Live</a></li>
+                    <li><a class="show-3 templatemo_page3" href="#">Requisition</a></li>
+                    <li><a class="show-5 templatemo_page5" href="#">Contact</a></li>
+                </ul>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav"></ul>
+            <div class="container">
+                <div class="row templatemo_gallerygap">
+                    <div class="col-md-12 responsive-menu">
+                        <a href="#" class="menu-toggle-btn">
+                            <i class="fa fa-bars"></i>
+                        </a>
+                    </div> <!-- /.col-md-12 -->
+                    <div class="col-md-3 col-sm-12">
+                        <a href="#"><img src="/images/soym_logo.png" alt="Polygon HTML5 Template" /></a>
+                    </div>
+                    <div class="col-md-9 main_menu">
+                        <ul>
+                            <li>
+                                @Ajax.ActionLink(" Home", "Index", new { area = "", Controller = "Home" }, new AjaxOptions()
+                           {
+                               UpdateTargetId = "instruction",
+                               Url = Url.Action("Index", new { area = "", Controller = "Home" })
+                           }, new { @class = "fa fa-home active" })
+                            </li>
+                            <li>
+                                @Ajax.ActionLink(" About school", "AboutSchool", new { area = "", Controller = "Home" }, new AjaxOptions()
+                            {
+                                UpdateTargetId = "instruction",
+                                Url = Url.Action("AboutSchool", new { area = "", Controller = "Home" })
+                            }, new { @class = "fa fa-users" })
+                            </li>
+                            <li>
+                                @Ajax.ActionLink(" Contacts", "Contacts", new {area = "", Controller = "Home"}, new AjaxOptions()
+                                {
+                                    UpdateTargetId = "instruction",
+                                    Url = Url.Action("Contacts", new {area = "", Controller = "Home"})
+                                }, new {@class = "fa fa-envelope"})
+                            </li>
+                            <li>
+                                @*@Ajax.ActionLink(" Requisition", "Requisition", new { area = "", Controller = "Home" }, new AjaxOptions()
+                           {
+                               UpdateTargetId = "instruction",
+                               Url = Url.Action("Requisition", new { area = "", Controller = "Home" })
+                           }, new { @class = "fa fa-pencil" })*@
+                                @Html.ActionLink(" Requisition", "Requisition", new { area = "", Controller = "Home" }, new { @class = "fa fa-pencil"})
+                            </li>
+                            <li>
+                                @Ajax.ActionLink(" Login", "Login", new { area = "", Controller = "Home" }, new AjaxOptions()
+                           {
+                               UpdateTargetId = "instruction",
+                               Url = Url.Action("Login", new { area = "", Controller = "Home" })
+                           }, new { @class = "fa fa-user" })
+                            </li>
+                        </ul>
+                    </div> <!-- /.col-md-12 -->
+                </div> <!-- /.row -->
+            </div> <!-- /.container -->
+        </div> <!-- /.main-navigation -->
+    </div> <!-- /.site-header -->
+
+    <div class="panel-wrapper">
+        <div class="container" id="instruction">
+            <div class="row">
+                @RenderBody()
             </div>
         </div>
     </div>
 
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer></footer>
-    </div>
-
-    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-    <script src="~/Scripts/bootstrap.min.js"></script>
-
     
-
+        <div class="templatemo_footer navbar-fixed-bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9 col-sm-12">
+                        <span>Copyright &copy; Kak-to tak</span>
+                    </div>
+                    <div class="col-md-3 col-sm-12 templatemo_rfooter">
+                        <a href="#">
+                            <div class="hex_footer">
+                                <span class="fa fa-facebook"></span>
+                            </div>
+                        </a>
+                        <a href="#">
+                            <div class="hex_footer">
+                                <span class="fa fa-twitter"></span>
+                            </div>
+                        </a>
+                        <a href="#">
+                            <div class="hex_footer">
+                                <span class="fa fa-linkedin"></span>
+                            </div>
+                        </a>
+                        <a href="#">
+                            <div class="hex_footer">
+                                <span class="fa fa-rss"></span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
 </body>
 </html>

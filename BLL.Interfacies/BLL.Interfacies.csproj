@@ -50,6 +50,7 @@
     <Compile Include="Entities\UserEntity.cs" />
     <Compile Include="Entities\RequisitionEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceException.cs" />
     <Compile Include="Services\IClassRoomService.cs" />
     <Compile Include="Services\ICommentService.cs" />
     <Compile Include="Services\IMailService.cs" />

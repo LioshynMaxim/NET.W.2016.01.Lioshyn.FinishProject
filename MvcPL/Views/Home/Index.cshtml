@@ -1,0 +1,11 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+<p class="main-body">@ViewBag.ArticleTitle</p>
+
+
+<h2>@ViewBag.ArticleBody</h2>
+
+<h3>@Html.ActionLink("Requisition", "Index", new { area = "Administrator", controller = "Requisition" })</h3>
+
+

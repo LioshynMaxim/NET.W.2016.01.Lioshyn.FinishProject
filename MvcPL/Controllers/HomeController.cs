@@ -1,107 +1,89 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Web.Mvc;
+using System.Xml;
+using System.Xml.Linq;
 using BLL.Interfacies.Services;
 using MvcPL.Infrastructure.Mappers;
 using MvcPL.Models;
+using NLog;
 
 namespace MvcPL.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IRoleService _service;
+        private readonly IRequisitionService _service;
+        private Logger logger = LogManager.GetCurrentClassLogger();
 
-        public HomeController(IRoleService roleService)
+        public HomeController(IRequisitionService roleService)
         {
             _service = roleService;
         }
 
 
-        //// GET: Home
-        //public ActionResult Index()
-        //{
-        //    return View(_service.GetAll().Select(s => s.ToRoleModel()));
-        //}
+        public ActionResult Index()
+        {
+            var doc = XDocument.Load(Server.MapPath("~/App_Data/MainInformation.xml")).Element("Landing")?.Elements();
+            ViewBag.ArticleTitle = doc.SingleOrDefault(s => s.Name == "ArticleTitle")?.Value;
+            ViewBag.ArticleBody = doc.SingleOrDefault(s => s.Name == "ArticleBody")?.Value;
+            if (Request.IsAjaxRequest()) return PartialView();
+            return View("Index");
+        }
 
-        //// GET: Home/Details/5
-        //public ActionResult Details(int id)
-        //{
-        //    return View(_service.GetById(id).ToRoleModel());
-        //}
+        public ActionResult Home()
+        {
+            if (Request.IsAjaxRequest()) return PartialView();
+            return View();
+        }
 
-        //// GET: Home/Create
-        //public ActionResult Create()
-        //{
-        //    return View();
-        //}
+        public ActionResult AboutSchool()
+        {
+            if (Request.IsAjaxRequest()) return PartialView();
+            return View();
+        }
 
-        //// POST: Home/Create
-        //[HttpPost]
-        //public ActionResult Create(RoleModel roleModel)
-        //{
-        //    try
-        //    {
-        //        _service.Create(roleModel.ToBllRole());
-        //        return RedirectToAction("Index");
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
+        public ActionResult Contacts()
+        {
+            if (Request.IsAjaxRequest()) return PartialView();
+            return View();
+        }
 
-        //// GET: Home/Edit/5
-        //public ActionResult Edit(int id)
-        //{
-        //    return View(_service.GetById(id).ToRoleModel());
-        //}
+        public ActionResult Requisition()
+        {
+            ViewBag.Requisition = "Requisition";
+            if (Request.IsAjaxRequest()) return PartialView();
+            return View();
+        }
 
-        //// POST: Home/Edit/5
-        //[HttpPost]
-        //public ActionResult Edit(RoleModel roleModel)
-        //{
-        //    try
-        //    {
-        //        _service.Update(roleModel.ToBllRole());
-        //        return RedirectToAction("Index");
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Requisition(RequisitionModel requisitionModel)
+        {
+            ViewBag.Requisition = "Requisition";
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    ModelState.AddModelError("", "Error while requisition.");
+                }
+                else
+                {
+                    _service.Create(requisitionModel.ToBllRequisition());
+                    ViewBag.Requisition = "Requisition success!";
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex);
 
-        //// GET: Home/Delete/5
-        //public ActionResult Delete(int id)
-        //{
-        //    return View();
-        //}
+            }
+            return View();
+        }
 
-        //// POST: Home/Delete/5
-        //[HttpPost]
-        //public ActionResult Delete(int id, FormCollection collection)
-        //{
-        //    try
-        //    {
-        //        _service.Delete(_service.GetById(id));
-        //        return RedirectToAction("Index");
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
-
-        //public ActionResult TestAddActionResult()
-        //{
-        //    _service.AddRoleToUser(1, 1);
-        //    _service.AddRoleToUser(1, 2);
-        //    return RedirectToAction("Index");
-        //}
-
-        //public ActionResult TestDeleteActionResult()
-        //{
-        //    _service.DeleteUserToRole(1, 1);
-        //    return RedirectToAction("Index");
-        //}
+        public ActionResult Login()
+        {
+            if (Request.IsAjaxRequest()) return PartialView();
+            return View();
+        }
     }
 }

@@ -2,7 +2,6 @@
 
 namespace MvcPL.Areas.Administrator
 {
-    [Authorize]
     public class AdministratorAreaRegistration : AreaRegistration 
     {
         public override string AreaName => "Administrator";

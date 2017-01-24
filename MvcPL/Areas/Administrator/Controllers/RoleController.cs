@@ -1,14 +1,17 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Web.Mvc;
 using BLL.Interfacies.Services;
 using MvcPL.Infrastructure.Mappers;
 using MvcPL.Models;
+using NLog;
 
 namespace MvcPL.Areas.Administrator.Controllers
 {
     public class RoleController : Controller
     {
         private readonly IRoleService _roleService;
+        private Logger logger = LogManager.GetCurrentClassLogger();
 
         public RoleController(IRoleService roleService)
         {
@@ -16,25 +19,21 @@ namespace MvcPL.Areas.Administrator.Controllers
         }
 
 
-        // GET: Home
         public ActionResult Index()
         {
             return View(_roleService.GetAll().Select(s => s.ToRoleModel()));
         }
 
-        // GET: Home/Details/5
         public ActionResult Details(int id)
         {
             return View(_roleService.GetById(id).ToRoleModel());
         }
 
-        // GET: Home/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Home/Create
         [HttpPost]
         public ActionResult Create(RoleModel roleModel)
         {
@@ -43,19 +42,18 @@ namespace MvcPL.Areas.Administrator.Controllers
                 _roleService.Create(roleModel.ToBllRole());
                 return RedirectToAction("Index");
             }
-            catch
+            catch (Exception ex)
             {
+                logger.Error(ex);
                 return View();
             }
         }
 
-        // GET: Home/Edit/5
         public ActionResult Edit(int id)
         {
             return View(_roleService.GetById(id).ToRoleModel());
         }
 
-        // POST: Home/Edit/5
         [HttpPost]
         public ActionResult Edit(RoleModel roleModel)
         {
@@ -64,19 +62,18 @@ namespace MvcPL.Areas.Administrator.Controllers
                 _roleService.Update(roleModel.ToBllRole());
                 return RedirectToAction("Index");
             }
-            catch
+            catch (Exception ex)
             {
+                logger.Error(ex);
                 return View();
             }
         }
 
-        // GET: Home/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: Home/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
@@ -85,8 +82,9 @@ namespace MvcPL.Areas.Administrator.Controllers
                 _roleService.Delete(_roleService.GetById(id));
                 return RedirectToAction("Index");
             }
-            catch
+            catch (Exception ex)
             {
+                logger.Error(ex);
                 return View();
             }
         }

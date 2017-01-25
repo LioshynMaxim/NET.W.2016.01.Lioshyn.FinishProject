@@ -13,10 +13,42 @@
         <div class="main-navigation">
             <div class="responsive_menu">
                 <ul>
-                    <li><a class="show-1 templatemo_home" href="#">School</a></li>
-                    <li><a class="show-2 templatemo_page2" href="#">Live</a></li>
-                    <li><a class="show-3 templatemo_page3" href="#">Requisition</a></li>
-                    <li><a class="show-5 templatemo_page5" href="#">Contact</a></li>
+                    <li>
+                        @Ajax.ActionLink(" Home", "Index", new { area = "", Controller = "Home" }, new AjaxOptions()
+                           {
+                               UpdateTargetId = "instruction",
+                               Url = Url.Action("Index", new { area = "", Controller = "Home" })
+                           }, new { @class = "fa fa-home active" })
+                    </li>
+                    <li>
+                        @Ajax.ActionLink(" About school", "AboutSchool", new { area = "", Controller = "Home" }, new AjaxOptions()
+                           {
+                               UpdateTargetId = "instruction",
+                               Url = Url.Action("AboutSchool", new { area = "", Controller = "Home" })
+                           }, new { @class = "fa fa-users" })
+                    </li>
+                    <li>
+                        @Ajax.ActionLink(" Contacts", "Contacts", new { area = "", Controller = "Home" }, new AjaxOptions()
+                           {
+                               UpdateTargetId = "instruction",
+                               Url = Url.Action("Contacts", new { area = "", Controller = "Home" })
+                           }, new { @class = "fa fa-envelope" })
+                    </li>
+                    <li>
+                        @Ajax.ActionLink(" Requisition", "Requisition", new { area = "", Controller = "Home" }, new AjaxOptions()
+                           {
+                               UpdateTargetId = "instruction",
+                               Url = Url.Action("Requisition", new { area = "", Controller = "Home" })
+                           }, new { @class = "fa fa-pencil" })
+                        @*@Html.ActionLink(" Requisition", "Requisition", new { area = "", Controller = "Home" }, new { @class = "fa fa-pencil"})*@
+                    </li>
+                    <li>
+                        @Ajax.ActionLink(" Login", "Login", new { area = "", Controller = "Home" }, new AjaxOptions()
+                           {
+                               UpdateTargetId = "instruction",
+                               Url = Url.Action("Login", new { area = "", Controller = "Home" })
+                           }, new { @class = "fa fa-user" })
+                    </li>
                 </ul>
             </div>
             <div class="container">
@@ -53,12 +85,12 @@
                                 }, new {@class = "fa fa-envelope"})
                             </li>
                             <li>
-                                @*@Ajax.ActionLink(" Requisition", "Requisition", new { area = "", Controller = "Home" }, new AjaxOptions()
+                                @Ajax.ActionLink(" Requisition", "Requisition", new { area = "", Controller = "Home" }, new AjaxOptions()
                            {
                                UpdateTargetId = "instruction",
                                Url = Url.Action("Requisition", new { area = "", Controller = "Home" })
-                           }, new { @class = "fa fa-pencil" })*@
-                                @Html.ActionLink(" Requisition", "Requisition", new { area = "", Controller = "Home" }, new { @class = "fa fa-pencil"})
+                           }, new { @class = "fa fa-pencil" })
+                                @*@Html.ActionLink(" Requisition", "Requisition", new { area = "", Controller = "Home" }, new { @class = "fa fa-pencil"})*@
                             </li>
                             <li>
                                 @Ajax.ActionLink(" Login", "Login", new { area = "", Controller = "Home" }, new AjaxOptions()
@@ -76,7 +108,7 @@
 
     <div class="panel-wrapper">
         <div class="container" id="instruction">
-            <div class="row">
+            <div class="row template_form">
                 @RenderBody()
             </div>
         </div>

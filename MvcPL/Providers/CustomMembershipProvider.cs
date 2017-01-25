@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Linq;
 using System.Web.Helpers;
 using System.Web.Security;
+using BLL.Interfacies.Entities;
 using BLL.Interfacies.Services;
 using MvcPL.Infrastructure.Mappers;
 using MvcPL.Models;
@@ -14,36 +16,39 @@ namespace MvcPL.Providers
 
         #region Implemented
 
-
         public MembershipUser CreateUser(UserModel userModel)
         {
             var membershipUser = GetUser(userModel.Login, false);
-
             if (membershipUser != null) return null;
 
             userModel.Password = Crypto.HashPassword(userModel.Password);
             UserService.Create(userModel.ToDalUser());
 
+            var user = UserService.GetUserByLogin(userModel.Login);
 
+            var role = RoleService.GetAll().FirstOrDefault(r => r.RoleName == "User");
+            if (role == null)
+            {
+                RoleService.Create(new RoleEntity { RoleName = "User" });
+                role = RoleService.GetAll().FirstOrDefault(r => r.RoleName == "User");
+            }
 
+            if (role != null) RoleService.AddUserToRole(user.Id, role.Id);
             membershipUser = GetUser(userModel.Login, false);
             return membershipUser;
         }
 
-
-        public bool ValidateUser(UserModel userModel, string password)
+        public override bool ValidateUser(string login, string password)
         {
-            var user = UserService.GetById(userModel.Id);
+            var user = UserService.GetUserByLogin(login);
             return user != null && Crypto.VerifyHashedPassword(user.Password, password);
         }
-
 
         public override MembershipUser GetUser(string login, bool userIsOnline)
         {
             var user = UserService.GetUserByLogin(login);
 
             if (user == null) return null;
-
             var memberUser = new MembershipUser("CustomMembershipProvider", user.Name,
                 null, null, null, null,
                 false, false, DateTime.MaxValue,
@@ -53,16 +58,9 @@ namespace MvcPL.Providers
         }
 
         #endregion
-
-
-
-
+        
         #region NotImplemented
-
-
-
-        #endregion
-
+        
         public override MembershipUser CreateUser(string username, string password, string email, string passwordQuestion, string passwordAnswer,
             bool isApproved, object providerUserKey, out MembershipCreateStatus status)
         {
@@ -95,10 +93,7 @@ namespace MvcPL.Providers
             throw new NotImplementedException();
         }
 
-        public override bool ValidateUser(string username, string password)
-        {
-            throw new NotImplementedException();
-        }
+        
 
         public override bool UnlockUser(string userName)
         {
@@ -109,7 +104,6 @@ namespace MvcPL.Providers
         {
             throw new NotImplementedException();
         }
-
 
         public override string GetUserNameByEmail(string email)
         {
@@ -152,5 +146,7 @@ namespace MvcPL.Providers
         public override int MinRequiredPasswordLength { get; }
         public override int MinRequiredNonAlphanumericCharacters { get; }
         public override string PasswordStrengthRegularExpression { get; }
+
+        #endregion
     }
 }

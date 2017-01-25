@@ -65,7 +65,7 @@ namespace BLL.Services
         /// <param name="idUser">User id.</param>
         /// <param name="idRole">Role id.</param>
 
-        public void AddRoleToUser(int idUser, int idRole)
+        public void AddUserToRole(int idUser, int idRole)
         {
             Uow.RoleRepository.AddUserToRole(idUser, idRole);
             Uow.Saving();
@@ -84,6 +84,14 @@ namespace BLL.Services
         }
 
         /// <summary>
+        /// Get role by name.
+        /// </summary>
+        /// <param name="name">Role name.</param>
+        /// <returns>Role</returns>
+
+        public RoleEntity GetRoleByName(string name) => Uow.RoleRepository.GetRoleByName(name).ToRole();
+
+        /// <summary>
         /// Get all roles.
         /// </summary>
         /// <returns>List of roles.</returns>
@@ -97,14 +105,15 @@ namespace BLL.Services
         /// <returns></returns>
 
         public RoleEntity GetById(int id) => Uow.RoleRepository.GetById(id).ToRole();
-        
+
         /// <summary>
         /// Get all user about role.
         /// </summary>
         /// <param name="idRole">Role id</param>
         /// <returns>List of user.</returns>
 
-        public IEnumerable<RoleEntity> GetUsers(int idRole) => Uow.RoleRepository.GetUserRoles(idRole).Select(s => s.ToRole());
+        public IEnumerable<UserEntity> GetUsersByRole(int idRole)
+            => Uow.RoleRepository.GetUsersByRole(idRole).Select(s => s.ToUser());
 
         #endregion
 

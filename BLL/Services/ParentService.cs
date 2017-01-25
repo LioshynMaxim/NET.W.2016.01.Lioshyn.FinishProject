@@ -73,6 +73,32 @@ namespace BLL.Services
 
         public ParentEntity GetById(int id) => Uow.ParentRepository.GetById(id).ToParent();
 
+        /// <summary>
+        /// Add parent to pupil.
+        /// </summary>
+        /// <param name="idParent">Parent id.</param>
+        /// <param name="idPupil">Pupil id.</param>
+
+        public void AddParentToPupil(int idParent, int idPupil) => Uow.ParentRepository.AddParentToPupil(idParent,idPupil);
+
+        /// <summary>
+        /// Delete parent to pupil.
+        /// </summary>
+        /// <param name="idParent">Parent id.</param>
+        /// <param name="idPupil">Pupil id.</param>
+
+        public void DeleteParentToPupil(int idParent, int idPupil) => Uow.ParentRepository.DeleteParentToPupil(idParent, idPupil);
+
+        /// <summary>
+        /// Get all parents pupil.
+        /// </summary>
+        /// <param name="idPupil">Pupil id.</param>
+        /// <returns>List of parents.</returns>
+
+        public IEnumerable<ParentEntity> GetAllParentPupil(int idPupil) => Uow.ParentRepository.GetAllParentPupil(idPupil).Select(s => s.ToParent());
+
         #endregion
+
+
     }
 }

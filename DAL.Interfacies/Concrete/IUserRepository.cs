@@ -1,4 +1,5 @@
-﻿using DAL.Interfacies.DTO;
+﻿using System.Collections.Generic;
+using DAL.Interfacies.DTO;
 
 namespace DAL.Interfacies.Concrete
 {
@@ -14,5 +15,7 @@ namespace DAL.Interfacies.Concrete
         DalUser GetUserByName(string userName);
         DalUser GetUserByLogin(string userLogin);
         DalUser GetUserById(int userId);
+
+        IEnumerable<DalRole> GetRolesByUser(int idUser);
     }
 }

@@ -203,8 +203,7 @@ namespace DAL.Concrete
         /// <returns>User.</returns>
 
         public DalUser GetUserByLogin(string userLogin) => Context.Set<User>().FirstOrDefault(u => u.Login == userLogin).ToDalUser();
-
-
+        
         /// <summary>
         /// Get user by id.
         /// </summary>
@@ -212,9 +211,16 @@ namespace DAL.Concrete
         /// <returns>User.</returns>
 
         public DalUser GetUserById(int userId) => Context.Set<User>().FirstOrDefault(u => u.Id == userId).ToDalUser();
-        
+
+        /// <summary>
+        /// Get roles by user.
+        /// </summary>
+        /// <param name="idUser">Id user.</param>
+        /// <returns>List of roles.</returns>
+
+        public IEnumerable<DalRole> GetRolesByUser(int idUser)
+            => Context.Set<User>().FirstOrDefault(t => t.Id == idUser)?.Roles.ToList().Select(s => s.ToDalRole());
+
         #endregion
-
-
     }
 }

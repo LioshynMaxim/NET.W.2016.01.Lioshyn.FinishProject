@@ -73,7 +73,37 @@ namespace BLL.Services
         /// <returns>User.</returns>
 
         public UserEntity GetById(int idUser) => Uow.UserRepository.GetUserById(idUser).ToUser();
-        
+
+        public void AddUserMail(int idUser, int idMail)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void AddUserComment(int idUser, int idComment)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void AddUserParent(int idUser, int idParent)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void AddUserPupil(int idUser, int idPupil)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void AddUserTeacher(int idUser, int idTeacher)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void AddUserRole(int idUser, int idRole)
+        {
+            throw new System.NotImplementedException();
+        }
+
         /// <summary>
         /// Get user by name.
         /// </summary>
@@ -88,7 +118,14 @@ namespace BLL.Services
         /// <param name="userLogin">User login.</param>
         /// <returns>User.</returns>
 
-        public UserEntity GetUserByLogin(string userLogin) => Uow.UserRepository.GetUserByName(userLogin).ToUser();
+        public UserEntity GetUserByLogin(string userLogin) => Uow.UserRepository.GetUserByLogin(userLogin).ToUser();
+
+        public UserEntity GetUserById(int userId)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public IEnumerable<RoleEntity> GetRolesByUser(int idUser) => Uow.UserRepository.GetRolesByUser(idUser).Select(s => s.ToRole());
 
         #endregion
 

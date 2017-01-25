@@ -74,8 +74,23 @@ namespace BLL.Services
 
         public TeacherEntity GetById(int idTeacher) => Uow.TeacherRepository.GetById(idTeacher).ToTeacher();
 
+        public void AddTeacherToClassRoom(int idTeacher, int idClassRoom)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void DeleteTeacherToClassRoom(int idTeacher, int idClassRoom)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public IEnumerable<TeacherEntity> GetAllTeacherInClassRoom(int idClassRoom)
+        {
+            throw new System.NotImplementedException();
+        }
+
         #endregion
 
-        
+
     }
 }

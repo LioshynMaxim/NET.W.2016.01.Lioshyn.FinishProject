@@ -7,6 +7,8 @@ using MvcPL.Models;
 
 namespace MvcPL.Areas.Administrator.Controllers
 {
+    //[Authorize(Roles = "Administrator")]
+    //[Authorize]
     public class RequisitionController : Controller
     {
         private readonly IRequisitionService _requisitionService;

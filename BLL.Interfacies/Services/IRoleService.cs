@@ -5,8 +5,10 @@ namespace BLL.Interfacies.Services
 {
     public interface IRoleService : IService<RoleEntity>
     {
-        void AddRoleToUser(int idUser, int idRole);
+        void AddUserToRole(int idUser, int idRole);
         void DeleteUserToRole(int idUser, int idRole);
-        IEnumerable<RoleEntity> GetUsers(int idRole);
+        RoleEntity GetRoleByName(string name);
+
+        IEnumerable<UserEntity> GetUsersByRole(int idRole);
     }
 }

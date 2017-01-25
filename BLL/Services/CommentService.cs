@@ -74,6 +74,15 @@ namespace BLL.Services
 
         public CommentEntity GetById(int id) => Uow.CommentRepository.GetById(id).ToComment();
 
+        /// <summary>
+        /// Get all comments concrete user.
+        /// </summary>
+        /// <param name="idUser">User id.</param>
+        /// <returns>List of comments.</returns>
+
+        public IEnumerable<CommentEntity> GetAllUserComments(int idUser)
+            => Uow.CommentRepository.GetAllUserComments(idUser).Select(s => s.ToComment());
+
         #endregion
     }
 }

@@ -91,8 +91,8 @@ namespace MvcPL.Areas.Administrator.Controllers
 
         public ActionResult TestAddActionResult()
         {
-            _roleService.AddRoleToUser(1, 1);
-            _roleService.AddRoleToUser(1, 2);
+            _roleService.AddUserToRole(1, 1);
+            _roleService.AddUserToRole(1, 2);
             return RedirectToAction("Index");
         }
 

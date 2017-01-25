@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Web.Mvc;
+using System.Web.Security;
 using System.Xml;
 using System.Xml.Linq;
 using BLL.Interfacies.Services;
@@ -13,11 +14,13 @@ namespace MvcPL.Controllers
     public class HomeController : Controller
     {
         private readonly IRequisitionService _service;
+        private readonly IRoleService _roleService;
         private Logger logger = LogManager.GetCurrentClassLogger();
 
-        public HomeController(IRequisitionService roleService)
+        public HomeController(IRequisitionService roleService, IRoleService roleService1)
         {
             _service = roleService;
+            _roleService = roleService1;
         }
 
 
@@ -83,6 +86,24 @@ namespace MvcPL.Controllers
         public ActionResult Login()
         {
             if (Request.IsAjaxRequest()) return PartialView();
+            return View();
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public ActionResult Login(LoginModel loginModel)
+        {
+            if (!ModelState.IsValid) return View();
+            if (Membership.ValidateUser(loginModel.Login, loginModel.Password))
+            {
+                FormsAuthentication.SetAuthCookie(loginModel.Login, false);
+                
+            }
+            else
+            {
+                ModelState.AddModelError("login", "Wrong password or email");
+            }
             return View();
         }
     }

@@ -116,6 +116,24 @@ namespace DAL.Concrete
         }
 
         /// <summary>
+        /// Select concrete role for name.
+        /// </summary>
+        /// <param name="name">Role name.</param>
+        /// <returns>Concrete role.</returns>
+
+        public DalRole GetRoleByName(string name)
+            => Context.Set<Role>().FirstOrDefault(role => role.RoleName == name)?.ToDalRole();
+
+        /// <summary>
+        /// Get users by role.
+        /// </summary>
+        /// <param name="idRole">Id role.</param>
+        /// <returns>List of users.</returns>
+
+        public IEnumerable<DalUser> GetUsersByRole(int idRole)
+            => Context.Set<Role>().FirstOrDefault(t => t.Id == idRole)?.Users.ToList().Select(s => s.ToDalUser());
+
+        /// <summary>
         /// Get role fore concrete user. 
         /// </summary>
         /// <param name="idUser">Id user fo search in database.</param>

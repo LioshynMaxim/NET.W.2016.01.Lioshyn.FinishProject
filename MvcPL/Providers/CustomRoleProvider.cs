@@ -1,40 +1,90 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Security;
+using BLL.Interfacies.Entities;
 using BLL.Interfacies.Services;
-using DAL.Interfacies.Concrete;
+using NLog;
 
 namespace MvcPL.Providers
 {
     public class CustomRoleProvider : RoleProvider
     {
-
+        private Logger logger = LogManager.GetCurrentClassLogger();
         private IUserService UserService => (IUserService)System.Web.Mvc.DependencyResolver.Current.GetService(typeof(IUserService));
         private IRoleService RoleService => (IRoleService)System.Web.Mvc.DependencyResolver.Current.GetService(typeof(IRoleService));
 
-        public override bool IsUserInRole(string username, string roleName)
+        #region Implement
+
+        public override bool IsUserInRole(string login, string roleName)
         {
-            throw new NotImplementedException();
+            var role = RoleService.GetRoleByName(roleName);
+            var roles = RoleService.GetUsersByRole(role.Id);
+            
+            //var s = RoleService.GetUsersByRole(RoleService.GetRoleByName(roleName).Id).FirstOrDefault(t=>t.Login == login);
+            return roles.FirstOrDefault(s => s.Login == login) != null;
         }
 
-        public override string[] GetRolesForUser(string username)
+        public override string[] GetRolesForUser(string login)
         {
-            throw new NotImplementedException();
+            var roles = new string[] { };
+            var user = UserService.GetUserByLogin(login);
+            if (user == null) return roles;
+            var userRole = UserService.GetRolesByUser(user.Id);
+            if (userRole != null)
+            {
+                roles = new[] { userRole.ToString() };
+            }
+            return roles;
         }
 
         public override void CreateRole(string roleName)
         {
-            throw new NotImplementedException();
+            try
+            {
+                RoleService.Create(new RoleEntity { RoleName = roleName });
+            }
+            catch (Exception exception)
+            {
+                logger.Error(exception);
+            }
         }
 
-        public override bool DeleteRole(string roleName, bool throwOnPopulatedRole)
+        public void AddUsersToRoles(RoleEntity roleEntity, UserEntity userEntity)
+        {
+            try
+            {
+                RoleService.AddUserToRole(userEntity.Id, roleEntity.Id);
+            }
+            catch (Exception exception)
+            {
+                logger.Error(exception);
+            }
+        }
+
+        public void RemoveUsersFromRoles(RoleEntity roleEntity, UserEntity userEntity)
+        {
+            try
+            {
+                RoleService.DeleteUserToRole(userEntity.Id, roleEntity.Id);
+            }
+            catch (Exception exception)
+            {
+                logger.Error(exception);
+            }
+        }
+
+        public override string[] GetAllRoles()
         {
             throw new NotImplementedException();
         }
 
-        public override bool RoleExists(string roleName)
+        #endregion
+
+        #region Not implement
+
+
+
+        public override bool DeleteRole(string roleName, bool throwOnPopulatedRole)
         {
             throw new NotImplementedException();
         }
@@ -49,12 +99,12 @@ namespace MvcPL.Providers
             throw new NotImplementedException();
         }
 
-        public override string[] GetUsersInRole(string roleName)
+        public override bool RoleExists(string roleName)
         {
             throw new NotImplementedException();
         }
 
-        public override string[] GetAllRoles()
+        public override string[] GetUsersInRole(string roleName)
         {
             throw new NotImplementedException();
         }
@@ -65,5 +115,7 @@ namespace MvcPL.Providers
         }
 
         public override string ApplicationName { get; set; }
+
+        #endregion
     }
 }

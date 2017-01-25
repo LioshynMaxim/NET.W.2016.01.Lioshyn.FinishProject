@@ -6,7 +6,7 @@ html, body {
     background: #393e42;
     font-size: 12px;
     min-height: 100%;
-    margin-bottom: 25px;
+    margin-bottom: 35px;
 }
 
 .blue {
@@ -1135,7 +1135,10 @@ a:hover .hex_footer {
     float: left;
 }
 
+.template_form {
+    margin: 0 auto;
+}
 
-#instruction {
-    /*min-height: 450px;*/
+.btn-color {
+    background-color: #b69e40 !important;
 }

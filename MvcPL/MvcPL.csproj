@@ -257,7 +257,9 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\templatemo_custom.js" />
     <None Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -273,6 +275,7 @@
     <Compile Include="Areas\Teacher\TeacherAreaRegistration.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Filters\CustomAuthorizeAttribute.cs" />
     <Compile Include="Filters\CustomHandleErrorAttribute.cs" />
     <Compile Include="Filters\ExceptionLoggerAttribute.cs" />
     <Compile Include="Global.asax.cs">
@@ -292,6 +295,7 @@
     <Compile Include="Models\CommentModel.cs" />
     <Compile Include="Models\ExceptionDetail.cs" />
     <Compile Include="Models\FullViewModel\FullUserModel.cs" />
+    <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\MailModel.cs" />
     <Compile Include="Models\ParentModel.cs" />
     <Compile Include="Models\PupilModel.cs" />
@@ -321,8 +325,8 @@
     <Content Include="Views\Home\Home.cshtml" />
     <Content Include="Views\Home\AboutSchool.cshtml" />
     <Content Include="Views\Home\Contacts.cshtml" />
-    <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Home\Requisition.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

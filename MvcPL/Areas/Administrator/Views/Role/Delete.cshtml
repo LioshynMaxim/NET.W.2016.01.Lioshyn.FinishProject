@@ -1,20 +1,27 @@
 ﻿@model MvcPL.Models.RoleModel
-
-@{
-    ViewBag.Title = "Delete";
+@section Header{
+    @{ViewBag.Title = "Delete Role";}
 }
+
+@section LeftMenu{
+    <div class="panel-body">
+        <ul class="nav nav-stacked">
+            <li>@Html.ActionLink("Create new role", "Create")</li>
+        </ul>
+    </div>
+}
+@section Body{
+
 
 <h2>Delete</h2>
 
 <h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>RoleModel</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.RoleName)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.RoleName)
         </dd>
@@ -25,8 +32,8 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <input type="submit" value="Delete" class="btn btn-default" />
         </div>
     }
 </div>
+}

@@ -27,14 +27,24 @@ namespace MvcPL
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css",
-                      "~/Content/animate.css",
+                      "~/Content/Site.css",
+                      "~/Content/other/animate.css",
                       "~/Content/bootstrap.min.css",
                       "~/Content/font-awesome.min.css",
-                      "~/Content/templatemo_misc.css",
-                      "~/Content/templatemo_style.css"));
+                      "~/Content/other/templatemo_misc.css",
+                      "~/Content/other/templatemo_style.css"));
 
-            
+            bundles.Add(new StyleBundle("~/Content/admincss").Include(
+                    "~/Content/administrator/admin.bootstrap.min.css",
+                    "~/Content/administrator/font-awesome.min.css",
+                    "~/Content/administrator/styles.css",
+                    "~/Content/administrator/bootstrap-glyphicons.css"));
+
+            bundles.Add(new ScriptBundle("~/adminjs").Include(
+                "~/Scripts/administrator/scripts.js",
+                "~/Scripts/administrator/bootstrap.min.js",
+                "~/Scripts/administrator/jquery.min.js"));
+
         }
     }
 }

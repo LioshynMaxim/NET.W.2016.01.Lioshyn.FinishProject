@@ -26,11 +26,11 @@ namespace MvcPL.Providers
 
             var user = UserService.GetUserByLogin(userModel.Login);
 
-            var role = RoleService.GetAll().FirstOrDefault(r => r.RoleName == "User");
+            var role = RoleService.GetAll().FirstOrDefault(r => r.RoleName == "Pupil");
             if (role == null)
             {
-                RoleService.Create(new RoleEntity { RoleName = "User" });
-                role = RoleService.GetAll().FirstOrDefault(r => r.RoleName == "User");
+                RoleService.Create(new RoleEntity { RoleName = "Pupil" });
+                role = RoleService.GetAll().FirstOrDefault(r => r.RoleName == "Pupil");
             }
 
             if (role != null) RoleService.AddUserToRole(user.Id, role.Id);

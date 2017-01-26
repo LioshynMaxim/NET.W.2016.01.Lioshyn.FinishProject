@@ -142,6 +142,10 @@
       <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="WebGridMvc, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebGridMvc.1.0.0\lib\net40\WebGridMvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Web.Razor">
@@ -173,7 +177,11 @@
       <DependentUpon>SOYMDB.mdf</DependentUpon>
     </Content>
     <Content Include="App_Data\SOYMDB_mssql_create.sql" />
-    <Content Include="Content\animate.css" />
+    <Content Include="Content\administrator\admin.bootstrap.min.css" />
+    <Content Include="Content\administrator\bootstrap-glyphicons.css" />
+    <Content Include="Content\administrator\font-awesome.min.css" />
+    <Content Include="Content\administrator\styles.css" />
+    <Content Include="Content\other\animate.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -181,8 +189,8 @@
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\lightbox.css" />
     <Content Include="Content\Site.css" />
-    <Content Include="Content\templatemo_misc.css" />
-    <Content Include="Content\templatemo_style.css" />
+    <Content Include="Content\other\templatemo_misc.css" />
+    <Content Include="Content\other\templatemo_style.css" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -215,6 +223,9 @@
     <Content Include="img\loading.gif" />
     <Content Include="img\next.png" />
     <Content Include="img\prev.png" />
+    <Content Include="Scripts\administrator\bootstrap.min.js" />
+    <Content Include="Scripts\administrator\jquery.min.js" />
+    <Content Include="Scripts\administrator\scripts.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="NLog.config">
@@ -224,6 +235,10 @@
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="Areas\Administrator\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Teacher\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Teacher\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Teacher\Views\Home\Index.cshtml" />
     <None Include="NLog.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -257,6 +272,7 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\templatemo_custom.js" />
     <None Include="Scripts\_references.js" />
+    <Content Include="Scripts\webGrid.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -272,6 +288,7 @@
     <Compile Include="Areas\Administrator\Controllers\RequisitionController.cs" />
     <Compile Include="Areas\Administrator\Controllers\RoleController.cs" />
     <Compile Include="Areas\Administrator\Controllers\UserController.cs" />
+    <Compile Include="Areas\Teacher\Controllers\HomeController.cs" />
     <Compile Include="Areas\Teacher\TeacherAreaRegistration.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -281,6 +298,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\CustomAjaxHelper.cs" />
     <Compile Include="Infrastructure\Mappers\MvcPLClassRoomMapper.cs" />
     <Compile Include="Infrastructure\Mappers\MvcPLCommentMapper.cs" />
     <Compile Include="Infrastructure\Mappers\MvcPLMailMapper.cs" />
@@ -337,11 +355,13 @@
   <ItemGroup>
     <Folder Include="Areas\Administrator\Models\" />
     <Folder Include="Areas\Administrator\Views\Error\" />
-    <Folder Include="Areas\Administrator\Views\Home\" />
-    <Folder Include="Areas\Teacher\Controllers\" />
     <Folder Include="Areas\Teacher\Models\" />
-    <Folder Include="Areas\Teacher\Views\Shared\" />
+    <Folder Include="Content\pupil\" />
+    <Folder Include="Content\teacher\" />
     <Folder Include="images\" />
+    <Folder Include="Scripts\other\" />
+    <Folder Include="Scripts\pupil\" />
+    <Folder Include="Scripts\teacher\" />
     <Folder Include="Views\Default\" />
   </ItemGroup>
   <ItemGroup>

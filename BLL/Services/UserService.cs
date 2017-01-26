@@ -74,34 +74,76 @@ namespace BLL.Services
 
         public UserEntity GetById(int idUser) => Uow.UserRepository.GetUserById(idUser).ToUser();
 
+        /// <summary>
+        /// Add email to user.
+        /// </summary>
+        /// <param name="idUser">User id.</param>
+        /// <param name="idMail">Email id.</param>
+
         public void AddUserMail(int idUser, int idMail)
         {
-            throw new System.NotImplementedException();
+            Uow.UserRepository.AddUserMail(idUser, idMail);
+            Uow.Saving();
         }
+
+        /// <summary>
+        /// Add comment to user.
+        /// </summary>
+        /// <param name="idUser">User id.</param>
+        /// <param name="idComment"></param>
 
         public void AddUserComment(int idUser, int idComment)
         {
-            throw new System.NotImplementedException();
+            Uow.UserRepository.AddUserComment(idUser,idComment);
+            Uow.Saving();
         }
+
+        /// <summary>
+        /// Extend user to parent.
+        /// </summary>
+        /// <param name="idUser">User id.</param>
+        /// <param name="idParent">Parent id.</param>
 
         public void AddUserParent(int idUser, int idParent)
         {
-            throw new System.NotImplementedException();
+            Uow.UserRepository.AddUserParent(idUser,idParent);
+            Uow.Saving();
         }
+
+        /// <summary>
+        /// Extend user to pupil.
+        /// </summary>
+        /// <param name="idUser">User id.</param>
+        /// <param name="idPupil">Pupil id.</param>
 
         public void AddUserPupil(int idUser, int idPupil)
         {
-            throw new System.NotImplementedException();
+            Uow.UserRepository.AddUserPupil(idUser, idPupil);
+            Uow.Saving();
         }
+
+        /// <summary>
+        /// Extend user to teacher.
+        /// </summary>
+        /// <param name="idUser">User id.</param>
+        /// <param name="idTeacher">Teacher id.</param>
 
         public void AddUserTeacher(int idUser, int idTeacher)
         {
-            throw new System.NotImplementedException();
+            Uow.UserRepository.AddUserTeacher(idUser, idTeacher);
+            Uow.Saving();
         }
+
+        /// <summary>
+        /// Add role to user.
+        /// </summary>
+        /// <param name="idUser">User id.</param>
+        /// <param name="idRole">Role id.</param>
 
         public void AddUserRole(int idUser, int idRole)
         {
-            throw new System.NotImplementedException();
+            Uow.UserRepository.AddUserRole(idUser, idRole);
+            Uow.Saving();
         }
 
         /// <summary>
@@ -120,15 +162,15 @@ namespace BLL.Services
 
         public UserEntity GetUserByLogin(string userLogin) => Uow.UserRepository.GetUserByLogin(userLogin).ToUser();
 
-        public UserEntity GetUserById(int userId)
-        {
-            throw new System.NotImplementedException();
-        }
+        /// <summary>
+        /// Get user roles.
+        /// </summary>
+        /// <param name="idUser">User id.</param>
+        /// <returns>List of roles.</returns>
 
-        public IEnumerable<RoleEntity> GetRolesByUser(int idUser) => Uow.UserRepository.GetRolesByUser(idUser).Select(s => s.ToRole());
+        public IEnumerable<RoleEntity> GetRolesByUser(int idUser)
+            => Uow.UserRepository.GetRolesByUser(idUser).Select(s => s.ToRole());
 
         #endregion
-
-
     }
 }

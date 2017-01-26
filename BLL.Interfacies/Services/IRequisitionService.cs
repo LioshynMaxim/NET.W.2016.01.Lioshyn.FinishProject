@@ -5,5 +5,6 @@ namespace BLL.Interfacies.Services
 {
     public interface IRequisitionService : IService<RequisitionEntity>
     {
+        
     }
 }

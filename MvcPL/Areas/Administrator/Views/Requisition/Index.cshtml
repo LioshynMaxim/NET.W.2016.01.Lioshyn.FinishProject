@@ -1,93 +1,104 @@
 ﻿@model IEnumerable<MvcPL.Models.RequisitionModel>
+@section Header{
 
-@{
-    ViewBag.Title = "Index";
+    @{
+        ViewBag.Title = "Requisition";
+    }
 }
 
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Surname)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Patronymic)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.BirthDay)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.City)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.District)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Street)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Hous)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Housing)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Flat)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Postcode)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Surname)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Patronymic)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.BirthDay)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.City)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.District)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Street)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Hous)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Housing)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Flat)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Postcode)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { idRequisition = item.Id}) |
-            @Html.ActionLink("Details", "Details", new { idRequisition = item.Id}) |
-            @Html.ActionLink("Delete", "Delete", new { idRequisition = item.Id})
-        </td>
-    </tr>
+@section LeftMenu{
+    <div class="panel-body">
+        <ul class="nav nav-stacked">
+            <li>@Html.ActionLink("Create new Requisition", "Create")</li>
+        </ul>
+    </div>
 }
 
-</table>
+@section Body{
+    @{
+        var grid = new WebGrid(Model);
+    }
+    <h2>Requisition</h2>
+
+    <div class="row">
+        <div class="col-md-8">
+            @grid.GetHtml(tableStyle: "table",
+    headerStyle: "webgrid-header",
+    footerStyle: "webgrid-footer",
+    alternatingRowStyle: "webgrid-alternating-row",
+    selectedRowStyle: "webgrid-selected-row",
+    rowStyle: "webgrid-row-style",
+
+    columns: grid.Columns(
+        grid.Column(columnName: "Surname", header: "Surname"),
+        grid.Column(columnName: "Name", header: "Name"),
+        grid.Column(columnName: "City", header: "City"),
+        grid.Column(columnName: "Street", header: "Street"),
+        grid.Column(columnName: "Hous", header: "Hous"),
+                grid.Column(format: (item) =>
+                {
+                    var link = Ajax.ActionLink("Edit", "Edit", new { area = "Administrator", Controller = "Requisition", id = item.Id }, new AjaxOptions()
+                    {
+                        UpdateTargetId = "text-muted",
+                        Url = Url.Action("Edit", new { area = "Administrator", Controller = "Requisition" })
+                    });
+                    return link;
+                }),
+                grid.Column(format: item => item.GetSelectLink("Details")),
+                grid.Column(format: (item) =>
+                {
+                    var link = Ajax.ActionLink("Delete", "Delete", new { area = "Administrator", Controller = "Requisition", id = item.Id }, new AjaxOptions
+                    {
+                        UpdateTargetId = "text-muted",
+                        Url = Url.Action("Delete", new { area = "Administrator", Controller = "Requisition" })
+                    });
+                    return link;
+                }),
+
+                grid.Column(format: (item) =>
+                {
+                    var link = Html.ActionLink("Registration", "Registration", new { area = "Administrator", Controller = "Requisition", id = item.Id });
+                    return link;
+                })
+    ))
+
+        </div>
+        <div class="col col-sm-4">
+            <h3>Your Selected Requisition</h3>
+            <div class="text-muted">
+                @if (grid.HasSelection)
+                {
+                    var requisition = (MvcPL.Models.RequisitionModel)grid.Rows[grid.SelectedIndex].Value;
+                    <p><b></b> @requisition.Name</p>
+                    <p><b></b> @requisition.Surname</p>
+                    <p><b></b> @requisition.Patronymic</p>
+                    <p><b></b> @requisition.BirthDay.ToString()</p>
+                    <p><b></b> @requisition.City</p>
+                    <p><b></b> @requisition.District</p>
+                    <p><b></b> @requisition.Street</p>
+                    <p><b></b> @requisition.Hous</p>
+                    <p><b></b> @requisition.Housing</p>
+                    <p><b></b> @requisition.Flat</p>
+                    <p><b></b> @requisition.Postcode</p>
+                    <b>
+                        @Ajax.ActionLink("Delete", "Delete", new { area = "Administrator", Controller = "Requisition", id = requisition.Id }, new AjaxOptions
+                   {
+                       UpdateTargetId = "text-muted",
+                       Url = Url.Action("Delete", new { area = "Administrator", Controller = "Requisition" })
+                   }) |
+                        @Ajax.ActionLink("Edit", "Edit", new { area = "Administrator", Controller = "Requisition", id = requisition.Id }, ajaxOptions: new AjaxOptions
+                   {
+                       UpdateTargetId = "text-muted",
+                       Url = Url.Action("Edit", new { area = "Administrator", Controller = "Requisition" })
+                   }) |
+                        @Ajax.ActionLink("Registration", "Registration", new { area = "Administrator", Controller = "Requisition", id = requisition.Id }, new AjaxOptions
+                   {
+                       UpdateTargetId = "text-muted",
+                       Url = Url.Action("Registration", new { area = "Administrator", Controller = "Requisition" })
+                   })
+                    </b>
+                }
+            </div>
+        </div>
+    </div>
+}

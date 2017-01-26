@@ -1,33 +1,78 @@
-﻿@model IEnumerable<MvcPL.Models.RoleModel>
+﻿@using MvcPL.Infrastructure
+@model IEnumerable<MvcPL.Models.RoleModel>
 
-@{
-    ViewBag.Title = "Index";
+@section Header{
+    @{ViewBag.Title = "Roles";}
 }
 
-<h2>Index</h2>
+@section LeftMenu{
+    <div class="panel-body">
+        <ul class="nav nav-stacked">
+            <li>@Html.ActionLink("Create new role", "Create")</li>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.RoleName)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.RoleName)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
+        </ul>
+    </div>
 }
 
-</table>
+@section Body{
+    @{
+        var grid = new WebGrid(Model);
+    }
+
+    <div class="row">
+        <div class="col-md-8">
+            @grid.GetHtml(tableStyle: "table",
+    headerStyle: "webgrid-header",
+    footerStyle: "webgrid-footer",
+    alternatingRowStyle: "webgrid-alternating-row",
+    selectedRowStyle: "webgrid-selected-row",
+    rowStyle: "webgrid-row-style",
+
+    columns: grid.Columns(
+        grid.Column(columnName: "RoleName", header: "Role"),
+                grid.Column(format: (item) =>
+                {
+                    var link = Ajax.ActionLink("Edit", "Edit", new { area = "Administrator", Controller = "Role", id = item.Id }, new AjaxOptions()
+                    {
+                        UpdateTargetId = "text-muted",
+                        Url = Url.Action("Edit", new { area = "Administrator", Controller = "Role" })
+                    });
+                    return link;
+                }),
+                grid.Column(format: item => item.GetSelectLink("Details")),
+                grid.Column(format: (item) =>
+                {
+                    var link = Ajax.ActionLink("Delete", "Delete", new { area = "Administrator", Controller = "Role", id = item.Id }, new AjaxOptions
+                    {
+                        UpdateTargetId = "text-muted",
+                        Url = Url.Action("Delete", new { area = "Administrator", Controller = "Role" })
+                    });
+                    return link;
+                })
+    ))
+
+        </div>
+        <div class="col col-sm-4">
+            <h3>Your Selected Role</h3>
+            <div class="text-muted">
+                @if (grid.HasSelection)
+                {
+                    var role = (MvcPL.Models.RoleModel)grid.Rows[grid.SelectedIndex].Value;
+                    <p><b>Role:</b> @role.RoleName</p>
+                    <b>
+                        @Ajax.ActionLink("Delete", "Delete", new { area = "Administrator", Controller = "Role", id = role.Id }, new AjaxOptions()
+                  {
+                      UpdateTargetId = "text-muted",
+                      Url = Url.Action("Delete", new { area = "Administrator", Controller = "Role" })
+                  }) |
+                    @Ajax.ActionLink("Edit", "Edit", new { area = "Administrator", Controller = "Role", id = role.Id }, new AjaxOptions()
+           {
+               UpdateTargetId = "text-muted",
+               Url = Url.Action("Edit", new { area = "Administrator", Controller = "Role" })
+           })
+                </b>
+                }
+            </div>
+        </div>
+    </div>
+}

@@ -1,26 +1,31 @@
 ﻿@model MvcPL.Models.RoleModel
 
-@{
-    ViewBag.Title = "Details";
+@section Header{
+    @{ViewBag.Title = "Detail Role";}
 }
 
-<h2>Details</h2>
+@section LeftMenu{
+    <div class="panel-body">
+        <ul class="nav nav-stacked">
+            <li>@Html.ActionLink("Create new role", "Create")</li>
+        </ul>
+    </div>
+}
+@section Body{
 
-<div>
-    <h4>RoleModel</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.RoleName)
-        </dt>
+    <h2>Details</h2>
 
-        <dd>
-            @Html.DisplayFor(model => model.RoleName)
-        </dd>
+    <div>
+        <hr/>
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.RoleName)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.RoleName)
+            </dd>
 
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+        </dl>
+    </div>
+    
+}

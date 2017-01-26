@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Linq;
+using System.Web.Helpers;
 using System.Web.Mvc;
+using System.Web.Security;
 using BLL.Interfacies.Services;
 using MvcPL.Infrastructure.Mappers;
 using MvcPL.Models;
+using MvcPL.Providers;
 
 namespace MvcPL.Areas.Administrator.Controllers
 {
@@ -27,7 +30,7 @@ namespace MvcPL.Areas.Administrator.Controllers
         }
 
         #endregion
-        
+
         #region Create
 
         public ActionResult Create()
@@ -54,12 +57,12 @@ namespace MvcPL.Areas.Administrator.Controllers
         #region Details
 
         [ActionName("Details")]
-        public ActionResult Details(int? idRequisition)
+        public ActionResult Details(int? id)
         {
             try
             {
-                if (idRequisition == null) return RedirectToAction("Index");
-                var requisitionModel = _requisitionService.GetById(idRequisition.Value);
+                if (id == null) return RedirectToAction("Index");
+                var requisitionModel = _requisitionService.GetById(id.Value);
                 return View(requisitionModel.ToRequisitionModel());
             }
             catch (Exception)
@@ -72,9 +75,9 @@ namespace MvcPL.Areas.Administrator.Controllers
 
         #region Edit
 
-        public ActionResult Edit(int idRequisition)
+        public ActionResult Edit(int id)
         {
-            return View(_requisitionService.GetById(idRequisition).ToRequisitionModel());
+            return View(_requisitionService.GetById(id).ToRequisitionModel());
         }
 
         [HttpPost]
@@ -88,9 +91,9 @@ namespace MvcPL.Areas.Administrator.Controllers
 
         #region Delete
 
-        public ActionResult Delete(int idRequisition)
+        public ActionResult Delete(int id)
         {
-            return View(_requisitionService.GetById(idRequisition).ToRequisitionModel());
+            return View(_requisitionService.GetById(id).ToRequisitionModel());
         }
 
         [HttpPost]
@@ -102,5 +105,28 @@ namespace MvcPL.Areas.Administrator.Controllers
 
         #endregion
 
+        public ActionResult Registration(RequisitionModel roleModel)
+        {
+            var requisition = _requisitionService.GetById(roleModel.Id);
+            new CustomMembershipProvider().CreateUser(new UserModel()
+            {
+                Name = requisition.Name,
+                Surname = requisition.Surname,
+                Patronymic = requisition.Patronymic,
+                BirthDay = requisition.BirthDay,
+                Login = requisition.Surname,
+                Password = requisition.Surname + requisition.Name,
+                City = requisition.City,
+                District = requisition.District,
+                Street = requisition.Street,
+                Hous = requisition.Hous,
+                Housing = requisition.Housing,
+                Flat = requisition.Flat,
+                Postcode = requisition.Postcode
+            });
+            
+            _requisitionService.Delete(requisition);
+            return RedirectToAction("Index");
+        }
     }
 }

@@ -45,6 +45,7 @@ namespace MvcPL.Controllers
             return View();
         }
 
+        [Authorize(Roles = "Administrator")]
         public ActionResult Contacts()
         {
             if (Request.IsAjaxRequest()) return PartialView();
@@ -98,7 +99,7 @@ namespace MvcPL.Controllers
             if (Membership.ValidateUser(loginModel.Login, loginModel.Password))
             {
                 FormsAuthentication.SetAuthCookie(loginModel.Login, false);
-                
+                var u = User.IsInRole("Administrator");
             }
             else
             {

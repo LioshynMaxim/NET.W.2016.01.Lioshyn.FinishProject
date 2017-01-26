@@ -1,40 +1,102 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>@ViewBag.Title</title>
+    <meta name="generator" content="Bootply"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    @Styles.Render("~/Content/admincss")
+    @Scripts.Render("~/adminjs")
+    @RenderSection("Header", required: false)
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                </ul>
+<nav class="navbar navbar-static">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#" target="ext"><b>School of younf mathematics</b></a>
+            <a class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="glyphicon glyphicon-chevron-down"></span>
+            </a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li>@Html.ActionLink("Administrators", "Index", "Requisition")</li>
+                <li>@Html.ActionLink("Teachers", "Index", "Requisition")</li>
+                <li>@Html.ActionLink("Pupils", "Index", "Requisition")</li>
+                <li>@Html.ActionLink("Parent", "Index", "Requisition")</li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Other</a>
+                    <ul class="dropdown-menu">
+                        <li>@Html.ActionLink("Requisitions", "Index", "Requisition")</li>
+                        <li>@Html.ActionLink("Roles", "Index", "Role")</li>
+                        <li>@Html.ActionLink("Classrooms", "Index", "Role")</li>
+                        <li>@Html.ActionLink("Comments", "Index", "Role")</li>
+
+                    </ul>
+                </li>
+            </ul>
+            <ul class="nav navbar-right navbar-nav">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-search"></i></a>
+                    <ul class="dropdown-menu" style="padding: 12px;">
+                        <li><form class="form-inline">
+                                <button type="submit" class="btn btn-default pull-right"><i class="glyphicon glyphicon-search"></i></button><input type="text" class="form-control pull-left" placeholder="Search">
+                            </form>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i> <i class="glyphicon glyphicon-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">LogOut</a></li>
+                        <li><a href="#">Profile</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">About</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav><!-- /.navbar -->
+
+<!-- Begin Body -->
+<div class="container">
+<div class="no-gutter row">
+<!-- left side column -->
+<div class="col-md-2 left-menu">
+    <div class="panel panel-default" id="sidebar">
+        <div class="panel-heading" style="background-color: #888; color: #fff;">Construction menu</div>
+        @RenderSection("LeftMenu", required: false)
+    <!--/panel body-->
+    </div><!--/panel-->
+</div><!--/end left column-->
+
+<!-- right content column-->
+<div class="col-md-7 main-content" id="content">
+    <div class="panel">
+        <div class="panel-heading" style="background-color: #111; color: #fff;">@ViewBag.Title</div>
+        <div class="panel-body">
+@RenderSection("Body", required: false)
+            
+        </div><!--/panel-body-->
+    </div><!--/panel-->
+    <!--/end right column-->
+</div>
+</div>
+</div>
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-right"><h5>В©Company 2014</h5>
             </div>
         </div>
     </div>
+</footer>
 
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>
-
-    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-    <script src="~/Scripts/bootstrap.min.js"></script>
+<!-- script references -->
+@Scripts.Render("~/adminjs")
+@RenderSection("scripts", required: false)
 </body>
 </html>

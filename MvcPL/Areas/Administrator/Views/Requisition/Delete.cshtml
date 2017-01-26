@@ -1,15 +1,25 @@
 ﻿@model MvcPL.Models.RequisitionModel
+@section Header{
 
-@{
-    ViewBag.Title = "Delete";
+    @{
+        ViewBag.Title = "Delete Requisition";
+    }
 }
 
-<h2>Delete</h2>
+@section LeftMenu{
+    <div class="panel-body">
+        <ul class="nav nav-stacked">
+            <li>@Html.ActionLink("Create new Requisition", "Create")</li>
+        </ul>
+    </div>
+}
 
-<h3>Are you sure you want to delete this?</h3>
+@section Body{
+    <h2>Delete</h2>
 
-    <h4>RequisitionModel</h4>
-    <hr />
+    <h3>Are you sure you want to delete this?</h3>
+
+    <hr/>
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.Name)
@@ -101,12 +111,12 @@
 
     </dl>
 
-   @using (Html.BeginForm())
-   {
-    @Html.AntiForgeryToken()
-       <p>
-           @Html.HiddenFor(model => model.Id)
-           <input type="submit" value="Delete"/> |
-           @Html.ActionLink("Back to List", "Index")
-       </p>
-   }
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <p>
+            @Html.HiddenFor(model => model.Id)
+            <input type="submit" value="Delete"/>
+        </p>
+    }
+}

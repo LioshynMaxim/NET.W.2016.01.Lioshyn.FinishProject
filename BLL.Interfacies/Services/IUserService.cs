@@ -14,7 +14,6 @@ namespace BLL.Interfacies.Services
 
         UserEntity GetUserByName(string userName);
         UserEntity GetUserByLogin(string userLogin);
-        UserEntity GetUserById(int userId);
 
         IEnumerable<RoleEntity> GetRolesByUser(int idUser);
     }

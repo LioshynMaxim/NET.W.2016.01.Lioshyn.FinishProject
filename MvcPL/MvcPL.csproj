@@ -202,10 +202,6 @@
     <Content Include="Areas\Administrator\Views\Requisition\Edit.cshtml" />
     <Content Include="Areas\Administrator\Views\Requisition\Index.cshtml" />
     <Content Include="Areas\Administrator\Views\User\Index.cshtml" />
-    <Content Include="Areas\Administrator\Views\User\Details.cshtml" />
-    <Content Include="Areas\Administrator\Views\User\Create.cshtml" />
-    <Content Include="Areas\Administrator\Views\User\Edit.cshtml" />
-    <Content Include="Areas\Administrator\Views\User\Delete.cshtml" />
     <Content Include="Areas\Administrator\Views\Role\Index.cshtml" />
     <Content Include="Areas\Administrator\Views\Role\Create.cshtml" />
     <Content Include="Areas\Administrator\Views\Role\Delete.cshtml" />
@@ -239,6 +235,30 @@
     <Content Include="Areas\Teacher\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Teacher\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Teacher\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Administrator\Views\User\CreateUser.cshtml" />
+    <Content Include="Areas\Administrator\Views\User\DetailsCreateUser.cshtml" />
+    <Content Include="Areas\Administrator\Views\User\AddEmail.cshtml" />
+    <Content Include="Areas\Administrator\Views\User\AddPupil.cshtml" />
+    <Content Include="Areas\Administrator\Views\User\AddParent.cshtml" />
+    <Content Include="Areas\Administrator\Views\User\AddTeacher.cshtml" />
+    <Content Include="Areas\Administrator\Views\User\DeleteUser.cshtml" />
+    <Content Include="Areas\Administrator\Views\User\UserInformation.cshtml" />
+    <Content Include="Areas\Administrator\Views\User\_Mail.cshtml" />
+    <Content Include="Areas\Administrator\Views\User\_User.cshtml" />
+    <Content Include="Areas\Administrator\Views\User\EditMailUser.cshtml" />
+    <Content Include="Areas\Administrator\Views\User\EditParentUser.cshtml" />
+    <Content Include="Areas\Administrator\Views\User\EditPupilUser.cshtml" />
+    <Content Include="Areas\Administrator\Views\User\EditTeacherUser.cshtml" />
+    <Content Include="Areas\Administrator\Views\User\EditUser.cshtml" />
+    <Content Include="Areas\Administrator\Views\User\_Role.cshtml" />
+    <Content Include="Areas\Administrator\Views\User\_Parent.cshtml" />
+    <Content Include="Areas\Administrator\Views\User\_Pupil.cshtml" />
+    <Content Include="Areas\Administrator\Views\User\_Teacher.cshtml" />
+    <Content Include="Areas\Administrator\Views\User\DetailUser.cshtml" />
+    <Content Include="Areas\Administrator\Views\User\AddEmailEdit.cshtml" />
+    <Content Include="Areas\Administrator\Views\User\AddPupilEdit.cshtml" />
+    <Content Include="Areas\Administrator\Views\User\AddParentEdit.cshtml" />
+    <Content Include="Areas\Administrator\Views\User\AddTeacherEdit.cshtml" />
     <None Include="NLog.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -285,9 +305,11 @@
     <Compile Include="Areas\Administrator\AdministratorAreaRegistration.cs" />
     <Compile Include="Areas\Administrator\Controllers\ErrorController.cs" />
     <Compile Include="Areas\Administrator\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Administrator\Controllers\PupilController.cs" />
     <Compile Include="Areas\Administrator\Controllers\RequisitionController.cs" />
     <Compile Include="Areas\Administrator\Controllers\RoleController.cs" />
     <Compile Include="Areas\Administrator\Controllers\UserController.cs" />
+    <Compile Include="Areas\Administrator\Models\FullUserModel.cs" />
     <Compile Include="Areas\Teacher\Controllers\HomeController.cs" />
     <Compile Include="Areas\Teacher\TeacherAreaRegistration.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
@@ -299,11 +321,14 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\CustomAjaxHelper.cs" />
+    <Compile Include="Infrastructure\CustomHtmlHelpers.cs" />
     <Compile Include="Infrastructure\Mappers\MvcPLClassRoomMapper.cs" />
     <Compile Include="Infrastructure\Mappers\MvcPLCommentMapper.cs" />
+    <Compile Include="Infrastructure\Mappers\MvcPLFullUserMapper.cs" />
     <Compile Include="Infrastructure\Mappers\MvcPLMailMapper.cs" />
     <Compile Include="Infrastructure\Mappers\MvcPLParentMapper.cs" />
     <Compile Include="Infrastructure\Mappers\MvcPLPupilMapper.cs" />
+    <Compile Include="Infrastructure\Mappers\MvcPLRequisitioUserMapper.cs" />
     <Compile Include="Infrastructure\Mappers\MvcPLRoleMapper.cs" />
     <Compile Include="Infrastructure\Mappers\MvcPLTeacherMapper.cs" />
     <Compile Include="Infrastructure\Mappers\MvcPLUserMapper.cs" />
@@ -312,7 +337,6 @@
     <Compile Include="Models\ClassRoomModel.cs" />
     <Compile Include="Models\CommentModel.cs" />
     <Compile Include="Models\ExceptionDetail.cs" />
-    <Compile Include="Models\FullViewModel\FullUserModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\MailModel.cs" />
     <Compile Include="Models\ParentModel.cs" />
@@ -353,8 +377,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Areas\Administrator\Models\" />
     <Folder Include="Areas\Administrator\Views\Error\" />
+    <Folder Include="Areas\Administrator\Views\Pupil\" />
     <Folder Include="Areas\Teacher\Models\" />
     <Folder Include="Content\pupil\" />
     <Folder Include="Content\teacher\" />

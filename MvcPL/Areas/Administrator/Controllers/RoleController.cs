@@ -26,11 +26,15 @@ namespace MvcPL.Areas.Administrator.Controllers
 
         public ActionResult Details(int id)
         {
+            if (Request.IsAjaxRequest()) return PartialView(_roleService.GetById(id).ToRoleModel());
             return View(_roleService.GetById(id).ToRoleModel());
         }
 
+        #region Create
+
         public ActionResult Create()
         {
+            if (Request.IsAjaxRequest()) return PartialView();
             return View();
         }
 
@@ -45,12 +49,20 @@ namespace MvcPL.Areas.Administrator.Controllers
             catch (Exception ex)
             {
                 logger.Error(ex);
+                if (Request.IsAjaxRequest()) return PartialView();
                 return View();
             }
         }
 
+        #endregion
+
+
+
+        #region edit
+
         public ActionResult Edit(int id)
         {
+            if (Request.IsAjaxRequest()) return PartialView(_roleService.GetById(id).ToRoleModel());
             return View(_roleService.GetById(id).ToRoleModel());
         }
 
@@ -65,13 +77,20 @@ namespace MvcPL.Areas.Administrator.Controllers
             catch (Exception ex)
             {
                 logger.Error(ex);
+                if (Request.IsAjaxRequest()) return PartialView();
                 return View();
             }
-        }
+        } 
+
+        #endregion
+
+        
+        #region Delete
 
         public ActionResult Delete(int id)
         {
-            return View();
+            if (Request.IsAjaxRequest()) return PartialView(_roleService.GetById(id).ToRoleModel());
+            return View(_roleService.GetById(id).ToRoleModel());
         }
 
         [HttpPost]
@@ -85,21 +104,13 @@ namespace MvcPL.Areas.Administrator.Controllers
             catch (Exception ex)
             {
                 logger.Error(ex);
-                return View();
+                if (Request.IsAjaxRequest()) return PartialView(_roleService.GetById(id).ToRoleModel());
+                return View(_roleService.GetById(id).ToRoleModel());
             }
         }
 
-        public ActionResult TestAddActionResult()
-        {
-            _roleService.AddUserToRole(1, 1);
-            _roleService.AddUserToRole(1, 2);
-            return RedirectToAction("Index");
-        }
+        #endregion
 
-        public ActionResult TestDeleteActionResult()
-        {
-            _roleService.DeleteUserToRole(1, 1);
-            return RedirectToAction("Index");
-        }
+
     }
 }

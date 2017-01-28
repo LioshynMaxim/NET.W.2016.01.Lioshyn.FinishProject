@@ -17,9 +17,9 @@ namespace ORM
         public int Id { get; set; }
 
         [StringLength(50)]
-        public string PlaceOfWork { get; set; }
+        public string PlaceOfWork { get; set; } = "Default";
 
-        public int IdUser { get; set; }
+        public int IdUser { get; set; } = 1;
 
         public virtual User User { get; set; }
 

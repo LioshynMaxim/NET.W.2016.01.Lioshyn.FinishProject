@@ -1,0 +1,71 @@
+﻿@model MvcPL.Areas.Administrator.Models.FullUserModel
+@section Header{
+    @{ViewBag.Title = "Detail user";}
+}
+
+@section LeftMenu{
+    <div class="panel-body">
+        <ul class="nav nav-stacked">
+            <li>@Html.ActionLink("Back to list users.", "Index", new {area = "Administrator", controller = "User"})</li>            
+        </ul>
+    </div>
+}
+@section Body{
+    <h2>Detail User</h2>
+
+    <div>
+        <hr />
+        <dl class="dl-horizontal">
+
+            @{
+                Html.RenderPartial("_User", Model.User);
+                
+                if (Model.Role.Count() != 0)
+                {
+                    <h2>Edit role.</h2>
+                    Html.RenderPartial("_Role", Model.Role);
+                }
+                
+                if (Model.Mail.Count() != 0)
+                {
+                    <h2>Edit mail.</h2>
+                    Html.RenderPartial("_Mail", Model.Mail);
+                }
+                
+                if (Model.Parent != null)
+                {
+                    <h2>Edit information about pupil.</h2>
+                    Html.RenderPartial("_Parent", Model.Parent);
+                    
+                }
+
+                if (Model.Pupil != null)
+                {
+                    <h2>Edit information about pupil.</h2>
+                    Html.RenderPartial("_Pupil", Model.Pupil);
+                    
+                }
+
+
+                if (Model.Teacher != null)
+                {
+                    <h2>Edit information about teacher.</h2>
+                    Html.RenderPartial("_Teacher", Model.Teacher);
+                    
+                }
+            }
+
+
+        </dl>
+    </div>
+    <p>
+        @Ajax.ActionLink("Edit", "UserInformation", new { area = "Administrator", Controller = "User", idUser = Model.Id }, new AjaxOptions()
+   {
+       Url = Url.Action("UserInformation", new { area = "Administrator", Controller = "User", idUser = Model.Id })
+   }) |
+        @Ajax.ActionLink("Delete", "DeleteUser", new { area = "Administrator", Controller = "User", idUser = Model.Id }, new AjaxOptions()
+   {
+       Url = Url.Action("DeleteUser", new { area = "Administrator", Controller = "User", idUser = Model.Id })
+   })
+    </p>
+}

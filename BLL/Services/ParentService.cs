@@ -97,6 +97,14 @@ namespace BLL.Services
 
         public IEnumerable<ParentEntity> GetAllParentPupil(int idPupil) => Uow.ParentRepository.GetAllParentPupil(idPupil).Select(s => s.ToParent());
 
+        /// <summary>
+        /// Get parent for user role.
+        /// </summary>
+        /// <param name="idUser">User id.</param>
+        /// <returns>Parent information.</returns>
+
+        public ParentEntity GetUserParentRole(int idUser) => Uow.ParentRepository.GetUserParentRole(idUser).ToParent();
+
         #endregion
 
 

@@ -28,7 +28,7 @@ namespace BLL.Services
 
         public void Create(PupilEntity entity)
         {
-            Uow.PupilRepository.Create(entity.ToDalPupil());
+            Uow.PupilRepository.Create(IsValidate(entity).ToDalPupil());
             Uow.Saving();
         }
 
@@ -123,6 +123,36 @@ namespace BLL.Services
 
         public IEnumerable<PupilEntity> GetAllPupilsInClassRoom(int idClassRoom)
             => Uow.PupilRepository.GetAllPupilsInClassRoom(idClassRoom).Select(s => s.ToPupil());
+
+        /// <summary>
+        /// Get pupil role.
+        /// </summary>
+        /// <param name="idUser">User id.</param>
+        /// <returns>Pupil information.</returns>
+
+        public PupilEntity GetUserPupilRole(int idUser) => Uow.PupilRepository.GetUserPupilRole(idUser).ToPupil();
+       
+
+        #endregion
+
+        #region Private function
+
+        /// <summary>
+        /// Check for validate function.
+        /// </summary>
+        /// <param name="pupilEntity">Pupil entity.</param>
+        /// <returns>True, if valide, and false if no validate.</returns>
+
+        private PupilEntity IsValidate(PupilEntity pupilEntity)
+        {
+            pupilEntity.ClassLetter = pupilEntity.ClassLetter ?? "A";
+            pupilEntity.ClassNumber = pupilEntity.ClassNumber ?? -1;
+            pupilEntity.IdTeacher = pupilEntity.IdTeacher ?? 1;
+            pupilEntity.NumberSchool = pupilEntity.NumberSchool ?? -1;
+            pupilEntity.School = pupilEntity.School ?? "A";
+            pupilEntity.SchoolTeacherSurname = pupilEntity.SchoolTeacherSurname ?? "Default";
+            return pupilEntity;
+        }
 
         #endregion
     }

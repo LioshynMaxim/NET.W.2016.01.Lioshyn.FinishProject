@@ -37,7 +37,7 @@ namespace DAL.Mappers
             return new Teacher
             {
                 Id = teacher.Id,
-                IdUser = teacher.IdUser,
+                IdUser = teacher.IdUser.Value,
                 ClassRoomBsu = teacher.ClassRoomBsu,
                 WorkPlace = teacher.WorkPlace,
                 CourseNumber = teacher.CourseNumber,

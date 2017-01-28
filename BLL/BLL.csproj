@@ -52,6 +52,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ClassRoomService.cs" />
     <Compile Include="Services\CommentService.cs" />
+    <Compile Include="Services\FullUserService.cs" />
     <Compile Include="Services\MailService.cs" />
     <Compile Include="Services\ParentService.cs" />
     <Compile Include="Services\PupilService.cs" />

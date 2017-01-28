@@ -18,21 +18,21 @@ namespace ORM
         public int Id { get; set; }
 
         [StringLength(10)]
-        public string School { get; set; }
+        public string School { get; set; } = "Defaul";
 
-        public int? NumberSchool { get; set; }
+        public int? NumberSchool { get; set; } = 1;
 
-        public int? ClassNumber { get; set; }
+        public int? ClassNumber { get; set; } = 1;
 
         [StringLength(5)]
-        public string ClassLetter { get; set; }
+        public string ClassLetter { get; set; } = "Def";
 
         [StringLength(25)]
-        public string SchoolTeacherSurname { get; set; }
+        public string SchoolTeacherSurname { get; set; } = "Default";
 
-        public int IdUser { get; set; }
+        public int IdUser { get; set; } = 0;
 
-        public int? IdTeacher { get; set; }
+        public int? IdTeacher { get; set; } = null;
 
         public virtual User User { get; set; }
 

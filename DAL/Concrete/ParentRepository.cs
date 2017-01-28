@@ -125,6 +125,15 @@ namespace DAL.Concrete
         public IEnumerable<DalParent> GetAllParentPupil(int idPupil)
             => Context.Set<Pupil>().FirstOrDefault(p => p.Id == idPupil)?.Parents.ToList().Select(p => p.ToDalParent());
 
+        /// <summary>
+        /// Get parent role.
+        /// </summary>
+        /// <param name="idUser">User id.</param>
+        /// <returns>Parent information.</returns>
+
+        public DalParent GetUserParentRole(int idUser)
+            => Context.Set<Parent>().FirstOrDefault(p => p.IdUser == idUser).ToDalParent();
+
         #endregion
     }
 }

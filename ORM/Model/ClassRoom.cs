@@ -18,13 +18,13 @@ namespace ORM
         public int Id { get; set; }
 
         [StringLength(100)]
-        public string Name { get; set; }
+        public string Name { get; set; } = "Default";
 
-        public int? Room { get; set; }
+        public int? Room { get; set; } = 1;
 
-        public TimeSpan? Time { get; set; }
+        public TimeSpan? Time { get; set; } = TimeSpan.Zero;
 
-        public int? IdPupil { get; set; }
+        public int? IdPupil { get; set; } = 1;
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Pupil> Pupils { get; set; }

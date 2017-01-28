@@ -41,6 +41,7 @@ namespace MvcPL
                     "~/Content/administrator/bootstrap-glyphicons.css"));
 
             bundles.Add(new ScriptBundle("~/adminjs").Include(
+                "~/Scripts/jquery.*",
                 "~/Scripts/administrator/scripts.js",
                 "~/Scripts/administrator/bootstrap.min.js",
                 "~/Scripts/administrator/jquery.min.js"));

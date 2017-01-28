@@ -37,11 +37,11 @@ namespace MvcPL.Infrastructure.Mappers
             return new TeacherModel
             {
                 Id = teacher.Id,
-                IdUser = teacher.IdUser,
-                ClassRoomBsu = teacher.ClassRoomBsu,
+                IdUser = teacher.IdUser.Value,
+                ClassRoomBsu = teacher.ClassRoomBsu.Value,
                 WorkPlace = teacher.WorkPlace,
-                CourseNumber = teacher.CourseNumber,
-                GroupNumber = teacher.GroupNumber
+                CourseNumber = teacher.CourseNumber.Value,
+                GroupNumber = teacher.GroupNumber.Value
             };
         }
     }

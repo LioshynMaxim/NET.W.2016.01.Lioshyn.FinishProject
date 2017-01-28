@@ -45,7 +45,7 @@ namespace DAL.Mappers
                 ClassLetter = pupil.ClassLetter,
                 SchoolTeacherSurname = pupil.SchoolTeacherSurname,
                 IdUser = pupil.IdUser,
-                IdTeacher = pupil.IdTeacher
+                IdTeacher = pupil.IdTeacher.Value
             };
         }
 

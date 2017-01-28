@@ -1,7 +1,25 @@
-﻿
-@{
-    ViewBag.Title = "Index";
+﻿@section Header{
+    @{
+        ViewBag.Title = "Index Administrator";
+    }
 }
 
-<h2>Index</h2>
+@section LeftMenu{
+    <div class="panel-body">
+        <ul class="nav nav-stacked">
+            <li>@Html.ActionLink("Administrators", "Home", "Home")</li>
+            <li>@Html.ActionLink("Teachers", "Index", "Requisition")</li>
+            <li>@Html.ActionLink("Pupils", "Index", "Requisition")</li>
+            <li>@Html.ActionLink("Parents", "Index", "Requisition")</li>
+            <li>@Html.ActionLink("Roles", "Index", "Role")</li>
+            <li>@Html.ActionLink("Emails", "Index", "Requisition")</li>
+            <li>@Html.ActionLink("Comments", "Index", "Requisition")</li>
+            <li>@Html.ActionLink("Classrooms", "Index", "Requisition")</li>
+        </ul>
+    </div>
+}
 
+@section Body{
+
+    <h2>Index</h2>
+}

@@ -10,5 +10,6 @@ namespace BLL.Interfacies.Services
         RoleEntity GetRoleByName(string name);
 
         IEnumerable<UserEntity> GetUsersByRole(int idRole);
+        IEnumerable<RoleEntity> GetUserRoles(int idUser);
     }
 }

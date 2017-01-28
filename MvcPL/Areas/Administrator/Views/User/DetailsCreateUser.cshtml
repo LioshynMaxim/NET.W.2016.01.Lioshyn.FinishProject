@@ -1,14 +1,42 @@
-﻿@model MvcPL.Models.UserModel
-
-@{
-    ViewBag.Title = "Delete";
+﻿@using MvcPL.Infrastructure
+@model MvcPL.Models.UserModel
+@section Header{
+    @{ViewBag.Title = "Detail user";}
 }
 
-<h2>Delete</h2>
+@section LeftMenu{
+    <div class="panel-body">
+        <ul class="nav nav-stacked">
+            <li>@Html.ActionLink("Back to create.", "DetailsCreateUser")</li>
+            <li>@Html.ActionLink("Add email", "AddEmail", new { idUser = Model.Id })</li>
+        </ul>
+        <div class="accordion" id="accordion2">
+            <div class="accordion-group">
+                <div class="accordion-heading">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+                        Add Role
+                    </a>
+                </div>
+                <div id="collapseOne" class="accordion-body collapse">
+                    <div class="accordion-inner">
+                        <ul class="nav nav-stacked">
+                            <li>@Html.ActionLink("Administrator", "AddRoleUserLink", new { role = "Administrator", idUser = Model.Id })</li>
+                            <li>@Html.ActionLink("Teacher", "AddTeacher", new { idUser = Model.Id })</li>
+                            <li>@Html.ActionLink("Pupil", "AddPupil", new { idUser = Model.Id })</li>
+                            <li>@Html.ActionLink("Parent", "AddParent", new { idUser = Model.Id })</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div><!--/acc-->
+    </div>
+}
 
-<h3>Are you sure you want to delete this?</h3>
+@section Body{
+    <h2>Details Create User</h2>
+   
+@ViewBag.InfoMassage
 <div>
-    <h4>UserModel</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -43,14 +71,7 @@
             @Html.DisplayFor(model => model.Login)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Password)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Password)
-        </dd>
-
+        
         <dt>
             @Html.DisplayNameFor(model => model.BirthDay)
         </dt>
@@ -116,15 +137,7 @@
         </dd>
 
     </dl>
-
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            @Html.HiddenFor(model => model.Id)
-            <input type="submit" value="Delete" class="btn btn-default"/> |
-            @Html.ActionLink("Back to List", "Index", new {area = "Administrator", controller = "User"})
-        </div>
-    }
 </div>
+    
+
+}

@@ -54,7 +54,7 @@ namespace DAL.Concrete
             pupil.ClassNumber = entity.ClassNumber;
             pupil.ClassLetter = entity.ClassLetter;
             pupil.SchoolTeacherSurname = entity.SchoolTeacherSurname;
-            pupil.IdTeacher = entity.IdTeacher;
+            pupil.IdTeacher = entity.IdTeacher.Value;
 
             Context.Entry(pupil).State = EntityState.Modified;
             Context.SaveChanges();
@@ -170,6 +170,15 @@ namespace DAL.Concrete
             => Context.Set<ClassRoom>()
                 .FirstOrDefault(p => p.Id == idClassRoom)?
                 .Pupils.ToList().Select(p => p.ToDalPupil());
+
+        /// <summary>
+        /// Get pupil role.
+        /// </summary>
+        /// <param name="idUser">User id.</param>
+        /// <returns>Pupil information.</returns>
+
+        public DalPupil GetUserPupilRole(int idUser)
+            => Context.Set<Pupil>().FirstOrDefault(p => p.IdUser == idUser).ToDalPupil();
 
         #endregion
     }

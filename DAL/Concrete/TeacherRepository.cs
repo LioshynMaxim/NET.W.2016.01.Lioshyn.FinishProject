@@ -134,6 +134,15 @@ namespace DAL.Concrete
                     .Where(t => t.ClassRoomBsu == classroom.Room);
         }
 
+        /// <summary>
+        /// Get teacher role.
+        /// </summary>
+        /// <param name="idUser">User id.</param>
+        /// <returns>Teacher information.</returns>
+
+        public DalTeacher GetUserTeacherRole(int idUser)
+            => Context.Set<Teacher>().FirstOrDefault(p => p.IdUser == idUser).ToDalTeacher();
+
         #endregion
 
     }

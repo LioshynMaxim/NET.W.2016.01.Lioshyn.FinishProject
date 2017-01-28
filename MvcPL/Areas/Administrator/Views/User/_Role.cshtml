@@ -1,0 +1,15 @@
+﻿@model IEnumerable<MvcPL.Models.RoleModel>
+
+
+<table class="table">
+    @foreach (var item in Model)
+    {
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.RoleName) :
+            @Html.DisplayFor(modelItem => item.RoleName)
+        </th>
+        <th></th>
+    </tr>
+    }
+</table>

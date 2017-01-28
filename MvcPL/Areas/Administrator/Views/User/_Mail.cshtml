@@ -1,0 +1,36 @@
+﻿@model IEnumerable<MvcPL.Models.MailModel>
+
+
+<table class="table">
+    @foreach (var item in Model)
+    {
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Email) :
+            @Html.DisplayFor(modelItem => item.Email) [
+            @Ajax.ActionLink("Edit", "EditMailUser", new { area = "Administrator", controller = "User", id = item.Id },
+                new AjaxOptions
+                {
+                    UpdateTargetId = "informational",
+                    Url = Url.Action("EditMailUser", new { area = "Administrator", controller = "User", id = item.Id })
+                }) |
+            @Ajax.ActionLink("Delete", "DeleteMailEdit", new { area = "Administrator", controller = "User", idMail = item.Id, idUser = item.IdUser },
+                new AjaxOptions
+                {
+                    Confirm = "Are you sure you want to delete this?",
+                    UpdateTargetId = "informational",
+                    Url = Url.Action("DeleteMailEdit", new { area = "Administrator", controller = "User", idMail = item.Id, idUser = item.IdUser })
+                }) ]
+        </th>
+
+        <th></th>
+    </tr>
+    <tr>
+        
+        <td>
+            
+        </td>
+    </tr>
+    }
+
+</table>

@@ -11,11 +11,11 @@ namespace ORM
         public int Id { get; set; }
 
         [StringLength(150)]
-        public string CommentUser { get; set; }
+        public string CommentUser { get; set; } = "Default";
 
-        public int IdUser { get; set; }
+        public int IdUser { get; set; } = 1;
 
-        public int? IdUserTo { get; set; }
+        public int? IdUserTo { get; set; } = 1;
 
         public virtual User User { get; set; }
     }

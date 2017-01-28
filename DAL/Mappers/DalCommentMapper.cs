@@ -37,7 +37,7 @@ namespace DAL.Mappers
                 Id = comment.Id,
                 CommentUser = comment.CommentUser,
                 IdUser = comment.IdUser,
-                IdUserTo = comment.IdUserTo
+                IdUserTo = comment.IdUserTo.Value
             };
         }
     }

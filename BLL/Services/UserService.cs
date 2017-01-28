@@ -106,7 +106,7 @@ namespace BLL.Services
 
         public void AddUserParent(int idUser, int idParent)
         {
-            Uow.UserRepository.AddUserParent(idUser,idParent);
+            if (Uow.ParentRepository.GetById(idParent) == null) { Uow.UserRepository.AddUserParent(idUser, idParent); }
             Uow.Saving();
         }
 
@@ -118,6 +118,7 @@ namespace BLL.Services
 
         public void AddUserPupil(int idUser, int idPupil)
         {
+            if (Uow.PupilRepository.GetById(idPupil) == null) { Uow.UserRepository.AddUserPupil(idUser,idPupil); }
             Uow.UserRepository.AddUserPupil(idUser, idPupil);
             Uow.Saving();
         }
@@ -130,7 +131,7 @@ namespace BLL.Services
 
         public void AddUserTeacher(int idUser, int idTeacher)
         {
-            Uow.UserRepository.AddUserTeacher(idUser, idTeacher);
+            if (Uow.TeacherRepository.GetById(idTeacher) == null) { Uow.UserRepository.AddUserTeacher(idUser, idTeacher);}
             Uow.Saving();
         }
 

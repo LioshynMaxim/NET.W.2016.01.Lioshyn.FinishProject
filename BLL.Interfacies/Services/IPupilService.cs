@@ -12,5 +12,7 @@ namespace BLL.Interfacies.Services
         void AddPupilToClassRoom(int idPupil, int idClassRoom);
         void DeletePupilToClassRoom(int idPupil, int idClassRoom);
         IEnumerable<PupilEntity> GetAllPupilsInClassRoom(int idClassRoom);
+
+        PupilEntity GetUserPupilRole(int idUser);
     }
 }

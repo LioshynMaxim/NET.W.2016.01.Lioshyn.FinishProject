@@ -8,11 +8,11 @@ namespace MvcPL.Models
         [Display(Name = "Place of work")]
         public string WorkPlace { get; set; }
         [Display(Name = "Group Number")]
-        public int? GroupNumber { get; set; }
+        public int GroupNumber { get; set; }
         [Display(Name = "Course Number")]
-        public int? CourseNumber { get; set; }
+        public int CourseNumber { get; set; }
         [Display(Name = "Class room Number")]
-        public int? ClassRoomBsu { get; set; }
-        public int? IdUser { get; set; }
+        public int ClassRoomBsu { get; set; }
+        public int IdUser { get; set; }
     }
 }

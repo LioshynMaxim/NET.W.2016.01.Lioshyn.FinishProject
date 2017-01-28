@@ -108,23 +108,27 @@ namespace MvcPL.Areas.Administrator.Controllers
         public ActionResult Registration(RequisitionModel roleModel)
         {
             var requisition = _requisitionService.GetById(roleModel.Id);
-            new CustomMembershipProvider().CreateUser(new UserModel()
-            {
-                Name = requisition.Name,
-                Surname = requisition.Surname,
-                Patronymic = requisition.Patronymic,
-                BirthDay = requisition.BirthDay,
-                Login = requisition.Surname,
-                Password = requisition.Surname + requisition.Name,
-                City = requisition.City,
-                District = requisition.District,
-                Street = requisition.Street,
-                Hous = requisition.Hous,
-                Housing = requisition.Housing,
-                Flat = requisition.Flat,
-                Postcode = requisition.Postcode
-            });
             
+            new CustomMembershipProvider().CreateUser(requisition.ToRequisitionModel()
+                .ToUserFromRequisitionModel(requisition.Surname, requisition.Surname + requisition.Name));
+
+            //new CustomMembershipProvider().CreateUser(new UserModel()
+            //{
+            //    Name = requisition.Name,
+            //    Surname = requisition.Surname,
+            //    Patronymic = requisition.Patronymic,
+            //    BirthDay = requisition.BirthDay,
+            //    Login = requisition.Surname,
+            //    Password = requisition.Surname + requisition.Name,
+            //    City = requisition.City,
+            //    District = requisition.District,
+            //    Street = requisition.Street,
+            //    Hous = requisition.Hous,
+            //    Housing = requisition.Housing,
+            //    Flat = requisition.Flat,
+            //    Postcode = requisition.Postcode
+            //});
+
             _requisitionService.Delete(requisition);
             return RedirectToAction("Index");
         }

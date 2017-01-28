@@ -40,11 +40,10 @@
                     return link;
                 }),
                 grid.Column(format: item => item.GetSelectLink("Details")),
+                
                 grid.Column(format: (item) =>
                 {
-                    var link = Ajax.ActionLink("Delete", "Delete", new { area = "Administrator", Controller = "Role", id = item.Id }, new AjaxOptions
-                    {
-                        UpdateTargetId = "text-muted",
+                    var link = CustomAjaxHelper.AdminMenuMainLink(Ajax, "Delete", "Delete", "Role", item.Id, new AjaxOptions{
                         Url = Url.Action("Delete", new { area = "Administrator", Controller = "Role" })
                     });
                     return link;

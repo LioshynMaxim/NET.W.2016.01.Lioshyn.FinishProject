@@ -86,6 +86,14 @@ namespace DAL.Concrete
         public DalMail GetById(int key) => Context.Set<Mail>().FirstOrDefault(mail => mail.Id == key)?.ToDalMail();
 
         /// <summary>
+        /// Get email by name.
+        /// </summary>
+        /// <param name="key">Email.</param>
+        /// <returns>Concrete email.</returns>
+
+        public DalMail GetByMail(string key) => Context.Set<Mail>().FirstOrDefault(mail => mail.Email == key)?.ToDalMail();
+
+        /// <summary>
         /// Add email to concrete user.
         /// </summary>
         /// <param name="idUser">Id user.</param>

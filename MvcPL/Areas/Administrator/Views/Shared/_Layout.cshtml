@@ -1,6 +1,8 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
+    
+    @RenderSection("Header", required: false)
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
     <title>@ViewBag.Title</title>
@@ -9,87 +11,91 @@
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
     @Styles.Render("~/Content/admincss")
     @Scripts.Render("~/adminjs")
-    @RenderSection("Header", required: false)
+    
 </head>
-<body>
-<nav class="navbar navbar-static">
-    <div class="container">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#" target="ext"><b>School of younf mathematics</b></a>
-            <a class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="glyphicon glyphicon-chevron-down"></span>
-            </a>
+<body id="informational">
+    <nav class="navbar navbar-static">
+        <div class="container">
+            <div class="navbar-header">
+                <b>
+                    @Html.ActionLink("School of younf mathematics", "Index", new { area = "Administrator", controller = "Home" }, new { @class = "navbar-brand" })
+                </b>
+
+                <a class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="glyphicon glyphicon-chevron-down"></span>
+                </a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Administrators", "Index", new { area = "Administrator", controller = "Home" })</li>
+                    <li>@Html.ActionLink("Teachers", "Index", new { area = "Administrator", controller = "Home" })</li>
+                    <li>@Html.ActionLink("Pupils", "Index", new { area = "Administrator", controller = "Home" })</li>
+                    <li>@Html.ActionLink("Parents", "Index", new { area = "Administrator", controller = "Home" })</li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Other</a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Requisitions", "Index", "Requisition")</li>
+                            <li>@Html.ActionLink("Roles", "Index", "User")</li>
+                            <li>@Html.ActionLink("Classrooms", "Index", "User")</li>
+                            <li>@Html.ActionLink("Comments", "Index", "User")</li>
+                            <li>@Html.ActionLink("User", "Index", "User")</li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="nav navbar-right navbar-nav">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-search"></i></a>
+                        <ul class="dropdown-menu" style="padding: 12px;">
+                            <li>
+                                <form class="form-inline">
+                                    <button type="submit" class="btn btn-default pull-right"><i class="glyphicon glyphicon-search"></i></button><input type="text" class="form-control pull-left" placeholder="Search">
+                                </form>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i> <i class="glyphicon glyphicon-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">LogOut</a></li>
+                            <li><a href="#">Profile</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">About</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
         </div>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li>@Html.ActionLink("Administrators", "Index", "Requisition")</li>
-                <li>@Html.ActionLink("Teachers", "Index", "Requisition")</li>
-                <li>@Html.ActionLink("Pupils", "Index", "Requisition")</li>
-                <li>@Html.ActionLink("Parent", "Index", "Requisition")</li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Other</a>
-                    <ul class="dropdown-menu">
-                        <li>@Html.ActionLink("Requisitions", "Index", "Requisition")</li>
-                        <li>@Html.ActionLink("Roles", "Index", "Role")</li>
-                        <li>@Html.ActionLink("Classrooms", "Index", "Role")</li>
-                        <li>@Html.ActionLink("Comments", "Index", "Role")</li>
+    </nav><!-- /.navbar -->
+    <!-- Begin Body -->
+    <div  class="container">
+        <div class="no-gutter row">
+            <!-- left side column -->
+            <div class="col-md-2 left-menu">
+                <div class="panel panel-default" id="sidebar">
+                    <div class="panel-heading" style="background-color: #888; color: #fff;">Construction menu</div>
 
-                    </ul>
-                </li>
-            </ul>
-            <ul class="nav navbar-right navbar-nav">
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-search"></i></a>
-                    <ul class="dropdown-menu" style="padding: 12px;">
-                        <li><form class="form-inline">
-                                <button type="submit" class="btn btn-default pull-right"><i class="glyphicon glyphicon-search"></i></button><input type="text" class="form-control pull-left" placeholder="Search">
-                            </form>
-                        </li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i> <i class="glyphicon glyphicon-chevron-down"></i></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">LogOut</a></li>
-                        <li><a href="#">Profile</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#">About</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav><!-- /.navbar -->
+                    @RenderSection("LeftMenu", required: false)
+                    <!--/panel body-->
+                </div><!--/panel-->
+            </div><!--/end left column-->
+            <!-- right content column-->
+            <div class="col-md-7 main-content" id="content">
+                <div class="panel">
+                    <div class="panel-heading" style="background-color: #111; color: #ffffff;">@ViewBag.Title</div>
+    <div class="panel-body">
+    @RenderSection("Body", required: false)
 
-<!-- Begin Body -->
-<div class="container">
-<div class="no-gutter row">
-<!-- left side column -->
-<div class="col-md-2 left-menu">
-    <div class="panel panel-default" id="sidebar">
-        <div class="panel-heading" style="background-color: #888; color: #fff;">Construction menu</div>
-        @RenderSection("LeftMenu", required: false)
-    <!--/panel body-->
-    </div><!--/panel-->
-</div><!--/end left column-->
-
-<!-- right content column-->
-<div class="col-md-7 main-content" id="content">
-    <div class="panel">
-        <div class="panel-heading" style="background-color: #111; color: #fff;">@ViewBag.Title</div>
-        <div class="panel-body">
-@RenderSection("Body", required: false)
-            
-        </div><!--/panel-body-->
-    </div><!--/panel-->
-    <!--/end right column-->
+    </div><!--/panel-body-->
+</div><!--/panel-->
+<!--/end right column-->
 </div>
 </div>
 </div>
 <footer>
     <div class="container">
         <div class="row">
-            <div class="col-md-12 text-right"><h5>В©Company 2014</h5>
+            <div class="col-md-12 text-right">
+                <h5>Вad ©Company 2017</h5>
             </div>
         </div>
     </div>

@@ -9,5 +9,6 @@ namespace BLL.Interfacies.Services
         void DeleteTeacherToClassRoom(int idTeacher, int idClassRoom);
 
         IEnumerable<TeacherEntity> GetAllTeacherInClassRoom(int idClassRoom);
+        TeacherEntity GetUserTeacherRole(int idUser);
     }
 }

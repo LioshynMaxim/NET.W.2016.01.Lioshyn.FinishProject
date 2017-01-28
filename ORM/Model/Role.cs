@@ -17,7 +17,7 @@ namespace ORM
         public int Id { get; set; }
 
         [StringLength(20)]
-        public string RoleName { get; set; }
+        public string RoleName { get; set; } = "User";
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<User> Users { get; set; }

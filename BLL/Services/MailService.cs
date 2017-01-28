@@ -75,6 +75,14 @@ namespace BLL.Services
         public MailEntity GetById(int id) => Uow.MailRepository.GetById(id).ToMail();
 
         /// <summary>
+        /// Get concrete email.
+        /// </summary>
+        /// <param name="key">Email name.</param>
+        /// <returns>Email.</returns>
+
+        public MailEntity GetByMail(string key) => Uow.MailRepository.GetByMail(key).ToMail();
+
+        /// <summary>
         /// Add mail to user.
         /// </summary>
         /// <param name="idUser">User id.</param>

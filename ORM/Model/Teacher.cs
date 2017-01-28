@@ -18,15 +18,15 @@ namespace ORM
         public int Id { get; set; }
 
         [StringLength(50)]
-        public string WorkPlace { get; set; }
+        public string WorkPlace { get; set; } = "Default";
 
-        public int? GroupNumber { get; set; }
+        public int? GroupNumber { get; set; } = 1;
 
-        public int? CourseNumber { get; set; }
+        public int? CourseNumber { get; set; } = 1;
 
-        public int? ClassRoomBsu { get; set; }
+        public int? ClassRoomBsu { get; set; } = 1;
 
-        public int? IdUser { get; set; }
+        public int? IdUser { get; set; } = 1;
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Pupil> Pupils { get; set; }

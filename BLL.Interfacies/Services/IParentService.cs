@@ -8,5 +8,6 @@ namespace BLL.Interfacies.Services
         void AddParentToPupil(int idParent, int idPupil);
         void DeleteParentToPupil(int idParent, int idPupil);
         IEnumerable<ParentEntity> GetAllParentPupil(int idPupil);
+        ParentEntity GetUserParentRole(int idUser);
     }
 }

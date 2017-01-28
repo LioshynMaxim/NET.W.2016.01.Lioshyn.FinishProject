@@ -45,7 +45,6 @@ namespace MvcPL.Controllers
             return View();
         }
 
-        [Authorize(Roles = "Administrator")]
         public ActionResult Contacts()
         {
             if (Request.IsAjaxRequest()) return PartialView();

@@ -1,0 +1,153 @@
+﻿@model MvcPL.Areas.Administrator.Models.FullUserModel
+@section Header{
+    @{ViewBag.Title = "Edit user";}
+}
+@section LeftMenu{
+    <div class="panel-body">
+        <ul class="nav nav-stacked">
+            <li>@Html.ActionLink("Back to list users", "Index", new {area = "Administrator", controller = "User"})</li>
+            <li>@Html.ActionLink("Add email", "AddEmailEdit", new {area = "Administrator", controller = "User", idUser = Model.User.Id })</li>
+        </ul>
+        <div class="accordion" id="accordion2">
+            <div class="accordion-group">
+                <div class="accordion-heading">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+                        Add Role
+                    </a>
+                </div>
+                <div id="collapseOne" class="accordion-body collapse">
+                    <div class="accordion-inner">
+                        <ul class="nav nav-stacked">
+                            <li>@Html.ActionLink("Administrator", "AddRoleUserLinkEdit", new { role = "Administrator", idUser = Model.User.Id })</li>
+                            <li>@Html.ActionLink("Teacher", "AddTeacherEdit", new { idUser = Model.User.Id })</li>
+                            <li>@Html.ActionLink("Pupil", "AddPupilEdit", new { idUser = Model.User.Id })</li>
+                            <li>@Html.ActionLink("Parent", "AddParentEdit", new { idUser = Model.User.Id })</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div><!--/acc-->
+    </div>
+}
+@section Body{
+    <h2>Edit User</h2>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+            @Html.HiddenFor(model => model.User.Id)
+
+            @{
+                Html.RenderPartial("_User", Model.User);
+                <p>
+                    @Ajax.ActionLink("Edit", "EditUser", new {area = "Administrator", controller = "User", idUser = Model.User.Id},
+                        new AjaxOptions
+                        {
+                            UpdateTargetId = "informational",
+                            Url = Url.Action("EditUser", new {area = "Administrator", controller = "User", idUser = Model.User.Id})
+                        }) |
+                    @Ajax.ActionLink("Delete", "DeleteUser", new {area = "Administrator", controller = "User", idUser = Model.User.Id},
+                        new AjaxOptions
+                        {
+                            Confirm = "Are you sure you want to delete this?",
+                            UpdateTargetId = "informational",
+                            Url = Url.Action("DeleteUser", new {area = "Administrator", controller = "User", idUser = Model.User.Id})
+                        })
+                </p>
+
+                if (Model.Role.Count() != 0)
+                {
+                    <h2>Edit role.</h2>
+                    Html.RenderPartial("_Role", Model.Role);
+                }
+
+
+                if (Model.Mail.Count() != 0)
+                {
+                    <h2>Edit mail.</h2>
+                    Html.RenderPartial("_Mail", Model.Mail);
+                }
+
+
+                if (Model.Parent != null)
+                {
+                    <h2>Edit information about parent.</h2>
+                    Html.RenderPartial("_Parent", Model.Parent);
+                    <p>
+                        @Ajax.ActionLink("Edit", "EditParentUser", new { area = "Administrator", controller = "User", idParent = Model.Parent.Id },
+                        new AjaxOptions
+                        {
+                            UpdateTargetId = "informational",
+                            Url = Url.Action("EditParentUser", new { area = "Administrator", controller = "User", idParent = Model.Parent.Id })
+                        }) |
+                        @Ajax.ActionLink("Delete", "DeleteParentEdit", new { area = "Administrator", controller = "User", idParent = Model.Parent.Id },
+                        new AjaxOptions
+                        {
+                            Confirm = "Are you sure you want to delete this?",
+                            UpdateTargetId = "informational",
+                            Url = Url.Action("DeleteParentEdit", new { area = "Administrator", controller = "User", idParent = Model.Parent.Id })
+                        })
+                    </p>
+                }
+
+
+                if (Model.Pupil != null)
+                {
+                    <h2>Edit information about pupil.</h2>
+                    Html.RenderPartial("_Pupil", Model.Pupil);
+                    <p>
+                        @Ajax.ActionLink("Edit", "EditPupilUser", new { area = "Administrator", controller = "User", idPupil = Model.Pupil.Id },
+                        new AjaxOptions
+                        {
+                            UpdateTargetId = "informational",
+                            Url = Url.Action("EditPupilUser", new { area = "Administrator", controller = "User", idPupil = Model.Pupil.Id })
+                        }) |
+                        @Ajax.ActionLink("Delete", "DeletePupilEdit", new { area = "Administrator", controller = "User", idPupil = Model.Pupil.Id },
+                        new AjaxOptions
+                        {
+                            Confirm = "Are you sure you want to delete this?",
+                            UpdateTargetId = "informational",
+                            Url = Url.Action("DeletePupilEdit", new { area = "Administrator", controller = "User", idPupil = Model.Pupil.Id })
+                        })
+                    </p>
+                }
+
+
+                if (Model.Teacher != null)
+                {
+                    <h2>Edit information about teacher.</h2>
+                    Html.RenderPartial("_Teacher", Model.Teacher);
+                    <p>
+                        @Ajax.ActionLink("Edit", "EditTeacherUser", new { area = "Administrator", controller = "User", idTeacher = Model.Teacher.Id },
+                        new AjaxOptions
+                        {
+                            UpdateTargetId = "informational",
+                            Url = Url.Action("EditTeacherUser", new { area = "Administrator", controller = "User", idTeacher = Model.Teacher.Id })
+                        }) |
+                        @Ajax.ActionLink("Delete", "DeleteTeacherEdit", new { area = "Administrator", controller = "User", idTeacher = Model.Teacher.Id },
+                        new AjaxOptions
+                        {
+                            Confirm = "Are you sure you want to delete this?",
+                            UpdateTargetId = "informational",
+                            Url = Url.Action("DeleteTeacherEdit", new { area = "Administrator", controller = "User", idTeacher = Model.Teacher.Id })
+                        })
+                    </p>
+                }
+
+
+            }
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+                }
+}

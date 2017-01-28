@@ -141,8 +141,7 @@ namespace DAL.Concrete
 
         public IEnumerable<DalRole> GetUserRoles(int idUser) => Context.Set<User>()
             .FirstOrDefault(user => user.Id == idUser)?
-            .Roles.Select(role => role.ToDalRole())
-            .ToList();
+            .Roles.ToList().Select(role => role.ToDalRole());
 
         #endregion
 

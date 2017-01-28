@@ -8,11 +8,13 @@
 <div class="template_form">
 
 
-    @using (Ajax.BeginForm("Requisition", new { area = "", Controller = "Home" }, new AjaxOptions()
-    {
-        UpdateTargetId = "form-horizontal",
-        Url = Url.Action("Requisition", new { area = "", Controller = "Home" })
-    }))
+    @using (Html.BeginForm()
+        //Ajax.BeginForm("Requisition", new { area = "", Controller = "Home" }, new AjaxOptions()
+        //{
+        //    UpdateTargetId = "form-horizontal",
+        //    Url = Url.Action("Requisition", new { area = "", Controller = "Home" })
+        //})
+    )
     {
         @Html.AntiForgeryToken()
 

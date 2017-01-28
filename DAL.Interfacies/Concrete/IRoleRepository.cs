@@ -10,5 +10,6 @@ namespace DAL.Interfacies.Concrete
         DalRole GetRoleByName(string name);
 
         IEnumerable<DalUser> GetUsersByRole(int idRole);
+        IEnumerable<DalRole> GetUserRoles(int idUser);
     }
 }

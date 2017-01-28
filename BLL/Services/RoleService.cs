@@ -115,6 +115,15 @@ namespace BLL.Services
         public IEnumerable<UserEntity> GetUsersByRole(int idRole)
             => Uow.RoleRepository.GetUsersByRole(idRole).Select(s => s.ToUser());
 
+        /// <summary>
+        /// Get role fore concrete user. 
+        /// </summary>
+        /// <param name="idUser">Id user fo search in database.</param>
+        /// <returns>List roles for concrete user.</returns>
+
+        public IEnumerable<RoleEntity> GetUserRoles(int idUser)
+            => Uow.RoleRepository.GetUserRoles(idUser).Select(s => s.ToRole());
+
         #endregion
 
 

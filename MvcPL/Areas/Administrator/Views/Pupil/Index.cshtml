@@ -1,0 +1,82 @@
+﻿@using MvcPL.Infrastructure
+@model IEnumerable<MvcPL.Areas.Administrator.Models.GridPupilModel>
+
+@section Header{
+    @{ViewBag.Title = "Pupils";}
+}
+
+@section LeftMenu{
+    <div class="panel-body">
+        <ul class="nav nav-stacked">
+            <li>
+                @Ajax.AdminMenuCreateLink("Create", "Pupil", new AjaxOptions
+           {
+               Url = Url.Action("Create", new { area = "Administrator", Controller = "Pupil" })
+           })
+            </li>
+            <li>
+                @Ajax.ActionLink("Assign Role", "AssignRole", new { area = "Administrator", controller = "Pupil" }, new AjaxOptions()
+           {
+               UpdateTargetId = "informational",
+               LoadingElementId = "loading",
+               Url = Url.Action("AssignRole", new { area = "Administrator", Controller = "Pupil" })
+           })
+            </li>
+        </ul>
+    </div>
+}
+
+@section Body{
+    <h2>All Pupils</h2>
+    @{
+        var grid = new WebGrid(Model);
+    }
+
+    @grid.GetHtml(tableStyle: "table",
+        headerStyle: "webgrid-header",
+        footerStyle: "webgrid-footer",
+        alternatingRowStyle: "webgrid-alternating-row",
+        selectedRowStyle: "webgrid-selected-row",
+        rowStyle: "webgrid-row-style",
+
+        columns: grid.Columns(
+            grid.Column(columnName: "IdUser", header: "IdUser"),
+            grid.Column(columnName: "Name", header: "Name"),
+            grid.Column(columnName: "Surname", header: "Surname"),
+            grid.Column(columnName: "Room", header: "Room"),
+            grid.Column(columnName: "NameRoom", header: "NameRoom"),
+            grid.Column(columnName: "Time", header: "Time"),
+            grid.Column(format: (item) =>
+            {
+                var link = CustomAjaxHelper.AdminMenuMainLink(Ajax, "Detail", "Detail", "Pupil", item.IdUser, new AjaxOptions
+                {
+                    Url = Url.Action("Detail", new { area = "Administrator", Controller = "Pupil", id = item.IdUser })
+                });
+                return link;
+            }),
+            grid.Column(format: (item) =>
+            {
+                var link = CustomAjaxHelper.AdminMenuMainLink(Ajax, "Delete", "Delete", "Pupil", item.IdUser, new AjaxOptions
+                {
+                    Url = Url.Action("Delete", new { area = "Administrator", Controller = "Pupil", id = item.IdUser })
+                });
+                return link;
+            }),
+            grid.Column(format: (item) =>
+            {
+                var link = CustomAjaxHelper.AdminMenuMainLink(Ajax, "To Teacher", "ToTeacher", "Pupil", item.IdUser, new AjaxOptions
+                {
+                    Url = Url.Action("ToTeacher", new { area = "Administrator", Controller = "Pupil", id = item.IdUser })
+                });
+                return link;
+            }),
+            grid.Column(format: (item) =>
+            {
+                var link = CustomAjaxHelper.AdminMenuMainLink(Ajax, "To Class", "Detail", "Pupil", item.IdUser, new AjaxOptions
+                {
+                    Url = Url.Action("Detail", new { area = "Administrator", Controller = "Pupil", id = item.IdUser })
+                });
+                return link;
+            })
+            ))
+}

@@ -6,6 +6,6 @@ namespace DAL.Interfacies.Concrete
     public interface IClassRoomRepository : IRepository<DalClassRoom>
     {
         IEnumerable<DalClassRoom> GetTeacherClassRooms(int idTeacher);
-        IEnumerable<DalClassRoom> GetPupilClassRooms(int idPupil);
+        DalClassRoom GetPupilClassRoom(int idPupil);
     }
 }

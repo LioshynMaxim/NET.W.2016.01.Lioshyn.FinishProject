@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace MvcPL.Areas.Teacher.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Teacher")]
     public class HomeController : Controller
     {
         // GET: Teacher/Home

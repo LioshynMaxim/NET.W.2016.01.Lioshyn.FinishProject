@@ -42,6 +42,10 @@
   <ItemGroup>
     <Compile Include="Entities\ClassRoomEntity.cs" />
     <Compile Include="Entities\CommentEntity.cs" />
+    <Compile Include="Entities\FullClassRoomEntity.cs" />
+    <Compile Include="Services\IFullClassRoomEntity.cs" />
+    <Compile Include="Entities\FullPupilEntity.cs" />
+    <Compile Include="Entities\FullTeacherEntity.cs" />
     <Compile Include="Entities\FullUserEntity.cs" />
     <Compile Include="Entities\MailEntity.cs" />
     <Compile Include="Entities\ParentEntity.cs" />
@@ -54,6 +58,8 @@
     <Compile Include="ServiceException.cs" />
     <Compile Include="Services\IClassRoomService.cs" />
     <Compile Include="Services\ICommentService.cs" />
+    <Compile Include="Services\IFullPupilService.cs" />
+    <Compile Include="Services\IFullTeacherService.cs" />
     <Compile Include="Services\IFullUserService.cs" />
     <Compile Include="Services\IMailService.cs" />
     <Compile Include="Services\IParentService.cs" />

@@ -501,7 +501,7 @@ namespace MvcPL.Areas.Administrator.Controllers
 
         public ActionResult DeleteTeacherEdit(int idTeacher)
         {
-            var idUser = _teacherService.GetById(idTeacher).IdUser.Value;
+            var idUser = _teacherService.GetById(idTeacher).IdUser;
             var role = _roleService.GetRoleByName("Teacher").Id;
             _roleService.DeleteUserToRole(idUser, role);
             _teacherService.Delete(_teacherService.GetById(idTeacher));

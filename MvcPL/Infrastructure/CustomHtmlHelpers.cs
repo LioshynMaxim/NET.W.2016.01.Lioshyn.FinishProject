@@ -3,27 +3,43 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
 
 namespace MvcPL.Infrastructure
 {
     public static class CustomHtmlHelpers
     {
-        public static MvcHtmlString DetailForm(this HtmlHelper html, string[] list)
+        public static IHtmlString Date(this HtmlHelper helper, string name, object value)
         {
-            TagBuilder tag = new TagBuilder("div");
-            TagBuilder itemHr = new TagBuilder("hr");
-            tag.InnerHtml += itemHr.ToString();
-            TagBuilder itemDl = new TagBuilder("dl");
-            itemDl.AddCssClass("dl-horizontal");
-            tag.InnerHtml += itemDl.ToString();
-            foreach (var s in list)
-            {
-                TagBuilder itemTag = new TagBuilder("dt");
-                itemTag.SetInnerText(s);
-                tag.InnerHtml += itemTag.ToString();
-            }
+            return Date(helper, name, value, null);
+        }
 
-            return MvcHtmlString.Create(tag.ToString());
+        public static IHtmlString Date(this HtmlHelper helper, string name, object value, object htmlAttributes)
+        {
+            var tagBuilder = new TagBuilder("input");
+            tagBuilder.Attributes["name"] = name;
+            tagBuilder.Attributes["value"] = value.ToString();
+            tagBuilder.MergeAttributes(new RouteValueDictionary(htmlAttributes));
+
+            return MvcHtmlString.Create(tagBuilder.ToString());
+        }
+    }
+
+    public static class DatetimeHelpers
+    {
+        public static IHtmlString Date(this HtmlHelper helper, string name, object value)
+        {
+            return Date(helper, name, value, null);
+        }
+
+        public static IHtmlString Date(this HtmlHelper helper, string name, object value, object htmlAttributes)
+        {
+            var tagBuilder = new TagBuilder("input");
+            tagBuilder.Attributes["name"] = name;
+            tagBuilder.Attributes["value"] = value.ToString();
+            tagBuilder.MergeAttributes(new RouteValueDictionary(htmlAttributes));
+
+            return MvcHtmlString.Create(tagBuilder.ToString());
         }
     }
 }

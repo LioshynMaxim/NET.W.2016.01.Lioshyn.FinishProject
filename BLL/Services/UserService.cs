@@ -172,6 +172,23 @@ namespace BLL.Services
         public IEnumerable<RoleEntity> GetRolesByUser(int idUser)
             => Uow.UserRepository.GetRolesByUser(idUser).Select(s => s.ToRole());
 
+
+        /// <summary>
+        /// Get all not pupil users.
+        /// </summary>
+        /// <returns>Return list of users.</returns>
+
+        public IEnumerable<UserEntity> GetAllNotPupilUsers()
+            => Uow.UserRepository.GetAllNotPupilUsers().Select(s => s.ToUser());
+
+        /// <summary>
+        /// Get all not teacher users.
+        /// </summary>
+        /// <returns>Return list of users.</returns>
+
+        public IEnumerable<UserEntity> GetAllNotTeacherUsers()
+            => Uow.UserRepository.GetAllNotTeacherUsers().Select(s => s.ToUser());
+
         #endregion
     }
 }

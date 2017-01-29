@@ -8,7 +8,7 @@ namespace DAL.Mappers
     {
         public static void RegisterMappings()
         {
-            Mapper.Initialize(configuration => configuration.CreateMap<ClassRoom, DalClassRoom>().ReverseMap());
+            Mapper.Initialize(configuration => configuration.CreateMap<ORM.ClassRoom, ClassRoom>().ReverseMap());
             Mapper.Initialize(configuration => configuration.CreateMap<Comment, DalComment>().ReverseMap());
             Mapper.Initialize(configuration => configuration.CreateMap<Mail, DalMail>().ReverseMap());
             Mapper.Initialize(configuration => configuration.CreateMap<Parent, DalParent>().ReverseMap());

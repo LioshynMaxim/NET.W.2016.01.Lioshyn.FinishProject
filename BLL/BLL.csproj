@@ -52,6 +52,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ClassRoomService.cs" />
     <Compile Include="Services\CommentService.cs" />
+    <Compile Include="Services\FullClassRoomService.cs" />
+    <Compile Include="Services\FullPupilService.cs" />
+    <Compile Include="Services\FullTeacherService.cs" />
     <Compile Include="Services\FullUserService.cs" />
     <Compile Include="Services\MailService.cs" />
     <Compile Include="Services\ParentService.cs" />
@@ -70,6 +73,10 @@
     <ProjectReference Include="..\DAL.Interfacies\DAL.Interfacies.csproj">
       <Project>{f865b998-bf4d-4b75-b359-62f48a43e2ff}</Project>
       <Name>DAL.Interfacies</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ORM\ORM.csproj">
+      <Project>{2311F3CA-6852-4BEA-9D59-E01D466631E3}</Project>
+      <Name>ORM</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

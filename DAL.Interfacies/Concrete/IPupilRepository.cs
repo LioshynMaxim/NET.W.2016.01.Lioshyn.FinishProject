@@ -13,7 +13,7 @@ namespace DAL.Interfacies.Concrete
         void DeletePupilToClassRoom(int idPupil, int idClassRoom);
         IEnumerable<DalPupil> GetAllPupilsInClassRoom(int idClassRoom);
 
-        DalPupil GetUserPupilRole(int idUser);
+        DalPupil GetByUserId(int idUser);
 
     }
 }

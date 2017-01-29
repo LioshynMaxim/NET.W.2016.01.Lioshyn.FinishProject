@@ -101,13 +101,13 @@ namespace BLL.Services
         public IEnumerable<TeacherEntity> GetAllTeacherInClassRoom(int idClassRoom) => Uow.TeacherRepository.GetAllTeacherInClassRoom(idClassRoom).Select(s => s.ToTeacher());
 
         /// <summary>
-        /// Get teacher role.
+        /// Get teacher by id user.
         /// </summary>
         /// <param name="idUser">User id.</param>
         /// <returns>Teacher information.</returns>
 
-        public TeacherEntity GetUserTeacherRole(int idUser)
-            => Uow.TeacherRepository.GetUserTeacherRole(idUser).ToTeacher();
+        public TeacherEntity GetTeacherByIdUser(int idUser)
+            => Uow.TeacherRepository.GetTeacherByIdUser(idUser).ToTeacher();
 
 
         #endregion

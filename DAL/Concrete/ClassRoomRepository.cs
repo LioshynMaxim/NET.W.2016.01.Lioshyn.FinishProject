@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Reflection;
 using DAL.Interfacies.Concrete;
 using DAL.Interfacies.DTO;
 using DAL.Mappers;
@@ -89,30 +90,24 @@ namespace DAL.Concrete
 
         public DalClassRoom GetById(int key)
             => Context.Set<ClassRoom>().FirstOrDefault(cl => cl.Id == key).ToDalClassRoom();
-        
+
         /// <summary>
         /// Get classroom for concrete teacher.
         /// </summary>
         /// <param name="idTeacher">Id teacher.</param>
         /// <returns>List teacher's classroom.</returns>
-        
+
         public IEnumerable<DalClassRoom> GetTeacherClassRooms(int idTeacher)
-        {
-            var teacher = Context.Set<Teacher>().FirstOrDefault(t => t.Id == idTeacher).ToDalTeacher();
-            return Context.Set<ClassRoom>().ToList().Select(t => t.ToDalClassRoom()).Where(t => t.Room == teacher.ClassRoomBsu);
-        }
+            => Context.Set<Teacher>().FirstOrDefault(t => t.Id == idTeacher)?.ClassRooms.Select(s => s.ToDalClassRoom());
 
         /// <summary>
         /// Get classroom for concrete pupil.
         /// </summary>
         /// <param name="idPupil">Id pupil.</param>
-        /// <returns>List pupil's classroom.</returns>
+        /// <returns>Classroom.</returns>
 
-        public IEnumerable<DalClassRoom> GetPupilClassRooms(int idPupil)
-        {
-            var teacher = Context.Set<Teacher>().FirstOrDefault(t => t.Id == idPupil).ToDalTeacher();
-            return Context.Set<ClassRoom>().ToList().Select(t => t.ToDalClassRoom()).Where(t => t.Room == teacher.ClassRoomBsu);
-        }
+        public DalClassRoom GetPupilClassRoom(int idPupil)
+            => Context.Set<Pupil>().FirstOrDefault(p => p.Id == idPupil)?.ClassRooms.FirstOrDefault().ToDalClassRoom();
 
         #endregion
 

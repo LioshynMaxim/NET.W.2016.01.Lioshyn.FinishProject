@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using System.Web.UI.WebControls;
 
 namespace MvcPL.Areas.Administrator
 {
@@ -11,7 +12,7 @@ namespace MvcPL.Areas.Administrator
             context.MapRoute(
                 "Administrator_default",
                 "Administrator/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional },
+                new { controller = "Home", action = "Index", id = UrlParameter.Optional },
                 new[] { "MvcPL.Areas.Administrator.Controllers" }
             );
         }

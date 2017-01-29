@@ -37,7 +37,7 @@ namespace MvcPL.Infrastructure.Mappers
             return new TeacherModel
             {
                 Id = teacher.Id,
-                IdUser = teacher.IdUser.Value,
+                IdUser = teacher.IdUser,
                 ClassRoomBsu = teacher.ClassRoomBsu.Value,
                 WorkPlace = teacher.WorkPlace,
                 CourseNumber = teacher.CourseNumber.Value,

@@ -215,6 +215,7 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="images\ajax-loader.gif" />
     <Content Include="img\close.png" />
     <Content Include="img\loading.gif" />
     <Content Include="img\next.png" />
@@ -259,6 +260,16 @@
     <Content Include="Areas\Administrator\Views\User\AddPupilEdit.cshtml" />
     <Content Include="Areas\Administrator\Views\User\AddParentEdit.cshtml" />
     <Content Include="Areas\Administrator\Views\User\AddTeacherEdit.cshtml" />
+    <Content Include="Areas\Administrator\Views\Pupil\Index1.cshtml" />
+    <Content Include="Areas\Administrator\Views\Pupil\Index.cshtml" />
+    <Content Include="Areas\Administrator\Views\Shared\Error.cshtml" />
+    <Content Include="Areas\Administrator\Views\Pupil\AssignRole.cshtml" />
+    <Content Include="Areas\Administrator\Views\Teacher\Index.cshtml" />
+    <Content Include="Areas\Administrator\Views\Teacher\AssignRole.cshtml" />
+    <Content Include="Areas\Administrator\Views\Teacher\A.cshtml" />
+    <Content Include="Areas\Administrator\Views\Teacher\_ClassRoom.cshtml" />
+    <Content Include="Areas\Administrator\Views\ClassRoom\Index.cshtml" />
+    <Content Include="Areas\Administrator\Views\ClassRoom\AddClassRoom.cshtml" />
     <None Include="NLog.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -303,13 +314,23 @@
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Administrator\AdministratorAreaRegistration.cs" />
+    <Compile Include="Areas\Administrator\Controllers\ClassRoomController.cs" />
+    <Compile Include="Areas\Administrator\Controllers\CommentController.cs" />
+    <Compile Include="Areas\Administrator\Controllers\EmailController.cs" />
     <Compile Include="Areas\Administrator\Controllers\ErrorController.cs" />
     <Compile Include="Areas\Administrator\Controllers\HomeController.cs" />
     <Compile Include="Areas\Administrator\Controllers\PupilController.cs" />
     <Compile Include="Areas\Administrator\Controllers\RequisitionController.cs" />
     <Compile Include="Areas\Administrator\Controllers\RoleController.cs" />
+    <Compile Include="Areas\Administrator\Controllers\TeacherController.cs" />
     <Compile Include="Areas\Administrator\Controllers\UserController.cs" />
+    <Compile Include="Areas\Administrator\Models\FullClassroomModel.cs" />
+    <Compile Include="Areas\Administrator\Models\FullPupilModel.cs" />
+    <Compile Include="Areas\Administrator\Models\FullTeacherModel.cs" />
     <Compile Include="Areas\Administrator\Models\FullUserModel.cs" />
+    <Compile Include="Areas\Administrator\Models\GridClassroomModel.cs" />
+    <Compile Include="Areas\Administrator\Models\GridPupilModel.cs" />
+    <Compile Include="Areas\Administrator\Models\GridTeacherModel.cs" />
     <Compile Include="Areas\Teacher\Controllers\HomeController.cs" />
     <Compile Include="Areas\Teacher\TeacherAreaRegistration.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
@@ -324,12 +345,16 @@
     <Compile Include="Infrastructure\CustomHtmlHelpers.cs" />
     <Compile Include="Infrastructure\Mappers\MvcPLClassRoomMapper.cs" />
     <Compile Include="Infrastructure\Mappers\MvcPLCommentMapper.cs" />
+    <Compile Include="Infrastructure\Mappers\MvcPLFullClassRoomMapper.cs" />
+    <Compile Include="Infrastructure\Mappers\MvcPLFullPupilMapper.cs" />
+    <Compile Include="Infrastructure\Mappers\MvcPLFullTeacherMapper.cs" />
     <Compile Include="Infrastructure\Mappers\MvcPLFullUserMapper.cs" />
     <Compile Include="Infrastructure\Mappers\MvcPLMailMapper.cs" />
     <Compile Include="Infrastructure\Mappers\MvcPLParentMapper.cs" />
     <Compile Include="Infrastructure\Mappers\MvcPLPupilMapper.cs" />
     <Compile Include="Infrastructure\Mappers\MvcPLRequisitioUserMapper.cs" />
     <Compile Include="Infrastructure\Mappers\MvcPLRoleMapper.cs" />
+    <Compile Include="Infrastructure\Mappers\MvcPLSomeProjectMapper.cs" />
     <Compile Include="Infrastructure\Mappers\MvcPLTeacherMapper.cs" />
     <Compile Include="Infrastructure\Mappers\MvcPLUserMapper.cs" />
     <Compile Include="Infrastructure\Mappers\MvcPLRequisition.cs" />
@@ -377,12 +402,12 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Areas\Administrator\Views\Comment\" />
+    <Folder Include="Areas\Administrator\Views\Email\" />
     <Folder Include="Areas\Administrator\Views\Error\" />
-    <Folder Include="Areas\Administrator\Views\Pupil\" />
     <Folder Include="Areas\Teacher\Models\" />
     <Folder Include="Content\pupil\" />
     <Folder Include="Content\teacher\" />
-    <Folder Include="images\" />
     <Folder Include="Scripts\other\" />
     <Folder Include="Scripts\pupil\" />
     <Folder Include="Scripts\teacher\" />

@@ -28,9 +28,8 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Administrators", "Index", new { area = "Administrator", controller = "Home" })</li>
-                    <li>@Html.ActionLink("Teachers", "Index", new { area = "Administrator", controller = "Home" })</li>
-                    <li>@Html.ActionLink("Pupils", "Index", new { area = "Administrator", controller = "Home" })</li>
-                    <li>@Html.ActionLink("Parents", "Index", new { area = "Administrator", controller = "Home" })</li>
+                    <li>@Html.ActionLink("Teachers", "Index", new { area = "Administrator", controller = "Teacher" })</li>
+                    <li>@Html.ActionLink("Pupils", "Index", new { area = "Administrator", controller = "Pupil" })</li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Other</a>
                         <ul class="dropdown-menu">
@@ -56,10 +55,10 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i> <i class="glyphicon glyphicon-chevron-down"></i></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">LogOut</a></li>
-                            <li><a href="#">Profile</a></li>
+                            <li>@Html.ActionLink("LogOff", "LogOff", new {area = "Administrator", controller = "Home"})</li>
+                            <li>@Html.ActionLink("Settings", "Settings", new { area = "Administrator", controller = "Home" })</li>
                             <li class="divider"></li>
-                            <li><a href="#">About</a></li>
+                            <li>@Html.ActionLink("Site", "Index", new { area = "", controller = "Home" })</li>
                         </ul>
                     </li>
                 </ul>
@@ -67,7 +66,7 @@
         </div>
     </nav><!-- /.navbar -->
     <!-- Begin Body -->
-    <div  class="container">
+    <div class="container">
         <div class="no-gutter row">
             <!-- left side column -->
             <div class="col-md-2 left-menu">
@@ -82,10 +81,11 @@
             <div class="col-md-7 main-content" id="content">
                 <div class="panel">
                     <div class="panel-heading" style="background-color: #111; color: #ffffff;">@ViewBag.Title</div>
-    <div class="panel-body">
-    @RenderSection("Body", required: false)
+                    <div class="panel-body">
+                        <img id="loading" src="~/images/ajax-loader.gif" style="display: none;"/>
+                        @RenderSection("Body", required: false)
 
-    </div><!--/panel-body-->
+                    </div><!--/panel-body-->
 </div><!--/panel-->
 <!--/end right column-->
 </div>

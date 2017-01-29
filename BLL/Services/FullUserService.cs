@@ -62,8 +62,8 @@ namespace BLL.Services
             Role = Uow.RoleRepository.GetUserRoles(idUser).Select(s => s.ToRole()),
             Mail = Uow.MailRepository.GelAllUserMails(idUser).Select(s => s.ToMail()),
             Parent = Uow.ParentRepository.GetUserParentRole(idUser).ToParent(),
-            Pupil = Uow.PupilRepository.GetUserPupilRole(idUser).ToPupil(),
-            Teacher = Uow.TeacherRepository.GetUserTeacherRole(idUser).ToTeacher()
+            Pupil = Uow.PupilRepository.GetByUserId(idUser).ToPupil(),
+            Teacher = Uow.TeacherRepository.GetTeacherByIdUser(idUser).ToTeacher()
         };
     }
 }

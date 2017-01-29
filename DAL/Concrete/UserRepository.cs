@@ -221,6 +221,30 @@ namespace DAL.Concrete
         public IEnumerable<DalRole> GetRolesByUser(int idUser)
             => Context.Set<User>().FirstOrDefault(t => t.Id == idUser)?.Roles.ToList().Select(s => s.ToDalRole());
 
+        /// <summary>
+        /// Get all not pupil users.
+        /// </summary>
+        /// <returns>Return list of users.</returns>
+
+        public IEnumerable<DalUser> GetAllNotPupilUsers()
+        {
+            IEnumerable<User> userPupilList = Context.Set<Pupil>().ToList().Select(u => u.User);
+            IEnumerable<User> pupil = Context.Set<User>().ToList().Select(u => u).Except(userPupilList);
+            return pupil.Select(s=>s.ToDalUser());
+        }
+
+        /// <summary>
+        /// Get all not teacher users.
+        /// </summary>
+        /// <returns>Return list of users.</returns>
+
+        public IEnumerable<DalUser> GetAllNotTeacherUsers()
+        {
+            IEnumerable<User> userTeacherList = Context.Set<Teacher>().ToList().Select(u => u.User);
+            IEnumerable<User> teacher = Context.Set<User>().ToList().Select(u => u).Except(userTeacherList);
+            return teacher.Select(s => s.ToDalUser());
+        }
+
         #endregion
     }
 }

@@ -56,8 +56,6 @@ namespace MvcPL.Areas.Administrator.Controllers
 
         #endregion
 
-
-
         #region edit
 
         public ActionResult Edit(int id)
@@ -83,7 +81,6 @@ namespace MvcPL.Areas.Administrator.Controllers
         } 
 
         #endregion
-
         
         #region Delete
 

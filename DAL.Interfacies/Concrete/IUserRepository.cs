@@ -17,5 +17,7 @@ namespace DAL.Interfacies.Concrete
         DalUser GetUserById(int userId);
 
         IEnumerable<DalRole> GetRolesByUser(int idUser);
+        IEnumerable<DalUser> GetAllNotPupilUsers();
+        IEnumerable<DalUser> GetAllNotTeacherUsers();
     }
 }

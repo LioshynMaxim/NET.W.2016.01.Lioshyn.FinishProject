@@ -1,0 +1,56 @@
+﻿@using MvcPL.Infrastructure
+@model IEnumerable<MvcPL.Models.UserModel>
+
+@section Header{
+    @{ViewBag.Title = "Pupils";}
+}
+
+@section LeftMenu{
+    <div class="panel-body">
+        <ul class="nav nav-stacked">
+            <li>
+                @Ajax.AdminMenuCreateLink("Create", "Pupil", new AjaxOptions
+           {
+               Url = Url.Action("Create", new { area = "Administrator", Controller = "Pupil" })
+           })
+            </li>
+            <li>
+                @Ajax.ActionLink("Bacr to Teachers", "Index", new { area = "Administrator", controller = "Pupil" }, new AjaxOptions
+           {
+               UpdateTargetId = "informational",
+               LoadingElementId = "loading",
+               Url = Url.Action("Index", new { area = "Administrator", Controller = "Pupil" })
+           })
+            </li>
+        </ul>
+    </div>
+}
+
+@section Body{
+    <h2>All Pupils</h2>
+    @{
+        var grid = new WebGrid(Model);
+    }
+
+    @grid.GetHtml(tableStyle: "table",
+        headerStyle: "webgrid-header",
+        footerStyle: "webgrid-footer",
+        alternatingRowStyle: "webgrid-alternating-row",
+        selectedRowStyle: "webgrid-selected-row",
+        rowStyle: "webgrid-row-style",
+
+        columns: grid.Columns(
+            grid.Column(columnName: "Id", header: "Id"),
+            grid.Column(columnName: "Name", header: "Name"),
+            grid.Column(columnName: "Surname", header: "Surname"),
+            grid.Column(format: (item) =>
+            {
+                var link = CustomAjaxHelper.AdminMenuMainLink(Ajax, "Assign", "AddRole", "Pupil", item.Id, new AjaxOptions
+                {
+                    Url = Url.Action("AddRole", new { area = "Administrator", Controller = "Pupil", id = item.Id })
+                });
+                return link;
+            })
+            
+            ))
+}

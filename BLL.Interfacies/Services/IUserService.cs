@@ -16,5 +16,7 @@ namespace BLL.Interfacies.Services
         UserEntity GetUserByLogin(string userLogin);
 
         IEnumerable<RoleEntity> GetRolesByUser(int idUser);
+        IEnumerable<UserEntity> GetAllNotPupilUsers();
+        IEnumerable<UserEntity> GetAllNotTeacherUsers();
     }
 }

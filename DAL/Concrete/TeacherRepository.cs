@@ -5,6 +5,7 @@ using DAL.Interfacies.Concrete;
 using DAL.Interfacies.DTO;
 using DAL.Mappers;
 using ORM;
+using ClassRoom = ORM.ClassRoom;
 
 namespace DAL.Concrete
 {
@@ -135,12 +136,12 @@ namespace DAL.Concrete
         }
 
         /// <summary>
-        /// Get teacher role.
+        /// Get teacher by id user.
         /// </summary>
         /// <param name="idUser">User id.</param>
         /// <returns>Teacher information.</returns>
 
-        public DalTeacher GetUserTeacherRole(int idUser)
+        public DalTeacher GetTeacherByIdUser(int idUser)
             => Context.Set<Teacher>().FirstOrDefault(p => p.IdUser == idUser).ToDalTeacher();
 
         #endregion

@@ -86,9 +86,9 @@ namespace BLL.Services
         /// Get classroom by pupil.
         /// </summary>
         /// <param name="idPupil">Pupil id.</param>
-        /// <returns>List of classroom.</returns>
+        /// <returns>Classroom.</returns>
 
-        public IEnumerable<ClassRoomEntity> GetPupilClassRooms(int idPupil) => Uow.ClassRoomRepository.GetPupilClassRooms(idPupil).Select(s => s.ToClassRoom());
+        public ClassRoomEntity GetPupilClassRoom(int idPupil) => Uow.ClassRoomRepository.GetPupilClassRoom(idPupil).ToClassRoom();
 
         #endregion
 

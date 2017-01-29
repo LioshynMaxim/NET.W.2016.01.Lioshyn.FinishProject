@@ -1,0 +1,70 @@
+﻿@model IEnumerable<MvcPL.Models.ClassRoomModel>
+
+@section Header{
+    @{ViewBag.Title = "ClassRoom";}
+}
+
+@section LeftMenu{
+    <div class="panel-body">
+        <ul class="nav nav-stacked">
+            <li>@Html.ActionLink("Create new ClassRoom", "AddClassRoom")</li>
+
+        </ul>
+    </div>
+}
+
+@section Body{
+    @{
+        var grid = new WebGrid(Model);
+    }
+
+    <div class="row">
+        <div class="col-md-8">
+            @grid.GetHtml(tableStyle: "table",
+    headerStyle: "webgrid-header",
+    footerStyle: "webgrid-footer",
+    alternatingRowStyle: "webgrid-alternating-row",
+    selectedRowStyle: "webgrid-selected-row",
+    rowStyle: "webgrid-row-style",
+
+    columns: grid.Columns(
+        grid.Column(columnName: "Name", header: "Name"),
+        grid.Column(columnName: "Room", header: "Room"),
+        grid.Column(columnName: "Time", header: "Time"),
+                grid.Column(format: (item) =>
+                {
+                    var link = Ajax.ActionLink("Edit", "Edit", new { area = "Administrator", Controller = "Role", id = item.Id }, new AjaxOptions()
+                    {
+                        UpdateTargetId = "text-muted",
+                        Url = Url.Action("Edit", new { area = "Administrator", Controller = "Role" })
+                    });
+                    return link;
+                }),
+                grid.Column(format: (item) =>
+                {
+                    var link = Ajax.ActionLink("Details", "Edit", new { area = "Administrator", Controller = "Role", id = item.Id }, new AjaxOptions()
+                    {
+                        UpdateTargetId = "show",
+                        Url = Url.Action("Edit", new { area = "Administrator", Controller = "Role" })
+                    });
+                    return link;
+                }),
+
+                grid.Column(format: (item) =>
+                {
+                    var link = CustomAjaxHelper.AdminMenuMainLink(Ajax, "Delete", "Delete", "Role", item.Id, new AjaxOptions
+                    {
+                        Url = Url.Action("Delete", new { area = "Administrator", Controller = "Role" })
+                    });
+                    return link;
+                })
+    ))
+
+        </div>
+        <div id="show" class="col col-sm-4">
+            <div class="text-muted">
+                
+            </div>
+        </div>
+    </div>
+}

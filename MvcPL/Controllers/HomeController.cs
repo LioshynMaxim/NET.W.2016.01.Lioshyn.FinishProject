@@ -98,7 +98,9 @@ namespace MvcPL.Controllers
             if (Membership.ValidateUser(loginModel.Login, loginModel.Password))
             {
                 FormsAuthentication.SetAuthCookie(loginModel.Login, false);
-                var u = User.IsInRole("Administrator");
+                var httpCookie = HttpContext.Response.Cookies["login"];
+                if (httpCookie != null)
+                    httpCookie.Value = loginModel.Login;
             }
             else
             {

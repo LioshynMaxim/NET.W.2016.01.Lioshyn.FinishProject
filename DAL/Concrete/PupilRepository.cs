@@ -5,6 +5,7 @@ using DAL.Interfacies.Concrete;
 using DAL.Interfacies.DTO;
 using DAL.Mappers;
 using ORM;
+using ClassRoom = ORM.ClassRoom;
 
 namespace DAL.Concrete
 {
@@ -177,8 +178,10 @@ namespace DAL.Concrete
         /// <param name="idUser">User id.</param>
         /// <returns>Pupil information.</returns>
 
-        public DalPupil GetUserPupilRole(int idUser)
+        public DalPupil GetByUserId(int idUser)
             => Context.Set<Pupil>().FirstOrDefault(p => p.IdUser == idUser).ToDalPupil();
+
+        
 
         #endregion
     }

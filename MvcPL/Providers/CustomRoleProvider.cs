@@ -3,6 +3,7 @@ using System.Linq;
 using System.Web.Security;
 using BLL.Interfacies.Entities;
 using BLL.Interfacies.Services;
+using MvcPL.Infrastructure.Mappers;
 using NLog;
 
 namespace MvcPL.Providers
@@ -19,22 +20,18 @@ namespace MvcPL.Providers
         {
             var role = RoleService.GetRoleByName(roleName);
             var roles = RoleService.GetUsersByRole(role.Id);
-            
-            //var s = RoleService.GetUsersByRole(RoleService.GetRoleByName(roleName).Id).FirstOrDefault(t=>t.Login == login);
             return roles.FirstOrDefault(s => s.Login == login) != null;
         }
 
         public override string[] GetRolesForUser(string login)
         {
             var roles = new string[] { };
-            var user = UserService.GetUserByLogin(login);
+            var user = UserService.GetUserByLogin(login).ToUserModel();
             if (user == null) return roles;
-            var userRole = UserService.GetRolesByUser(user.Id);
-            if (userRole != null)
-            {
-                roles = new[] { userRole.ToString() };
-            }
-            return roles;
+            var userRoles = RoleService.GetUserRoles(user.Id);
+            return userRoles?.Select(s => s.ToRoleModel()).Select(a => a.RoleName).ToArray() ?? roles;
+            //if (userRoles == null) return roles;
+            //return userRoles.Select(s => s.ToRoleModel()).Select(a => a.RoleName).ToArray();
         }
 
         public override void CreateRole(string roleName)

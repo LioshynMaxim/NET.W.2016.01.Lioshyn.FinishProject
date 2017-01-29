@@ -130,7 +130,7 @@ namespace BLL.Services
         /// <param name="idUser">User id.</param>
         /// <returns>Pupil information.</returns>
 
-        public PupilEntity GetUserPupilRole(int idUser) => Uow.PupilRepository.GetUserPupilRole(idUser).ToPupil();
+        public PupilEntity GetUserPupilRole(int idUser) => Uow.PupilRepository.GetByUserId(idUser).ToPupil();
        
 
         #endregion

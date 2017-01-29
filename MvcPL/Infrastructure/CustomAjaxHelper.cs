@@ -15,7 +15,8 @@ namespace MvcPL.Infrastructure
             int idModel,
             AjaxOptions ajaxOptions)
         {
-            ajaxOptions.UpdateTargetId = "text-muted";
+            ajaxOptions.UpdateTargetId = "informational";
+            ajaxOptions.LoadingElementId = "loading";
 
             return ajaxHelper.ActionLink(linkText, action, new
             {
@@ -23,8 +24,41 @@ namespace MvcPL.Infrastructure
                 Controller = controller,
                 id = idModel
             }, ajaxOptions);
-            
+        }
+
+        public static MvcHtmlString AdminMenuCreateLink(
+            this AjaxHelper ajaxHelper,
+            string action,
+            string controller,
+            AjaxOptions ajaxOptions)
+        {
+            ajaxOptions.UpdateTargetId = "informational";
+            ajaxOptions.LoadingElementId = "loading";
+
+            return ajaxHelper.ActionLink("Create", action, new
+            {
+                Area = "Administrator",
+                Controller = controller
+            }, ajaxOptions);
+        }
+
+        public static MvcHtmlString AdminMainMenu(
+            this AjaxHelper ajaxHelper,
+            string linkText,
+            string controller,
+            AjaxOptions ajaxOptions)
+        {
+            ajaxOptions.UpdateTargetId = "informationalBody";
+            ajaxOptions.LoadingElementId = "loading";
+
+            return ajaxHelper.ActionLink(linkText, "Index", new
+            {
+                Area = "Administrator",
+                Controller = controller
+            }, ajaxOptions);
         }
     }
+
+
 
 }

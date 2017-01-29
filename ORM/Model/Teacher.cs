@@ -26,7 +26,7 @@ namespace ORM
 
         public int? ClassRoomBsu { get; set; } = 1;
 
-        public int? IdUser { get; set; } = 1;
+        public int IdUser { get; set; } = 1;
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Pupil> Pupils { get; set; }

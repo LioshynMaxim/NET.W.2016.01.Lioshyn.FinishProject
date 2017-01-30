@@ -135,9 +135,10 @@
 
     <div>
         @Ajax.ActionLink("Back to List", "Index", new {area = "Administrator", controller = "User"}, new AjaxOptions()
-        {
-            UpdateTargetId = "form-horizontal",
-            Url = Url.Action("Index", new {area = "Administrator", controller = "User"})
-        })
+   {
+       UpdateTargetId = "informational",
+       LoadingElementId = "loading",
+       Url = Url.Action("Index", new {area = "Administrator", controller = "User"})
+   })
     </div>
 }

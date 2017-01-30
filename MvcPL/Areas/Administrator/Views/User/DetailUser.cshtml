@@ -61,10 +61,14 @@
     <p>
         @Ajax.ActionLink("Edit", "UserInformation", new { area = "Administrator", Controller = "User", idUser = Model.Id }, new AjaxOptions()
    {
+       UpdateTargetId = "informational",
+       LoadingElementId = "loading",
        Url = Url.Action("UserInformation", new { area = "Administrator", Controller = "User", idUser = Model.Id })
    }) |
         @Ajax.ActionLink("Delete", "DeleteUser", new { area = "Administrator", Controller = "User", idUser = Model.Id }, new AjaxOptions()
    {
+       UpdateTargetId = "informational",
+       LoadingElementId = "loading",
        Url = Url.Action("DeleteUser", new { area = "Administrator", Controller = "User", idUser = Model.Id })
    })
     </p>

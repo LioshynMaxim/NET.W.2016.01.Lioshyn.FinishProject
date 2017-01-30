@@ -37,6 +37,7 @@
                      var link = Ajax.ActionLink("Edit", "UserInformation", new { area = "Administrator", Controller = "User", idUser = item.Id }, new AjaxOptions()
                      {
                          UpdateTargetId = "informational",
+                         LoadingElementId = "loading",
                          Url = Url.Action("UserInformation", new { area = "Administrator", Controller = "User", idUser = item.Id })
                      });
                      return link;
@@ -46,6 +47,7 @@
                     var link = Ajax.ActionLink("Details", "DetailUser", new { area = "Administrator", Controller = "User", idUser = item.Id }, new AjaxOptions()
                     {
                         UpdateTargetId = "informational",
+                        LoadingElementId = "loading",
                         Url = Url.Action("DetailUser", new { area = "Administrator", Controller = "User", idUser = item.Id })
                     });
                     return link;
@@ -56,6 +58,7 @@
                     var link = Ajax.ActionLink("Delete", "DeleteUser", new {area = "Administrator", Controller = "User", idUser = item.Id}, new AjaxOptions()
                     {
                         UpdateTargetId = "informational",
+                        LoadingElementId = "loading",
                         Url = Url.Action("DeleteUser", new {area = "Administrator", Controller = "User", idUser = item.Id})
                     });
                     return link;

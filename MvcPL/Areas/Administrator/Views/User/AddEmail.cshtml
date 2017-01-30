@@ -17,7 +17,7 @@
     @using (Ajax.BeginForm("AddEmail", new {area = "Administrator", controller = "User" },
         new AjaxOptions
     {
-        UpdateTargetId = "panel-body",
+        UpdateTargetId = "informational",
         Url = Url.Action("AddEmail", new { area = "Administrator", controller = "User" })
     }))
     {

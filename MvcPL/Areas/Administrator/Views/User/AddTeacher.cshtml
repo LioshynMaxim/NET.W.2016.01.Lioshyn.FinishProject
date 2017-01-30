@@ -17,7 +17,8 @@
     @using (Ajax.BeginForm("AddTeacher", new {area = "Administrator", controller = "User"},
         new AjaxOptions
         {
-            UpdateTargetId = "form-horizontal",
+            UpdateTargetId = "informational",
+            LoadingElementId = "loading",
             Url = Url.Action("AddTeacher", new {area = "Administrator", controller = "User"})
         }))
     {

@@ -1,5 +1,5 @@
 ﻿@using MvcPL.Infrastructure.Mappers
-@model IEnumerable<MvcPL.Areas.Administrator.Models.GridPupilClassRoomModel>
+@model IEnumerable<MvcPL.Areas.Administrator.Models.GridClassRoomModelWhithIdUser>
 
 @section Header{
     @{ViewBag.Title = "Pupils";}
@@ -32,9 +32,7 @@
     
     <table class="table">
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.IdUser)
-            </th>
+            
             <th>
                 @Html.DisplayNameFor(model => model.ClassRoom.Name)
             </th>
@@ -50,9 +48,7 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.IdUser)
-                </td>
+               
                 <td>
                     @Html.DisplayFor(modelItem => item.ClassRoom.Name)
                 </td>

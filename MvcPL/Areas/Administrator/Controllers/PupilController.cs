@@ -81,8 +81,7 @@ namespace MvcPL.Areas.Administrator.Controllers
 
         public ActionResult InClassRoom(int id)
         {
-            var p = _classRoomService.GetAll().Select(s => s.ToClassRoomModel().ToGridPupilClassRoomModelInPupil(id));
-            
+            var p = _classRoomService.GetAll().Select(s => s.ToClassRoomModel().ToGridClassRoomModelWhithIdUser(id));
             return View(p);
         }
         public ActionResult ToClassroom(int id, int idClassRoom)

@@ -13,13 +13,14 @@
            })
             </li>
             <li>
-                @Ajax.ActionLink("Assign Role", "AssignRole", new { area = "Administrator", controller = "Teacher" }, new AjaxOptions()
-           {
-               UpdateTargetId = "informational",
-               LoadingElementId = "loading",
-               Url = Url.Action("AssignRole", new { area = "Administrator", Controller = "Teacher" })
-           })
+                @Ajax.ActionLink("Assign Role", "AssignRole", new {area = "Administrator", controller = "Teacher"}, new AjaxOptions()
+                {
+                    UpdateTargetId = "informational",
+                    LoadingElementId = "loading",
+                    Url = Url.Action("AssignRole", new {area = "Administrator", Controller = "Teacher"})
+                })
             </li>
+            
         </ul>
     </div>
 }
@@ -48,30 +49,60 @@
             </td>
             <td>
                 @Ajax.AdminMenuMainLink("Detail", "Detail", "Teacher", item.IdUser, new AjaxOptions
-                {
-                    Url = Url.Action("Detail", new {area = "Administrator", Controller = "Teacher", id = item.IdUser})
-                })
-            </td>
-            <td>
+           {
+               Url = Url.Action("Detail", new { area = "Administrator", Controller = "Teacher", id = item.IdUser })
+           }) | 
                 @Ajax.AdminMenuMainLink("Delete", "Delete", "Teacher", item.IdUser, new AjaxOptions
-                {
-                    Url = Url.Action("Delete", new {area = "Administrator", Controller = "Teacher", id = item.IdUser})
-                })
-            </td>
-            <td>
+           {
+               Url = Url.Action("Delete", new { area = "Administrator", Controller = "Teacher", id = item.IdUser })
+           }) | 
                 @Ajax.AdminMenuMainLink("To Class", "Detail", "Teacher", item.IdUser, new AjaxOptions
-                {
-                    Url = Url.Action("Detail", new { area = "Administrator", Controller = "Teacher", id = item.IdUser })
-                })
+           {
+               Url = Url.Action("Detail", new { area = "Administrator", Controller = "Teacher", id = item.IdUser })
+           }) |
+                @Ajax.AdminMenuMainLink("To detail class room", "InfoTeacher", "Teacher", item.IdUser, new AjaxOptions
+           {
+               Url = Url.Action("InfoTeacher", new { area = "Administrator", Controller = "Teacher", id = item.IdUser })
+           }) |
+                @Ajax.AdminMenuMainLink("Add class room", "InClassRoom", "Teacher", item.IdUser, new AjaxOptions
+           {
+               Url = Url.Action("InClassRoom", new { area = "Administrator", Controller = "Teacher", id = item.IdUser })
+           })
             </td>
             <td>
-                @{
-                    Html.RenderPartial("_ClassRoom", item.ClassRoom);
-                }
+                
             </td>
-        </tr>
+            <td>
+                
+            </td>
+            <td>
+
+                <table class="table">
+                    @foreach (var i in item.ClassRoom)
+        {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => i.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => i.Room)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => i.Time)
+                            </td>
+                            <td></td>
+                        </tr>
+                    }
+
+                    </table>
+                    @{
+                        //Html.RenderPartial("_ClassRoom", item.ClassRoom);
+                    }
+</td>
+                </tr>
                     }
 </table>
+
 }
 
 

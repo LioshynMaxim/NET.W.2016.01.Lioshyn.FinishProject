@@ -1,0 +1,90 @@
+﻿@model IEnumerable<MvcPL.Areas.Administrator.Models.GridTeacherModel>
+@section Header{
+    @{ViewBag.Title = "Teachers";}
+}
+
+@section LeftMenu{
+    <div class="panel-body">
+        <ul class="nav nav-stacked">
+            <li>
+                @Ajax.AdminMenuCreateLink("Create", "Teacher", new AjaxOptions
+           {
+               Url = Url.Action("Create", new { area = "Administrator", Controller = "Teacher" })
+           })
+            </li>
+            <li>
+                @Ajax.ActionLink("Assign Role", "AssignRole", new { area = "Administrator", controller = "Teacher" }, new AjaxOptions()
+           {
+               UpdateTargetId = "informational",
+               LoadingElementId = "loading",
+               Url = Url.Action("AssignRole", new { area = "Administrator", Controller = "Teacher" })
+           })
+            </li>
+            <li>
+                @Ajax.ActionLink("Delete classRoom", "AssignRole", new { area = "Administrator", controller = "Teacher" }, new AjaxOptions()
+           {
+               UpdateTargetId = "informational",
+               LoadingElementId = "loading",
+               Url = Url.Action("AssignRole", new { area = "Administrator", Controller = "Teacher" })
+           })
+            </li>
+        </ul>
+    </div>
+}
+@section Body{
+    <h2>Lisd of Delete ClassRoom</h2>
+
+    
+    <table class="table">
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Surname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Patronymic)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Surname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Patronymic)
+            </td>
+            <td>
+                @foreach (var i in item.ClassRoom)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => i.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => i.Room)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => i.Time)
+                </td>
+                <td>
+                    @Html.ActionLink("delete class","DeleteClassRoom", new { id = item.IdUser, idClassRoom = i.Id })
+                </td>
+                <td></td>
+            </tr>
+                }
+                </td>
+            
+                </tr>
+    }
+
+</table>
+}

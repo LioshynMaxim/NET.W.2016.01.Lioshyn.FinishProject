@@ -1,6 +1,7 @@
-﻿@model IEnumerable<MvcPL.Areas.Administrator.Models.GridTeacherModel>
+﻿@model IEnumerable<MvcPL.Areas.Administrator.Models.GridClassRoomModelWhithIdUser>
+
 @section Header{
-    @{ViewBag.Title = "Teachers";}
+    @{ViewBag.Title = "Teacher";}
 }
 
 @section LeftMenu{
@@ -23,26 +24,22 @@
         </ul>
     </div>
 }
+
 @section Body{
+    <h2>In ClassRoom</h2>
 
-    <h2>A</h2>
 
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
     <table class="table">
         <tr>
+           
             <th>
-                @Html.DisplayNameFor(model => model.IdUser)
+                @Html.DisplayNameFor(model => model.ClassRoom.Name)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+                @Html.DisplayNameFor(model => model.ClassRoom.Room)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Surname)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Patronymic)
+                @Html.DisplayNameFor(model => model.ClassRoom.Time)
             </th>
             <th></th>
         </tr>
@@ -51,21 +48,16 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.IdUser)
+                    @Html.DisplayFor(modelItem => item.ClassRoom.Name)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Name)
+                    @Html.DisplayFor(modelItem => item.ClassRoom.Room)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Surname)
+                    @Html.DisplayFor(modelItem => item.ClassRoom.Time)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Patronymic)
-                </td>
-                <td>
-                    @{
-                        Html.RenderPartial("_ClassRoom", item.ClassRoom);
-                    }
+                    @Html.ActionLink("add in class", "AddToClassroom", new { id = item.IdUser, idClassRoom = item.ClassRoom.Id })
                 </td>
             </tr>
         }

@@ -76,14 +76,36 @@ namespace MvcPL.Infrastructure.Mappers
         /// <param name="id"></param>
         /// <returns>Grid pupil model classroom.</returns>
 
-        public static GridPupilClassRoomModel ToGridPupilClassRoomModelInPupil(this ClassRoomModel model, int id)
+        public static GridClassRoomModelWhithIdUser ToGridClassRoomModelWhithIdUser(this ClassRoomModel model, int id)
         {
             if (model == null) return null;
-            return new GridPupilClassRoomModel
+            return new GridClassRoomModelWhithIdUser
             {
                 IdUser = id,
                 ClassRoom = model
             };
         }
+
+        /// <summary>
+        /// To Greed Teacher Delete
+        /// </summary>
+        /// <param name="model">GridTeacherModel</param>
+        /// <param name="idClassRoom">ClassRoom id</param>
+        /// <returns>GridTeacherDeleteModel</returns>
+
+        public static GridTeacherDeleteModel ToGridTeacherDeleteModel(this GridTeacherModel model, int idClassRoom)
+        {
+            if (model == null) return null;
+            return new GridTeacherDeleteModel
+            {
+                IdUser = model.IdUser,
+                Name = model.Name,
+                Surname = model.Surname,
+                Patronymic = model.Patronymic,
+                ClassRoom = model.ClassRoom.FirstOrDefault(s=>s.Id == idClassRoom)
+            };
+        }
+
+
     }
 }

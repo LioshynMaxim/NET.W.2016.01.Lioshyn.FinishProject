@@ -260,13 +260,11 @@
     <Content Include="Areas\Administrator\Views\User\AddPupilEdit.cshtml" />
     <Content Include="Areas\Administrator\Views\User\AddParentEdit.cshtml" />
     <Content Include="Areas\Administrator\Views\User\AddTeacherEdit.cshtml" />
-    <Content Include="Areas\Administrator\Views\Pupil\Index1.cshtml" />
     <Content Include="Areas\Administrator\Views\Pupil\Index.cshtml" />
     <Content Include="Areas\Administrator\Views\Shared\Error.cshtml" />
     <Content Include="Areas\Administrator\Views\Pupil\AssignRole.cshtml" />
     <Content Include="Areas\Administrator\Views\Teacher\Index.cshtml" />
     <Content Include="Areas\Administrator\Views\Teacher\AssignRole.cshtml" />
-    <Content Include="Areas\Administrator\Views\Teacher\A.cshtml" />
     <Content Include="Areas\Administrator\Views\Teacher\_ClassRoom.cshtml" />
     <Content Include="Areas\Administrator\Views\ClassRoom\Index.cshtml" />
     <Content Include="Areas\Administrator\Views\ClassRoom\AddClassRoom.cshtml" />
@@ -280,6 +278,10 @@
     <Content Include="Areas\Administrator\Views\Pupil\InClassRoom.cshtml" />
     <Content Include="Areas\Administrator\Views\Pupil\_Classes.cshtml" />
     <Content Include="Areas\Administrator\Views\Pupil\DeleteClassRoom.cshtml" />
+    <Content Include="Areas\Administrator\Views\Teacher\DeleteClassRoom.cshtml" />
+    <Content Include="Areas\Administrator\Views\Teacher\LisdDelete.cshtml" />
+    <Content Include="Areas\Administrator\Views\Teacher\InfoTeacher.cshtml" />
+    <Content Include="Areas\Administrator\Views\Teacher\InClassRoom.cshtml" />
     <None Include="NLog.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -343,6 +345,8 @@
     <Compile Include="Areas\Administrator\Models\GridPupilClassroom.cs" />
     <Compile Include="Areas\Administrator\Models\GridPupilClassRoomModel.cs" />
     <Compile Include="Areas\Administrator\Models\GridPupilModel.cs" />
+    <Compile Include="Areas\Administrator\Models\GridTeacherAddModel.cs" />
+    <Compile Include="Areas\Administrator\Models\GridTeacherDeleteModel.cs" />
     <Compile Include="Areas\Administrator\Models\GridTeacherModel.cs" />
     <Compile Include="Areas\Administrator\Models\Mersh\UserPupilModel.cs" />
     <Compile Include="Areas\Administrator\Models\Mersh\UserTeacherModel.cs" />

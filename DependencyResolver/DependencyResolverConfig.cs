@@ -63,6 +63,7 @@ namespace DependencyResolver
             kernel.Bind<IFullUserService>().To<FullUserService>();
             kernel.Bind<IFullPupilService>().To<FullPupilService>();
             kernel.Bind<IFullTeacherService>().To<FullTeacherService>();
+            kernel.Bind<IGeneralClassRoomService>().To<GeneralClassRoomService>();
 
             kernel.Bind<IClassRoomRepository>().To<ClassRoomRepository>();
             kernel.Bind<ICommentRepository>().To<CommentRepository>();

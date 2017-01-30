@@ -5,6 +5,9 @@ namespace BLL.Interfacies.Services
 {
     public interface IFullClassRoomEntity
     {
-        IEnumerable<FullClassRoomEntity> GetAllClassRoom();
+        IEnumerable<UserPupilEntity> GetPupil(int idUser);
+        IEnumerable<UserTeacherEntity> GetTeacher(int idUser);
+        FullClassRoomEntity GetClassRoom(int idClassRoom);
+        IEnumerable<FullClassRoomEntity> GetAllInformationClassRoom();
     }
 }

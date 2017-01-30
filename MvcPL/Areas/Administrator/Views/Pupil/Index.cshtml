@@ -1,5 +1,5 @@
 ﻿@using MvcPL.Infrastructure
-@model IEnumerable<MvcPL.Areas.Administrator.Models.GridPupilModel>
+@model IEnumerable<MvcPL.Areas.Administrator.Models.GridClassroomModel>
 
 @section Header{
     @{ViewBag.Title = "Pupils";}
@@ -40,7 +40,6 @@
         rowStyle: "webgrid-row-style",
 
         columns: grid.Columns(
-            grid.Column(columnName: "IdUser", header: "IdUser"),
             grid.Column(columnName: "Name", header: "Name"),
             grid.Column(columnName: "Surname", header: "Surname"),
             grid.Column(columnName: "Room", header: "Room"),
@@ -72,9 +71,19 @@
             }),
             grid.Column(format: (item) =>
             {
-                var link = CustomAjaxHelper.AdminMenuMainLink(Ajax, "To Class", "Detail", "Pupil", item.IdUser, new AjaxOptions
+                var link = Ajax.ActionLink("Delete class", "DeleteClassRoom", new { area = "Administrator", controller = "Pupil", id = item.IdUser }, new AjaxOptions
                 {
-                    Url = Url.Action("Detail", new { area = "Administrator", Controller = "Pupil", id = item.IdUser })
+                    UpdateTargetId = "informational",
+                    Url = Url.Action("DeleteClassRoom", new { area = "Administrator", Controller = "Pupil", id = item.IdUser })
+                });
+                return link;
+            }),
+            grid.Column(format: (item) =>
+            {
+                var link = Ajax.ActionLink("Add class", "InClassRoom", new {area = "Administrator", controller = "Pupil", id = item.IdUser }, new AjaxOptions
+                {
+                    UpdateTargetId = "informational",
+                    Url = Url.Action("InClassRoom", new { area = "Administrator", Controller = "Pupil", id = item.IdUser })
                 });
                 return link;
             })

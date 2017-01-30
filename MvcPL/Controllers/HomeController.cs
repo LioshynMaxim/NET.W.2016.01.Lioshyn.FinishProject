@@ -101,6 +101,7 @@ namespace MvcPL.Controllers
                 var httpCookie = HttpContext.Response.Cookies["login"];
                 if (httpCookie != null)
                     httpCookie.Value = loginModel.Login;
+                if (User.IsInRole("Administrator")) return RedirectToAction("Home", new {area = "Administrator", controller = "Home"});
             }
             else
             {

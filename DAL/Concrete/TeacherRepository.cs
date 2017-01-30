@@ -127,12 +127,8 @@ namespace DAL.Concrete
 
         public IEnumerable<DalTeacher> GetAllTeacherInClassRoom(int idClassRoom)
         {
-            var classroom = Context.Set<ClassRoom>().FirstOrDefault(t => t.Id == idClassRoom).ToDalClassRoom();
-            return
-                Context.Set<Teacher>()
-                    .ToList()
-                    .Select(t => t.ToDalTeacher())
-                    .Where(t => t.ClassRoomBsu == classroom.Room);
+            var classroom = Context.Set<ClassRoom>().FirstOrDefault(t => t.Id == idClassRoom);
+            return classroom?.Teachers.ToList().Select(s => s.ToDalTeacher());
         }
 
         /// <summary>

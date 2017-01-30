@@ -43,6 +43,9 @@
     <Compile Include="Entities\ClassRoomEntity.cs" />
     <Compile Include="Entities\CommentEntity.cs" />
     <Compile Include="Entities\FullClassRoomEntity.cs" />
+    <Compile Include="Entities\GeneralClassRoomEntity.cs" />
+    <Compile Include="Entities\UserPupilEntity.cs" />
+    <Compile Include="Entities\UserTeacherEntity.cs" />
     <Compile Include="Services\IFullClassRoomEntity.cs" />
     <Compile Include="Entities\FullPupilEntity.cs" />
     <Compile Include="Entities\FullTeacherEntity.cs" />
@@ -61,6 +64,7 @@
     <Compile Include="Services\IFullPupilService.cs" />
     <Compile Include="Services\IFullTeacherService.cs" />
     <Compile Include="Services\IFullUserService.cs" />
+    <Compile Include="Services\IGeneralClassRoomService.cs" />
     <Compile Include="Services\IMailService.cs" />
     <Compile Include="Services\IParentService.cs" />
     <Compile Include="Services\IPupilService.cs" />

@@ -1,0 +1,48 @@
+﻿@model IEnumerable<MvcPL.Models.PupilModel>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.School)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumberSchool)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ClassNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ClassLetter)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SchoolTeacherSurname)
+        </th>
+        
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.School)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumberSchool)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ClassNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ClassLetter)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SchoolTeacherSurname)
+        </td>
+        
+        <td>
+            
+        </td>
+    </tr>
+}
+
+</table>

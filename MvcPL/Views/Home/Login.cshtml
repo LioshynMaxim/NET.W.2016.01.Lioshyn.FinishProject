@@ -5,8 +5,8 @@
 }
 
 <h2>Login</h2>
-
-@using (@Html.BeginForm())
+@if (!Request.IsAuthenticated) { 
+using (@Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     
@@ -33,4 +33,11 @@
             </div>
         </div>
     </div>
+    }
+}
+else
+{
+    <h3>@Html.ActionLink("Administrator", "Index", new { area = "Administrator", controller = "Home" })</h3>
+    
+    <h3>@Html.ActionLink("Teacher", "Index", new { area = "Teacher", controller = "Home" })</h3>
 }

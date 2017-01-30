@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using BLL.Interfacies.Entities;
 using MvcPL.Areas.Administrator.Models;
+using MvcPL.Infrastructure.Mappers.UserTeacherPupil;
 
 namespace MvcPL.Infrastructure.Mappers
 {
@@ -20,10 +21,9 @@ namespace MvcPL.Infrastructure.Mappers
             if (model == null) return null;
             return new FullClassRoomEntity
             {
-                User = model.User.ToDalUser(),
-                Teacher = model.Teacher.Select(s=>s.ToBlllTeacher()),
-                Pupil = model.Pupil.Select(s=>s.ToBllPupil()),
-                ClassRoom = model.ClassRoom.Select(s=>s.ToBllClassRoom())
+             ClassRoom   = model.ClassRoom.ToBllClassRoom(),
+             Teacher = model.TeacherModel.ToBllUserTeacher(),
+             Pupil = model.Pupil.Select(s=>s.ToBllUserPupil())
             };
         }
 
@@ -38,10 +38,9 @@ namespace MvcPL.Infrastructure.Mappers
             if (model == null) return null;
             return new FullClassroomModel
             {
-                User = model.User.ToUserModel(),
-                Teacher = model.Teacher.Select(s=>s.ToTeacherModel()),
-                Pupil = model.Pupil.Select(s=>s.ToPupilModel()),
-                ClassRoom = model.ClassRoom.Select(s => s.ToClassRoomModel())
+                ClassRoom = model.ClassRoom.ToClassRoomModel(),
+                TeacherModel = model.Teacher.ToUserTeacherModel(),
+                Pupil = model.Pupil.Select(s => s.ToUserPupilModel())
             };
         }
 

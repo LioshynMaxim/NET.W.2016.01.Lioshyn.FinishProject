@@ -51,7 +51,7 @@ namespace MvcPL.Areas.Administrator.Controllers
 
         public ActionResult ToClassroom(int id)
         {
-            return RedirectToAction("Index", new { area = "Administrator", controller = "User", idUser = id });
+            return RedirectToAction("DetailClassRoom", new { area = "Administrator", controller = "ClassRoom", idUser = id });
         }
 
 

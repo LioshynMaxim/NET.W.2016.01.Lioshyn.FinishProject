@@ -142,6 +142,7 @@ namespace DAL.Concrete
             var pupil = Context.Set<Pupil>().FirstOrDefault(p => p.Id == idPupil);
             var classroom = Context.Set<ClassRoom>().FirstOrDefault(p => p.Id == idClassRoom);
             if ((pupil == default(Pupil)) || (classroom == default(ClassRoom))) return;
+            if (pupil.ClassRooms.FirstOrDefault() != null) pupil.ClassRooms.Remove(classroom);
             pupil.ClassRooms.Add(classroom);
             Context.SaveChanges();
         }

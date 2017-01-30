@@ -34,7 +34,7 @@
                 {
                     var link = Ajax.ActionLink("Edit", "Edit", new { area = "Administrator", Controller = "Role", id = item.Id }, new AjaxOptions()
                     {
-                        UpdateTargetId = "text-muted",
+                        UpdateTargetId = "informational",
                         Url = Url.Action("Edit", new { area = "Administrator", Controller = "Role" })
                     });
                     return link;
@@ -44,7 +44,7 @@
                 grid.Column(format: (item) =>
                 {
                     var link = CustomAjaxHelper.AdminMenuMainLink(Ajax, "Delete", "Delete", "Role", item.Id, new AjaxOptions{
-                        Url = Url.Action("Delete", new { area = "Administrator", Controller = "Role" })
+                        Url = Url.Action("Delete", new { area = "Administrator", Controller = "Role", id = item.Id })
                     });
                     return link;
                 })

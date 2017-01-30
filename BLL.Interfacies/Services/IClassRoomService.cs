@@ -7,5 +7,7 @@ namespace BLL.Interfacies.Services
     {
         IEnumerable<ClassRoomEntity> GetTeacherClassRooms(int idTeacher);
         ClassRoomEntity GetPupilClassRoom(int idPupil);
+        TeacherEntity GetTeacherInClassRoom(int idClassRoom);
+        IEnumerable<PupilEntity> GetPupilInClassRoom(int idClassRoom);
     }
 }

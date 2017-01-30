@@ -270,6 +270,16 @@
     <Content Include="Areas\Administrator\Views\Teacher\_ClassRoom.cshtml" />
     <Content Include="Areas\Administrator\Views\ClassRoom\Index.cshtml" />
     <Content Include="Areas\Administrator\Views\ClassRoom\AddClassRoom.cshtml" />
+    <Content Include="Areas\Administrator\Views\ClassRoom\DeleteClassRoom.cshtml" />
+    <Content Include="Areas\Administrator\Views\ClassRoom\EditClassRoom.cshtml" />
+    <Content Include="Areas\Administrator\Views\ClassRoom\_ClassRoom.cshtml" />
+    <Content Include="Areas\Administrator\Views\ClassRoom\_Teacher.cshtml" />
+    <Content Include="Areas\Administrator\Views\ClassRoom\_Pupils.cshtml" />
+    <Content Include="Areas\Administrator\Views\ClassRoom\DetailClassRoom.cshtml" />
+    <Content Include="Areas\Administrator\Views\ClassRoom\AddPupil.cshtml" />
+    <Content Include="Areas\Administrator\Views\Pupil\InClassRoom.cshtml" />
+    <Content Include="Areas\Administrator\Views\Pupil\_Classes.cshtml" />
+    <Content Include="Areas\Administrator\Views\Pupil\DeleteClassRoom.cshtml" />
     <None Include="NLog.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -328,9 +338,14 @@
     <Compile Include="Areas\Administrator\Models\FullPupilModel.cs" />
     <Compile Include="Areas\Administrator\Models\FullTeacherModel.cs" />
     <Compile Include="Areas\Administrator\Models\FullUserModel.cs" />
+    <Compile Include="Areas\Administrator\Models\GeneralClassRoomModel.cs" />
     <Compile Include="Areas\Administrator\Models\GridClassroomModel.cs" />
+    <Compile Include="Areas\Administrator\Models\GridPupilClassroom.cs" />
+    <Compile Include="Areas\Administrator\Models\GridPupilClassRoomModel.cs" />
     <Compile Include="Areas\Administrator\Models\GridPupilModel.cs" />
     <Compile Include="Areas\Administrator\Models\GridTeacherModel.cs" />
+    <Compile Include="Areas\Administrator\Models\Mersh\UserPupilModel.cs" />
+    <Compile Include="Areas\Administrator\Models\Mersh\UserTeacherModel.cs" />
     <Compile Include="Areas\Teacher\Controllers\HomeController.cs" />
     <Compile Include="Areas\Teacher\TeacherAreaRegistration.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
@@ -349,6 +364,7 @@
     <Compile Include="Infrastructure\Mappers\MvcPLFullPupilMapper.cs" />
     <Compile Include="Infrastructure\Mappers\MvcPLFullTeacherMapper.cs" />
     <Compile Include="Infrastructure\Mappers\MvcPLFullUserMapper.cs" />
+    <Compile Include="Infrastructure\Mappers\MvcPLGeneralClassRoomMapper.cs" />
     <Compile Include="Infrastructure\Mappers\MvcPLMailMapper.cs" />
     <Compile Include="Infrastructure\Mappers\MvcPLParentMapper.cs" />
     <Compile Include="Infrastructure\Mappers\MvcPLPupilMapper.cs" />
@@ -358,6 +374,8 @@
     <Compile Include="Infrastructure\Mappers\MvcPLTeacherMapper.cs" />
     <Compile Include="Infrastructure\Mappers\MvcPLUserMapper.cs" />
     <Compile Include="Infrastructure\Mappers\MvcPLRequisition.cs" />
+    <Compile Include="Infrastructure\Mappers\UserTeacherPupil\UserPupilModelMapper.cs" />
+    <Compile Include="Infrastructure\Mappers\UserTeacherPupil\UserTeacherModelMapper.cs" />
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
     <Compile Include="Models\ClassRoomModel.cs" />
     <Compile Include="Models\CommentModel.cs" />

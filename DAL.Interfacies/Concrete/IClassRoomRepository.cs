@@ -7,5 +7,7 @@ namespace DAL.Interfacies.Concrete
     {
         IEnumerable<DalClassRoom> GetTeacherClassRooms(int idTeacher);
         DalClassRoom GetPupilClassRoom(int idPupil);
+        DalTeacher GetTeacherInClassRoom(int idClassRoom);
+        IEnumerable<DalPupil> GetPupilInClassRoom(int idClassRoom);
     }
 }

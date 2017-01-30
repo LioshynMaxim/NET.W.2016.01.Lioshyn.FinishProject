@@ -1,0 +1,64 @@
+﻿@model IEnumerable<MvcPL.Areas.Administrator.Models.GridClassroomModel>
+
+@section Header{
+    @{ViewBag.Title = "Pupils";}
+}
+
+@section LeftMenu{
+    <div class="panel-body">
+        <ul class="nav nav-stacked">
+            <li>
+                @Ajax.ActionLink("Back to index", "Index", new { area = "Administrator", controller = "ClassRoom" }, new AjaxOptions()
+           {
+               UpdateTargetId = "informational",
+               LoadingElementId = "loading",
+               Url = Url.Action("Index", new { area = "Administrator", Controller = "ClassRoom" })
+           })
+            </li>
+        </ul>
+    </div>
+}
+
+@section Body{
+    <h2>Add Pupils</h2>
+    @{
+        var grid = new WebGrid(Model);
+    }
+
+    @grid.GetHtml(tableStyle: "table",
+        headerStyle: "webgrid-header",
+        footerStyle: "webgrid-footer",
+        alternatingRowStyle: "webgrid-alternating-row",
+        selectedRowStyle: "webgrid-selected-row",
+        rowStyle: "webgrid-row-style",
+
+        columns: grid.Columns(
+            grid.Column(columnName: "IdUser", header: "IdUser"),
+            grid.Column(columnName: "Name", header: "Name"),
+            grid.Column(columnName: "Surname", header: "Surname"),
+            grid.Column(columnName: "Room", header: "Room"),
+            grid.Column(columnName: "NameRoom", header: "NameRoom"),
+            grid.Column(columnName: "Time", header: "Time"),
+            grid.Column(format: (item) =>
+            {
+                var link = CustomAjaxHelper.AdminMenuMainLink(Ajax, "Detail", "Detail", "Pupil", item.IdUser, new AjaxOptions
+                {
+                    Url = Url.Action("Detail", new { area = "Administrator", Controller = "Pupil", id = item.IdUser })
+                });
+                return link;
+            }),
+            grid.Column(format: (item) =>
+            {
+                var link = Html.ActionLink("Add","AddPupilIClassRoom", new {id = item.IdUser, idClassRoom = item.IdClassRoom });
+                return link;
+            }),
+            grid.Column(format: (item) =>
+            {
+                var link = CustomAjaxHelper.AdminMenuMainLink(Ajax, "Delete", "Delete", "Pupil", item.IdUser, new AjaxOptions
+                {
+                    Url = Url.Action("Delete", new { area = "Administrator", Controller = "Pupil", id = item.IdUser })
+                });
+                return link;
+            })
+            ))
+}

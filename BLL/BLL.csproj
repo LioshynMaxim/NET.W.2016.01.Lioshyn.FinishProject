@@ -56,6 +56,7 @@
     <Compile Include="Services\FullPupilService.cs" />
     <Compile Include="Services\FullTeacherService.cs" />
     <Compile Include="Services\FullUserService.cs" />
+    <Compile Include="Services\GeneralClassRoomService.cs" />
     <Compile Include="Services\MailService.cs" />
     <Compile Include="Services\ParentService.cs" />
     <Compile Include="Services\PupilService.cs" />
@@ -63,7 +64,9 @@
     <Compile Include="Services\RoleService.cs" />
     <Compile Include="Services\Service.cs" />
     <Compile Include="Services\TeacherService.cs" />
+    <Compile Include="Services\UserPupilService.cs" />
     <Compile Include="Services\UserService.cs" />
+    <Compile Include="Services\UserTeacherService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BLL.Interfacies\BLL.Interfacies.csproj">

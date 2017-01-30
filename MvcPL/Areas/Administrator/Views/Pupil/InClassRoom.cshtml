@@ -1,0 +1,72 @@
+﻿@using MvcPL.Infrastructure.Mappers
+@model IEnumerable<MvcPL.Areas.Administrator.Models.GridPupilClassRoomModel>
+
+@section Header{
+    @{ViewBag.Title = "Pupils";}
+}
+
+@section LeftMenu{
+    <div class="panel-body">
+        <ul class="nav nav-stacked">
+            <li>
+                @Ajax.AdminMenuCreateLink("Create", "Pupil", new AjaxOptions
+           {
+               Url = Url.Action("Create", new { area = "Administrator", Controller = "Pupil" })
+           })
+            </li>
+            <li>
+                @Ajax.ActionLink("Assign Role", "AssignRole", new { area = "Administrator", controller = "Pupil" }, new AjaxOptions()
+           {
+               UpdateTargetId = "informational",
+               LoadingElementId = "loading",
+               Url = Url.Action("AssignRole", new { area = "Administrator", Controller = "Pupil" })
+           })
+            </li>
+        </ul>
+    </div>
+}
+
+@section Body{
+    <h2>In ClassRoom</h2>
+
+    
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IdUser)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ClassRoom.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ClassRoom.Room)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ClassRoom.Time)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdUser)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ClassRoom.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ClassRoom.Room)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ClassRoom.Time)
+                </td>
+                <td>
+                    @Html.ActionLink("add in class","ToClassroom",new {id = item.IdUser, idClassRoom = item.ClassRoom.Id})
+                </td>
+            </tr>
+        }
+
+    </table>
+}

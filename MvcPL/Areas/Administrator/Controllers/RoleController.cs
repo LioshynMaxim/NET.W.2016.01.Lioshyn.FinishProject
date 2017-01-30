@@ -86,23 +86,21 @@ namespace MvcPL.Areas.Administrator.Controllers
 
         public ActionResult Delete(int id)
         {
-            if (Request.IsAjaxRequest()) return PartialView(_roleService.GetById(id).ToRoleModel());
             return View(_roleService.GetById(id).ToRoleModel());
         }
 
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(RoleModel model)
         {
             try
             {
-                _roleService.Delete(_roleService.GetById(id));
+                _roleService.Delete(_roleService.GetById(model.Id));
                 return RedirectToAction("Index");
             }
             catch (Exception ex)
             {
                 logger.Error(ex);
-                if (Request.IsAjaxRequest()) return PartialView(_roleService.GetById(id).ToRoleModel());
-                return View(_roleService.GetById(id).ToRoleModel());
+                return View(_roleService.GetById(model.Id).ToRoleModel());
             }
         }
 

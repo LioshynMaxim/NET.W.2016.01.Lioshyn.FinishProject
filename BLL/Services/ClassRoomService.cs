@@ -51,6 +51,18 @@ namespace BLL.Services
 
         public void Delete(ClassRoomEntity entity)
         {
+            var pupil = Uow.PupilRepository.GetAllPupilsInClassRoom(entity.Id);
+            var teacher = Uow.TeacherRepository.GetAllTeacherInClassRoom(entity.Id);
+            foreach (var p in pupil)
+            {
+                Uow.PupilRepository.DeletePupilToClassRoom(p.Id,entity.Id);
+            }
+
+            foreach (var p in teacher)
+            {
+                Uow.TeacherRepository.DeleteTeacherToClassRoom(p.Id, entity.Id);
+            }
+
             Uow.ClassRoomRepository.Delete(entity.ToDalClassRoom());
             Uow.Saving();
         }
@@ -89,6 +101,24 @@ namespace BLL.Services
         /// <returns>Classroom.</returns>
 
         public ClassRoomEntity GetPupilClassRoom(int idPupil) => Uow.ClassRoomRepository.GetPupilClassRoom(idPupil).ToClassRoom();
+
+        /// <summary>
+        /// Get teacher by id classroom.
+        /// </summary>
+        /// <param name="idClassRoom">ClassRoom id.</param>
+        /// <returns>Teacher.</returns>
+
+        public TeacherEntity GetTeacherInClassRoom(int idClassRoom)
+            => Uow.ClassRoomRepository.GetTeacherInClassRoom(idClassRoom).ToTeacher();
+
+        /// <summary>
+        /// Get pupils by id classroom.
+        /// </summary>
+        /// <param name="idClassRoom">ClassRoom id.</param>
+        /// <returns>List of pupils.</returns>
+
+        public IEnumerable<PupilEntity> GetPupilInClassRoom(int idClassRoom)
+            => Uow.ClassRoomRepository.GetPupilInClassRoom(idClassRoom).Select(s => s.ToPupil());
 
         #endregion
 

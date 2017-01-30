@@ -1,11 +1,10 @@
-﻿using System;
-using System.Net;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using System.Web.Security;
 using BLL.Interfacies.Services;
 
 namespace MvcPL.Areas.Administrator.Controllers
 {
+    [Authorize(Roles = "Administrator")]
     public class HomeController : Controller
     {
         private readonly IUserService _userService;

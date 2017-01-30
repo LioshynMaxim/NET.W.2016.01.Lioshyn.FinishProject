@@ -1,0 +1,62 @@
+﻿@model MvcPL.Areas.Administrator.Models.GeneralClassRoomModel
+@section Header{
+    @{ViewBag.Title = "Edit user";}
+}
+@section LeftMenu{
+    <div class="panel-body">
+        <ul class="nav nav-stacked">
+            <li>@Html.ActionLink("Back to list users", "Index", new { area = "Administrator", controller = "ClassRoom" })</li>
+        </ul>
+    </div>
+}
+@section Body{
+
+    <h2>Detail ClassRoom</h2>
+
+@using (Html.BeginForm())
+    {
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+        @Html.HiddenFor(model => model.ClassRoom.Id)
+
+        @{
+            Html.RenderPartial("_ClassRoom", Model.ClassRoom);
+            <p>
+                @Ajax.AdminMenuMainLink("Edit", "EditClassRoom", "ClassRoom", Model.ClassRoom.Id, new AjaxOptions
+           {
+               Url = Url.Action("EditClassRoom", new { area = "Administrator", Controller = "ClassRoom", id = Model.ClassRoom.Id })
+           }) | 
+                @Ajax.AdminMenuMainLink("Delete", "DeleteClassRoom", "ClassRoom", Model.ClassRoom.Id, new AjaxOptions
+                {
+                    Url = Url.Action("DeleteClassRoom", new { area = "Administrator", Controller = "ClassRoom", id = Model.ClassRoom.Id })
+                }) 
+
+            </p>
+            if (Model.Teacher != null)
+            {
+                <h2>Edit information about teacher.</h2>
+                Html.RenderPartial("_Teacher", Model.Teacher);
+
+            }
+
+            if (Model.Pupil.Count() != 0)
+            {
+                <h2>Edit pupils information.</h2>
+                Html.RenderPartial("_Pupils", Model.Pupil);
+            }
+            
+        }
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+            }
+}

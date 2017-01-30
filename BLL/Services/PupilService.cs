@@ -113,7 +113,7 @@ namespace BLL.Services
         /// <param name="idClassRoom">Classroom id.</param>
 
         public void DeletePupilToClassRoom(int idPupil, int idClassRoom)
-            => Uow.PupilRepository.AddPupilToClassRoom(idPupil, idClassRoom);
+            => Uow.PupilRepository.DeletePupilToClassRoom(idPupil, idClassRoom);
 
         /// <summary>
         /// Get all pupils in classroom.

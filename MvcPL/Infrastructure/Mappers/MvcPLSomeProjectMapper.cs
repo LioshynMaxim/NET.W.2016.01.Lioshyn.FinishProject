@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using MvcPL.Areas.Administrator.Models;
+using MvcPL.Models;
 
 namespace MvcPL.Infrastructure.Mappers
 {
@@ -47,21 +48,42 @@ namespace MvcPL.Infrastructure.Mappers
         }
 
         /// <summary>
-        /// To grid classroom model entity.
+        /// To grid pupil model entity classroom.
         /// </summary>
-        /// <param name="model">Grid classroom model from MvcPL.</param>
-        /// <returns>Grid classroom model.</returns>
+        /// <param name="model">Grid pupil model from MvcPL.</param>
+        /// <returns>Grid pupil model classroom.</returns>
 
-        public static GridClassroomModel ToGridClassRoomModel(this FullClassroomModel model)
+        public static GridClassroomModel ToGridPupilClassRoomModel(this FullPupilModel model)
         {
             if (model == null) return null;
             return new GridClassroomModel
             {
-                IdUser = model.User.Id
-                
-
+                IdUser = model.User.Id,
+                Name = model.User.Name,
+                Surname = model.User.Surname,
+                Patronymic = model.User.Patronymic,
+                Room = model.ClassRoom.Room ?? 0,
+                NameRoom = model.ClassRoom.Name ?? "Non",
+                Time = model.ClassRoom.Time ?? TimeSpan.Zero,
+                IdClassRoom = model.ClassRoom.Id
             };
         }
 
+        /// <summary>
+        /// To grid pupil model entity classroom.
+        /// </summary>
+        /// <param name="model">Grid pupil model from MvcPL.</param>
+        /// <param name="id"></param>
+        /// <returns>Grid pupil model classroom.</returns>
+
+        public static GridPupilClassRoomModel ToGridPupilClassRoomModelInPupil(this ClassRoomModel model, int id)
+        {
+            if (model == null) return null;
+            return new GridPupilClassRoomModel
+            {
+                IdUser = id,
+                ClassRoom = model
+            };
+        }
     }
 }

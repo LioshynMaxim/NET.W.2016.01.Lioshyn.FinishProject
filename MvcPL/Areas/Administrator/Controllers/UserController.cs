@@ -8,6 +8,7 @@ using MvcPL.Areas.Administrator.Models;
 using MvcPL.Infrastructure.Mappers;
 using MvcPL.Models;
 using MvcPL.Providers;
+using NLog;
 
 namespace MvcPL.Areas.Administrator.Controllers
 {
@@ -20,7 +21,7 @@ namespace MvcPL.Areas.Administrator.Controllers
         private readonly IParentService _parentService;
         private readonly ITeacherService _teacherService;
         private readonly IFullUserService _fullUserService;
-        
+        private Logger logger = LogManager.GetCurrentClassLogger();
 
         public UserController(IUserService userService, IRoleService roleService, IMailService mailService, IPupilService pupilService, IParentService parentService, ITeacherService teacherService, IFullUserService fullUserService)
         {
@@ -78,8 +79,9 @@ namespace MvcPL.Areas.Administrator.Controllers
                 }
                 return View(model);
             }
-            catch
+            catch (Exception exception)
             {
+                logger.Error(exception);
                 return View(model);
             }
         }
@@ -189,8 +191,9 @@ namespace MvcPL.Areas.Administrator.Controllers
             {
                 return View(_fullUserService.SetFullUserEntity(idUser).ToFullUserModel());
             }
-            catch (Exception)
+            catch (Exception exception)
             {
+                logger.Error(exception);
                 return View();
             }
         }
@@ -203,8 +206,9 @@ namespace MvcPL.Areas.Administrator.Controllers
             {
                 return RedirectToAction("Index");
             }
-            catch (Exception)
+            catch (Exception exception)
             {
+                logger.Error(exception);
                 return View();
             }
         }

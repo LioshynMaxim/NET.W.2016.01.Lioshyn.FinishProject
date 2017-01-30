@@ -1,0 +1,97 @@
+﻿@model MvcPL.Areas.Administrator.Models.GridClassroomModel
+
+@section Header{
+    @{ViewBag.Title = "Pupils";}
+}
+
+@section LeftMenu{
+    <div class="panel-body">
+        <ul class="nav nav-stacked">
+            <li>
+                @Ajax.AdminMenuCreateLink("Create", "Pupil", new AjaxOptions
+           {
+               Url = Url.Action("Create", new { area = "Administrator", Controller = "Pupil" })
+           })
+            </li>
+            <li>
+                @Ajax.ActionLink("Assign Role", "AssignRole", new { area = "Administrator", controller = "Pupil" }, new AjaxOptions()
+           {
+               UpdateTargetId = "informational",
+               LoadingElementId = "loading",
+               Url = Url.Action("AssignRole", new { area = "Administrator", Controller = "Pupil" })
+           })
+            </li>
+        </ul>
+    </div>
+}
+
+@section Body{
+    <h2>Delete ClassRoom from</h2>
+
+    <h3>Are you sure you want to delete this?</h3>
+    <div>
+        <h4>GridClassroomModel</h4>
+        <hr/>
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.NameRoom)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.NameRoom)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Room)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Room)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Time)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Time)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Surname)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Surname)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Patronymic)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Patronymic)
+            </dd>
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(model => Model.IdUser)
+            @Html.HiddenFor(model => Model.IdClassRoom)
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default"/>
+            </div>
+        }
+    </div>
+}

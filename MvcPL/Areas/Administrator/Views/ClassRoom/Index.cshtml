@@ -8,7 +8,14 @@
     <div class="panel-body">
         <ul class="nav nav-stacked">
             <li>@Html.ActionLink("Create new ClassRoom", "AddClassRoom")</li>
-
+            <li>
+                @Ajax.ActionLink("Back to index", "Index", new { area = "Administrator", controller = "ClassRoom" }, new AjaxOptions()
+           {
+               UpdateTargetId = "informational",
+               LoadingElementId = "loading",
+               Url = Url.Action("Index", new { area = "Administrator", Controller = "ClassRoom" })
+           })
+            </li>
         </ul>
     </div>
 }
@@ -33,29 +40,22 @@
         grid.Column(columnName: "Time", header: "Time"),
                 grid.Column(format: (item) =>
                 {
-                    var link = Ajax.ActionLink("Edit", "Edit", new { area = "Administrator", Controller = "Role", id = item.Id }, new AjaxOptions()
+                    var link = Ajax.ActionLink("Details", "DetailClassRoom", new { area = "Administrator", Controller = "ClassRoom", id = item.Id }, new AjaxOptions()
                     {
-                        UpdateTargetId = "text-muted",
-                        Url = Url.Action("Edit", new { area = "Administrator", Controller = "Role" })
-                    });
-                    return link;
-                }),
-                grid.Column(format: (item) =>
-                {
-                    var link = Ajax.ActionLink("Details", "Edit", new { area = "Administrator", Controller = "Role", id = item.Id }, new AjaxOptions()
-                    {
-                        UpdateTargetId = "show",
-                        Url = Url.Action("Edit", new { area = "Administrator", Controller = "Role" })
+                        UpdateTargetId = "informational",
+                        LoadingElementId = "loading",
+                        Url = Url.Action("DetailClassRoom", new { area = "Administrator", Controller = "ClassRoom", id = item.Id })
                     });
                     return link;
                 }),
 
                 grid.Column(format: (item) =>
                 {
-                    var link = CustomAjaxHelper.AdminMenuMainLink(Ajax, "Delete", "Delete", "Role", item.Id, new AjaxOptions
+                    var link = CustomAjaxHelper.AdminMenuMainLink(Ajax, "Delete", "DeleteClassRoom", "ClassRoom", item.Id, new AjaxOptions
                     {
-                        Url = Url.Action("Delete", new { area = "Administrator", Controller = "Role" })
+                        Url = Url.Action("DeleteClassRoom", new { area = "Administrator", Controller = "ClassRoom", id = item.Id })
                     });
+
                     return link;
                 })
     ))
@@ -63,7 +63,7 @@
         </div>
         <div id="show" class="col col-sm-4">
             <div class="text-muted">
-                
+
             </div>
         </div>
     </div>

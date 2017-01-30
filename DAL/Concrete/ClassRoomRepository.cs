@@ -109,6 +109,28 @@ namespace DAL.Concrete
         public DalClassRoom GetPupilClassRoom(int idPupil)
             => Context.Set<Pupil>().FirstOrDefault(p => p.Id == idPupil)?.ClassRooms.FirstOrDefault().ToDalClassRoom();
 
+        /// <summary>
+        /// Get pupils for concrete classroom.
+        /// </summary>
+        /// <param name="idClassRoom">Id pupil.</param>
+        /// <returns>List of pupils.</returns>
+
+        public IEnumerable<DalPupil> GetPupilInClassRoom(int idClassRoom)
+            => Context.Set<ClassRoom>().FirstOrDefault(p => p.Id == idClassRoom)?.Pupils.ToList().Select(s => s.ToDalPupil());
+
+        /// <summary>
+        /// Get teacher for concrete classroom.
+        /// </summary>
+        /// <param name="idClassRoom">Id classroom.</param>
+        /// <returns>Teacher.</returns>
+
+        public DalTeacher GetTeacherInClassRoom(int idClassRoom)
+            =>
+                Context.Set<ClassRoom>()
+                    .FirstOrDefault(p => p.Id == idClassRoom)?
+                    .Teachers.FirstOrDefault()
+                    .ToDalTeacher();
+
         #endregion
 
     }

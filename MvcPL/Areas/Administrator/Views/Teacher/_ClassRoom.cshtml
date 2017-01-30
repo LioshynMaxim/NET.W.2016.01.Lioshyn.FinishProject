@@ -14,6 +14,15 @@
         columns: grid.Columns(
             grid.Column(columnName: "Name", header: "Name"),
             grid.Column(columnName: "Room", header: "Room"),
-            grid.Column(columnName: "Time", header: "Time")
+            grid.Column(columnName: "Time", header: "Time"),
+            grid.Column(format: (item) =>
+                {
+                    var link = Ajax.ActionLink("To class", "ToClassRoom", new { area = "Administrator", Controller = "Teacher", id = item.Id }, new AjaxOptions()
+                    {
+                        UpdateTargetId = "informational",
+                        Url = Url.Action("ToClassRoom", new { area = "Administrator", Controller = "Teacher", id = item.Id })
+                    });
+                    return link;
+                })
             ))
 

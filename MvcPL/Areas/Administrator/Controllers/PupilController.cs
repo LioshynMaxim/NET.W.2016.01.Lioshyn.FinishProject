@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Web.Mvc;
 using BLL.Interfacies.Services;
 using MvcPL.Areas.Administrator.Models;
@@ -12,21 +11,23 @@ namespace MvcPL.Areas.Administrator.Controllers
     {
         private readonly IUserService _userService;
         private readonly IPupilService _pupilService;
+        private readonly IClassRoomService _classRoomService;
         private readonly IFullPupilService _fullPupilService;
 
         private Logger logger = LogManager.GetCurrentClassLogger();
 
-        public PupilController(IUserService userService, IPupilService pupilService, IFullPupilService fullPupilService)
+        public PupilController(IUserService userService, IPupilService pupilService, IFullPupilService fullPupilService, IClassRoomService classRoomService)
         {
             _userService = userService;
             _pupilService = pupilService;
             _fullPupilService = fullPupilService;
+            _classRoomService = classRoomService;
         }
 
         public ActionResult Index()
         {
             var pupil = _fullPupilService.GetAllFullPupil().Select(s => s.ToFullPupulModel());
-            return View(pupil.Select(s=>s.ToGridPupilModel()));
+            return View(pupil.Select(s=>s.ToGridPupilClassRoomModel()));
         }
 
         public ActionResult Create()
@@ -51,11 +52,22 @@ namespace MvcPL.Areas.Administrator.Controllers
             return RedirectToAction("UserInformation", new { area = "Administrator", controller = "User", idUser = idTeacher });
         }
 
-        public ActionResult ToClassroom(int id)
+       
+
+        public ActionResult DeleteClassRoom(int id)
         {
-            return RedirectToAction("Index", new { area = "Administrator", controller = "User", idUser = id });
+            var p = _pupilService.GetUserPupilRole(id);
+            var pupil = _fullPupilService.SetFullPupil(p.Id);
+            return View(pupil.ToFullPupulModel().ToGridPupilClassRoomModel());
         }
 
+        [HttpPost]
+        public ActionResult DeleteClassRoom(GridClassroomModel model)
+        {
+            var id = _pupilService.GetUserPupilRole(model.IdUser).Id;
+            _pupilService.DeletePupilToClassRoom(id,model.IdClassRoom);
+            return RedirectToAction("Index");
+        }
 
         public ActionResult AssignRole()
         {
@@ -65,6 +77,19 @@ namespace MvcPL.Areas.Administrator.Controllers
         public ActionResult AddRole(int id)
         {
             return RedirectToAction("AddPupilEdit", new { area = "Administrator", controller = "User", idUser = id });
+        }
+
+        public ActionResult InClassRoom(int id)
+        {
+            var p = _classRoomService.GetAll().Select(s => s.ToClassRoomModel().ToGridPupilClassRoomModelInPupil(id));
+            
+            return View(p);
+        }
+        public ActionResult ToClassroom(int id, int idClassRoom)
+        {
+            var i = _pupilService.GetUserPupilRole(id).Id;
+            _pupilService.AddPupilToClassRoom(i, idClassRoom);
+            return RedirectToAction("Index");
         }
     }
 }
